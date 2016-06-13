@@ -1,0 +1,25 @@
+<form  [ngFormModel]="form" (ngSubmit)="onSubmit(form.value)">
+    <div class="form-group" 
+         [class.has-error]="!leagueType.control.valid && leagueType.control.touched">
+        <label class="control-label" for="leagueType">League Type</label>
+        <input class="form-control" 
+               type="text" 
+               id = "leagueType"
+               #leagueType="ngForm"
+               placeholder="Enter League Type" 
+               [ngFormControl]="form.controls['leagueType']">
+        <div *ngIf="!leagueType.control.valid" class="help-block">League Type is Required</div>
+    </div>
+    <div class="form-group"
+         [class.has-error]="!leagueYear.control.valid && leagueYear.control.touched">
+        <label class="control-label" for="leagueYear">League Year</label>
+        <input class="form-control" 
+               type="number" 
+               id="leagueYear"
+               #leagueYear="ngForm"
+               placeholder="Enter League Year" 
+               [ngFormControl]="form.controls['leagueYear']">
+        <span *ngIf="!leagueYear.control.valid" class="help-block">League Year is Required</span>
+    </div>
+    <button type="submit" class="btn">Submit</button>
+</form>

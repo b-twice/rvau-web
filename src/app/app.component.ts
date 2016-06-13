@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
-import { ApiService } from './shared';
 import { HomeComponent } from './home';
-import { AboutComponent } from './about';
-
-import '../style/app.scss';
+import { AdminAddComponent} from './admin';
+import { HeaderComponent } from './header';
 
 /*
  * App Component
@@ -13,18 +11,18 @@ import '../style/app.scss';
  */
 @Component({
   selector: 'my-app', // <my-app></my-app>
-  providers: [ApiService],
-  directives: [...ROUTER_DIRECTIVES],
+  providers: [],
+  directives: [ROUTER_DIRECTIVES, HeaderComponent],
   template: require('./app.component.html'),
   styles: [require('./app.component.scss')],
 })
 @RouteConfig([
   {path: '/', component: HomeComponent, name: 'Home'},
-  {path: '/About', component: AboutComponent, name: 'About'}
+  {path: '/Admin/Add', component: AdminAddComponent, name: 'AdminAdd'}
 ])
 export class AppComponent {
-  url = 'https://github.com/preboot/angular2-webpack';
+  name = 'Richmond Ultimate';
 
-  constructor(private api: ApiService) {
+  constructor() {
   }
 }
