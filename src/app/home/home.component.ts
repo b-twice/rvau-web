@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ILeague } from '../interfaces';
+import { League } from '../models';
 import { LeagueService } from '../services';
 
 @Component({
@@ -11,7 +11,7 @@ import { LeagueService } from '../services';
 })
 export class HomeComponent implements OnInit {
   errorMessage: string;
-  leagues: ILeague[];
+  leagues: Array<League>;
 
   constructor(private _leagueService: LeagueService) {
   }

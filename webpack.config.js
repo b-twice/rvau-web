@@ -8,6 +8,7 @@ var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var ProvidePlugin = require('webpack/lib/ProvidePlugin');
 
 /**
  * Env
@@ -191,7 +192,9 @@ module.exports = function makeWebpackConfig() {
       // Reference: https://github.com/webpack/extract-text-webpack-plugin
       // Disabled when in test mode or not in build mode
       new ExtractTextPlugin('css/[name].[hash].css', {disable: !isProd})
+
     );
+
   }
 
   // Add build specific plugins

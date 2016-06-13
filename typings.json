@@ -4,6 +4,9 @@
   },
   "globalDependencies": {
     "es6-shim": "registry:dt/es6-shim#0.31.2+20160317120654",
-    "node": "registry:dt/node#4.0.0+20160501135006"
+    "node": "registry:dt/node#4.0.0+20160501135006" 
+  },
+  "ambientDependencies": {
+    "underscore": "github:DefinitelyTyped/DefinitelyTyped/underscore/underscore.d.ts#38fb591c6eba840e0b53d1110302b8e4fb04651c"
   }
 }

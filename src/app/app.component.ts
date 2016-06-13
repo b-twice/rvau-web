@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 import { HomeComponent } from './home';
-import { AdminAddComponent} from './admin';
+import { AdminAddComponent} from './admin/add';
 import { HeaderComponent } from './header';
 
 /*
@@ -21,8 +21,6 @@ import { HeaderComponent } from './header';
   {path: '/Admin/Add', component: AdminAddComponent, name: 'AdminAdd'}
 ])
 export class AppComponent {
-  name = 'Richmond Ultimate';
-
   constructor() {
   }
 }

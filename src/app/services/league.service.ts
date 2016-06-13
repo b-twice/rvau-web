@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { ILeague } from '../interfaces/league';
+import { League } from '../models/league';
 
 @Injectable()
 export class LeagueService {
-    private _leagueUrl = 'leagues.json';
+    private leagueUrl = 'leagues.json';
 
-    constructor(private _http: Http) { }
+    constructor(private http: Http) { }
 
-    getLeagues(): Observable<ILeague[]> {
-        return this._http.get(this._leagueUrl)
-            .map((response: Response) => <ILeague[]> response.json())
+    getLeagues(): Observable<League[]> {
+        return this.http.get(this.leagueUrl)
+            .map((response: Response) => <League[]> response.json())
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
