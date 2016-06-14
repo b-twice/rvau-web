@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 import { HomeComponent } from './home';
-import { AdminAddComponent} from './admin/add';
+import { LeagueFormComponent } from './admin/league-form';
 import { HeaderComponent } from './header';
 
 /*
@@ -18,7 +18,7 @@ import { HeaderComponent } from './header';
 })
 @RouteConfig([
   {path: '/', component: HomeComponent, name: 'Home'},
-  {path: '/Admin/Add', component: AdminAddComponent, name: 'AdminAdd'}
+  {path: '/Admin/Add/Leagues', component: LeagueFormComponent, name: 'AddLeague'}
 ])
 export class AppComponent {
   constructor() {
