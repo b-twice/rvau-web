@@ -1,4 +1,4 @@
-import { Component }       from '@angular/core'
+import { Component }       from '@angular/core';
 import { DynamicForm }      from '../../forms/form/form.component';
 import { LeagueMetadataService } from './league-metadata.service';
 @Component({
@@ -6,16 +6,16 @@ import { LeagueMetadataService } from './league-metadata.service';
   template: `
     <div>
       <h2>Add a League</h2>
-      <df [questions]="questions"></df>
+      <dynamic-form [questions]="questions"></dynamic-form>
     </div>
   `,
   directives: [DynamicForm],
   providers:  [LeagueMetadataService]
 })
 export class LeagueFormComponent {
-  questions:any[]
+  questions:any[];
+
   constructor(service: LeagueMetadataService) {
-    console.log(service.getQuestions());
     this.questions = service.getQuestions();
   }
 }
