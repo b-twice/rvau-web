@@ -13,11 +13,11 @@ export class HomeComponent implements OnInit {
   errorMessage: string;
   leagues: Array<League>;
 
-  constructor(private _leagueService: LeagueService) {
+  constructor(private leagueService: LeagueService) {
   }
 
   ngOnInit() {
-    this._leagueService.getLeagues()
+    this.leagueService.getLeagues()
           .subscribe(
             leagues => this.leagues = leagues,
             error =>  this.errorMessage = <any>error);

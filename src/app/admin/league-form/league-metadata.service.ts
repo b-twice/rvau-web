@@ -1,7 +1,5 @@
 import { Injectable }       from '@angular/core';
-import { QuestionBase }     from '../../forms/question/question-base';
-import { TextboxQuestion }  from '../../forms/question/question-textbox';
-import { DropdownQuestion } from '../../forms/question/question-dropdown';
+import { QuestionBase, TextboxQuestion, DropdownQuestion }     from '../../forms';
 
 @Injectable()
 export class LeagueMetadataService {
@@ -10,7 +8,7 @@ export class LeagueMetadataService {
     getQuestions() {
         let leagueMetadata:QuestionBase<any>[] = [
             new DropdownQuestion({
-                key:'leagueType',
+                key:'league_type',
                 label: 'League Type',
                 options: [
                     {key:'spring',  value:'Spring'},
@@ -22,7 +20,7 @@ export class LeagueMetadataService {
                 order: 1
             }),
             new TextboxQuestion({
-                key:'leagueYear',
+                key:'league_year',
                 label:'League Year',
                 type:'Text',
                 required: true,

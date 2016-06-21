@@ -1,3 +1,6 @@
+export * from "./form-question.component";
+export * from './form-question.pipe';
+export * from "./form.component";
 export * from './question-base';
 export * from './question-control.service';
 export * from './question-dropdown';
