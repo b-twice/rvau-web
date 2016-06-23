@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ControlGroup } from '@angular/common';
 import { Table } from './';
 
 
@@ -11,8 +10,6 @@ import { Table } from './';
 })
 export class TableComponent implements OnInit {
   @Input() table: Table;
-
-  form: ControlGroup;
 
   constructor() {  }
   ngOnInit(){

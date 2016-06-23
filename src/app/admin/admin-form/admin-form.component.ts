@@ -1,10 +1,10 @@
 import { Component, OnInit }       from '@angular/core';
-import { Router} from '@angular/router-deprecated';
+import { Router} from '@angular/router';
 import { ControlGroup } from '@angular/common';
 import { DynamicFormComponent }      from '../../forms/form.component.ts';
-import { LeagueMetadataService } from './league-metadata.service';
-import { LeagueService } from '../../services'
-import { League } from '../../models'
+import { AdminFormMetadata } from './admin-form.metadata';
+import { ApiService } from '../../services';
+
 
 @Component({
   selector: 'admin-league-form',
@@ -15,15 +15,15 @@ import { League } from '../../models'
     </div>
   `,
   directives: [DynamicFormComponent],
-  providers:  [LeagueMetadataService, LeagueService]
+  providers:  [AdminFormMetadata]
 })
-export class LeagueFormComponent implements OnInit {
+export class AdminFormComponent implements OnInit {
   submitButtonText: string = "Submit";
   questions:any[];
   form: ControlGroup;
-  constructor( private metadata: LeagueMetadataService,
+  constructor( private metadata: AdminFormMetadata,
                private router: Router,
-               private leagueService: LeagueService) {}
+               private apiService: ApiService) {}
 
   ngOnInit() {
       this.questions = this.metadata.getQuestions();
@@ -34,7 +34,7 @@ export class LeagueFormComponent implements OnInit {
     let form = event.value;
 
     // Add when API complete
-    let results:League = new League(form.league_type, form.league_year)
+    // let results:League = new League(form.league_type, form.league_year)
 
     console.log(form.league_type);
     // this.leagueService.addLeague(results)

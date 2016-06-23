@@ -15,17 +15,3 @@
     width:100%;
     padding: 16px 32px;
 }
-
-.light-theme {
-  .table-header {
-    background: rgba(236,239,241,0.24);
-    border: 1px solid #ECEff1;
-  }
-  .table-cell {
-    border-bottom: 1px solid #ECEFF1;
-  }
-}
-.light-theme.table {
-    box-shadow: 0 2px 5px 0  rgba(-0, 0, 0,0.26);
-    border-radius:4px;
-}

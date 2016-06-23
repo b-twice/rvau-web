@@ -2,11 +2,11 @@ import { Injectable }       from '@angular/core';
 import { QuestionBase, TextboxQuestion, DropdownQuestion }     from '../../forms';
 
 @Injectable()
-export class LeagueMetadataService {
+export class AdminFormMetadata {
     // Todo: get from a remote source of question metadata
     // Todo: make asynchronous
     getQuestions() {
-        let leagueMetadata: QuestionBase<any>[] = [
+        let adminMetadata: QuestionBase<any>[] = [
             new DropdownQuestion({
                 key:'league_type',
                 label: 'League Type',
@@ -27,6 +27,6 @@ export class LeagueMetadataService {
                 order: 2
             }),
     ];
-    return leagueMetadata.sort((a, b) => a.order - b.order);
+    return adminMetadata.sort((a, b) => a.order - b.order);
     }
 }

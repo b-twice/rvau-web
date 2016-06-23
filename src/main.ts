@@ -1,10 +1,10 @@
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, PLATFORM_DIRECTIVES, provide } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { ELEMENT_PROBE_PROVIDERS } from '@angular/platform-browser';
-import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
-
+import { APP_ROUTER_PROVIDERS } from './app/';
 import {AppComponent} from './app/app.component';
 
 const ENV_PROVIDERS = [];
@@ -17,8 +17,9 @@ if (process.env.ENV === 'build') {
 
 bootstrap(AppComponent, [
     // These are dependencies of our App
+    ...APP_ROUTER_PROVIDERS,
     ...HTTP_PROVIDERS,
-    ...ROUTER_PROVIDERS,
+    provide(PLATFORM_DIRECTIVES, {useValue:ROUTER_DIRECTIVES, multi:true}),
     ...ENV_PROVIDERS,
     { provide: LocationStrategy, useClass: HashLocationStrategy } // use #/ routes, remove this for HTML5 mode
   ])

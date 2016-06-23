@@ -1,5 +1,5 @@
 import { Injectable }       from '@angular/core';
-import { Table }     from '../../tables';
+import { Table }     from '../tables';
 
 @Injectable()
 export class AdminHomeTableService {
