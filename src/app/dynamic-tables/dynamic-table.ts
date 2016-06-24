@@ -1,4 +1,4 @@
-export class Table {
+export class DynamicTable {
     title: string
     columns: {name: string, width: number, values: any[]}[] = [];
     constructor(title: string, columns: {} = {} )

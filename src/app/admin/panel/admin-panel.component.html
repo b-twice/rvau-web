@@ -1,36 +1,49 @@
 <div class="table light-theme">
-    <div class="table-row">
-        <div class="table-title">Update Tables</div>
-    </div>
-    <div class="table-column">
-        <div class="table-cell table-header">Table Names</div>
-        <div class="table-cell">League</div>
-        <div class="table-cell">Team</div>
-        <div class="table-cell">Player</div>
-        <div class="table-cell">PlayerLeague</div>
-        <div class="table-cell">Game</div>
-    </div>
-    <div class="table-column">
-        <div class="table-cell table-header">Actions</div>
-        <div class="table-cell">
-            <a href="/">Edit</a>
-            <a href="/">Export To CSV</a>
+    <div class="table-title">Update Tables</div>
+    <div class="table-body">
+        <div class="table-column">
+            <div class="table-cell table-header">Table Names</div>
+            <div class="table-cell">League</div>
+            <div class="table-cell">Team</div>
+            <div class="table-cell">Player</div>
+            <div class="table-cell">PlayerLeague</div>
+            <div class="table-cell">Game</div>
         </div>
-        <div class="table-cell">
-            <a href="/">Edit</a>
-            <a href="/">Export To CSV</a>
+        <div class="table-column">
+            <div class="table-cell table-header">Edit</div>
+            <div class="table-cell">
+                <a [routerLink]="['/admin', 'leagues']">Edit</a>
+            </div>
+            <div class="table-cell">
+                <a [routerLink]="['/admin', 'teams']">Edit</a>
+            </div>
+            <div class="table-cell">
+                <a [routerLink]="['/admin', 'players']">Edit</a>
+            </div>
+            <div class="table-cell">
+                <a [routerLink]="['/admin', 'league_players']">Edit</a>
+            </div>
+            <div class="table-cell">
+                <a [routerLink]="['/admin', 'games']">Edit</a>
+            </div>
         </div>
-        <div class="table-cell">
-            <a href="/">Edit</a>
-            <a href="/">Export To CSV</a>
-        </div>
-        <div class="table-cell">
-            <a href="/">Edit</a>
-            <a href="/">Export To CSV</a>
-        </div>
-        <div class="table-cell">
-            <a href="/">Edit</a>
-            <a href="/">Export To CSV</a>
+        <div class="table-column">
+            <div class="table-cell table-header">Export</div>
+            <div class="table-cell">
+                <a href="/">Export To CSV</a>
+            </div>
+            <div class="table-cell">
+                <a href="/">Export To CSV</a>
+            </div>
+            <div class="table-cell">
+                <a href="/">Export To CSV</a>
+            </div>
+            <div class="table-cell">
+                <a href="/">Export To CSV</a>
+            </div>
+            <div class="table-cell">
+                <a href="/">Export To CSV</a>
+            </div>
         </div>
     </div>
 </div>
