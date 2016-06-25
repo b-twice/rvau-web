@@ -1,5 +1,5 @@
 import { RouterConfig } from '@angular/router';
-import { AdminComponent, AdminTableComponent } from '../admin';
+import { AdminComponent, AdminTableComponent, AdminEditComponent } from '../admin';
 import { AdminPanelComponent } from '../admin/panel';
 
 export const AdminRoutes: RouterConfig = [
@@ -9,11 +9,16 @@ export const AdminRoutes: RouterConfig = [
         children: [
             {
                 path: '',
-                component: AdminPanelComponent,
+                component: AdminTableComponent,
+                redirectTo: 'leagues',
             },
             {
                 path: ':table',
-                component: AdminTableComponent
+                component: AdminTableComponent,
+            },
+            {
+                path: ':table/edit/:id',
+                component: AdminEditComponent
             }
         ]
     }

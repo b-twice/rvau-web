@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminHeaderComponent } from './header';
+import { AdminNavComponent} from './nav';
 
 @Component({
   selector: 'admin',
   template: require('./admin.component.html'),
-  directives: [AdminHeaderComponent],
+  directives: [AdminHeaderComponent, AdminNavComponent],
   styles: []
 })
 export class AdminComponent{

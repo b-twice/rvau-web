@@ -1,8 +1,9 @@
-<div class="table">
-    <div class="table-row">
+<div class="table {{theme}}" >
+    <div class="table-row table-header">
         <div class="table-row-cell" *ngFor="let k of keys">{{k}}</div>
     </div>
     <div class="table-row" *ngFor="let arr of values">
         <div class="table-row-cell" *ngFor="let v of arr">{{v}}</div>
+        <a *ngIf="editable" [routerLink]="['']"></a>
     </div>
 </div>
