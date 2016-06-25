@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DynamicTable } from './';
+import { MapPipe } from './dynamic-table.pipe';
 
 
 @Component({
@@ -8,31 +9,36 @@ import { DynamicTable } from './';
   template: require('./dynamic-table.component.html'),
   styles: [require('./dynamic-table.component.scss')],
   directives: [],
-  providers: []
+  providers: [],
+  pipes: [MapPipe]
 })
 export class DynamicTableComponent implements OnInit {
-  // @Input() table: DynamicTable;
-  @Input() keys;
-  @Input() values;
   @Input() theme;
   @Input() editable: boolean = true;
+  private keys: any[]; // column names
+  private collection: any[][] = []; // array of row values
 
   routePath: string = ''; // get path
 
   constructor(private router: Router) {
-  }
-
-  ngOnInit() {
-    console.log("In dynamic table")
     if (this.editable) {
       this.trackRoutePath()
     }
+  }
 
+  ngOnInit() {
   }
 
   trackRoutePath(): void {
     this.router
       .events
-      .subscribe(e => {this.routePath = e.url; console.log(e)})
+      .subscribe(e => this.routePath = `${e.url}/edit/`)
+  }
+
+  setData(data) {
+    // only assumption is data contains id field
+    // TODO add id check
+    this.keys = Object.keys(data[0]).filter(key => key != 'id');
+    this.collection = data;
   }
 }

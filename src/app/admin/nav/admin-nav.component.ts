@@ -8,7 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class AdminNavComponent{
 
-    @Input() navRoot: string;
-    @Input() navMap: {}[] = [];
-    @Input() activeNav: string;
+    @Input() navRoot: string; // root of path i.e. /admin/leagues
+    @Input() navMap: {}[] = []; // navigation map {{ link: 'pathname', name: 'name' }}
+    @Input() activeNav: string; // current activated route
+    
 }

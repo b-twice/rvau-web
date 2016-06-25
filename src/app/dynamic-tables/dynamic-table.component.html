@@ -2,8 +2,7 @@
     <div class="table-row table-header">
         <div class="table-row-cell" *ngFor="let k of keys">{{k}}</div>
     </div>
-    <div class="table-row" *ngFor="let arr of values">
-        <div class="table-row-cell" *ngFor="let v of arr">{{v}}</div>
-        <a *ngIf="editable" [routerLink]="['']"></a>
-    </div>
+    <a class ="table-row" *ngFor="let o of collection" [routerLink]="[routePath + o.id]">
+       <div class="table-row-cell" *ngFor="let keyValue of o | mapPipe : keys">{{keyValue.value}}</div>
+    </a>
 </div>

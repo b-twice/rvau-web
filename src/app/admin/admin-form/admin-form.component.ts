@@ -2,7 +2,6 @@ import { Component, OnInit }       from '@angular/core';
 import { Router} from '@angular/router';
 import { ControlGroup } from '@angular/common';
 import { DynamicFormComponent }      from '../../forms/form.component.ts';
-import { AdminFormMetadata } from './admin-form.metadata';
 import { ApiService } from '../../services';
 
 
@@ -15,18 +14,16 @@ import { ApiService } from '../../services';
     </div>
   `,
   directives: [DynamicFormComponent],
-  providers:  [AdminFormMetadata]
 })
 export class AdminFormComponent implements OnInit {
   submitButtonText: string = "Submit";
   questions:any[];
   form: ControlGroup;
-  constructor( private metadata: AdminFormMetadata,
+  constructor( 
                private router: Router,
                private apiService: ApiService) {}
 
   ngOnInit() {
-      this.questions = this.metadata.getQuestions();
   }
   formSubmit(event) {
 
