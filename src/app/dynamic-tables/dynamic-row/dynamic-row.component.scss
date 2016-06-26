@@ -1,0 +1,9 @@
+.table-row-cell {
+  display:flex;
+  flex:1;
+  padding: 16px 32px;
+}
+
+:host-context(.theme-light) .table-row-cell {
+    border-bottom: 1px solid #ECEFF1;
+}

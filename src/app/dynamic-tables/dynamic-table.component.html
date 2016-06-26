@@ -1,8 +1,19 @@
-<div class="table {{theme}}" >
+<div class="table {{theme}}">
     <div class="table-row table-header">
         <div class="table-row-cell" *ngFor="let k of keys">{{k}}</div>
     </div>
-    <a class ="table-row" *ngFor="let o of collection" [routerLink]="[routePath + o.id]">
-       <div class="table-row-cell" *ngFor="let keyValue of o | mapPipe : keys">{{keyValue.value}}</div>
-    </a>
+    <div *ngIf="editable">
+        true
+        <div class="table-row" [class.editable]="editable" *ngFor="let row of collection">
+            <dynamic-row class="table-row" [row]="row?.item"></dynamic-row>
+            <!--<dynamic-row-edit></dynamic-row-edit>-->
+        </div>
+    </div>
+    <div *ngIf="!editable">
+        false
+        <div class="table-row" [class.editable]="editable" *ngFor="let row of collection">
+            <dynamic-row class="table-row" [row]="row"></dynamic-row>
+            <dynamic-row-edit></dynamic-row-edit>
+        </div>
+    </div>
 </div>

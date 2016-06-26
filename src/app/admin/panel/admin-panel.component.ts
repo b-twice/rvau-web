@@ -19,7 +19,7 @@ export class AdminPanelComponent implements OnInit{
     private tableName: string; // name of active table
     private collection: any[]; // subscription results
     private tableTheme = "light-theme"; // dynamic table theme
-
+    private activeEditing:boolean = true;
     @ViewChild(DynamicTableComponent) dynamicTable: DynamicTableComponent;
     constructor(private route: ActivatedRoute, private service: ApiService) {}
     ngOnInit () {
