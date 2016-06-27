@@ -1,4 +1,4 @@
 export class EditItem {
-  editing: boolean;
+  editing: boolean = false;
   constructor (public item: {}) {}
 }

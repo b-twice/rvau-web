@@ -2,23 +2,22 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DynamicTable, EditItem } from './';
 import { DynamicRowComponent } from './dynamic-row'
+import { DynamicRowEditComponent } from './dynamic-row-edit';
 
 
 @Component({
   selector: 'dynamic-table',
   template: require('./dynamic-table.component.html'),
   styles: [require('./dynamic-table.component.scss')],
-  directives: [DynamicRowComponent],
+  directives: [DynamicRowComponent, DynamicRowEditComponent],
   providers: []
 })
 export class DynamicTableComponent implements OnInit {
   @Input() theme;
   @Input() editable: boolean = false;
+  private editSession: boolean = false;
   private keys: any[]; // column names
   private collection: any[][] = []; // array of row values
-  private dataActive: boolean; //
-
-  routePath: string = ''; // get path
 
   constructor(private router: Router) {
   }
@@ -37,6 +36,5 @@ export class DynamicTableComponent implements OnInit {
     else {
       this.collection = data
     }
-    this.dataActive = true;
   }
 }

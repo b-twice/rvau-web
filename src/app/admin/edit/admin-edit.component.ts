@@ -2,7 +2,7 @@ import { Component, OnInit, Input }       from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ControlGroup } from '@angular/common';
 import { DynamicFormComponent }      from '../../forms/form.component.ts';
-import { AdminEditMetadata } from './admin-edit.metadata';
+// import { AdminEditMetadata } from './admin-edit.metadata';
 import { ApiService } from '../../services';
 
 
@@ -15,26 +15,26 @@ import { ApiService } from '../../services';
     </div>
   `,
   directives: [DynamicFormComponent],
-  providers:  [AdminEditMetadata, ApiService]
+  providers:  [ApiService]
 })
-export class AdminEditComponent implements OnInit {
+export class AdminEditComponent {
 
   sub: any;
   tableName: string;
   submitButtonText: string = "Submit";
   questions:any[];
   form: ControlGroup;
-  constructor( private metadata: AdminEditMetadata,
+  constructor(
                private route: ActivatedRoute,
                private router: Router,
                private apiService: ApiService) {}
 
-  ngOnInit() {
-        this.sub = this.route.params.subscribe(params => {
-            this.tableName = params['table']; 
-            this.questions = this.metadata.getQuestions(this.tableName);
-        })
-  }
+  // ngOnInit() {
+  //       this.sub = this.route.params.subscribe(params => {
+  //           this.tableName = params['table']; 
+  //           this.questions = this.metadata.getQuestions(this.tableName);
+  //       })
+  // }
   formSubmit(event) {
 
     // value emited from form in child view

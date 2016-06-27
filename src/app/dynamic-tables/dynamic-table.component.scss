@@ -4,13 +4,15 @@
 }
 .table-body {
   display:flex;
-  flex-direction:row;
+  flex-direction:column;
+  overflow:auto;
+  max-height:700px;
 }
 .table-row {
   display:flex;
   flex-direction:row;
   width:100%;
-  flex:1;
+  min-height:min-content;
 }
 .table-column {
   display:flex;
