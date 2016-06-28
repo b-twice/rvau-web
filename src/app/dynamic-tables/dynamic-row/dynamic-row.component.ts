@@ -1,15 +1,15 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { DynamicFormComponent } from '../../forms'
 import { MapPipe } from '../dynamic-table.pipes';
-
+import { TableService } from '../dynamic-table.service';
+import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
     selector: 'dynamic-row',
     template: require('./dynamic-row.component.html'),
     styles: [require('./dynamic-row.component.scss')],
     directives: [DynamicFormComponent],
-    providers: [],
     pipes: [MapPipe],
 })
 export class DynamicRowComponent implements OnInit {
@@ -19,37 +19,46 @@ export class DynamicRowComponent implements OnInit {
     @Input() canEdit: boolean = false;
     @Input() formQuestions:any[];
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private tableService: TableService) {
     }
 
     ngOnInit() {
          this.keys = Object.keys(this.row).filter(k => k != 'id')
-         console.log(this.formQuestions);
-         console.log(this.canEdit)
+         this.setFormValues()
     }
 
-    startEditing(row) {
-        this.activeEditSession = true;
-        return
+    setFormValues(): void {
+        this.keys.forEach(key => {
+            this.formQuestions.forEach(question => {
+                if (key === question.key) {
+                    question.value = this.row[key]
+                }
+            })
+        })
     }
-    cancelEditing() {
+
+    startEditing(row): void {
+        this.activeEditSession = true;
+    }
+
+    cancelEditing(): void {
         this.activeEditSession = false;
     }
 
     formSubmit(event) {
 
-    // value emited from form in child view
-    let form = event.value;
+        // value emited from form in child view
 
-    // Add when API complete
-    // let results:League = new League(form.league_type, form.league_year)
-
-    console.log(form.league_type);
-    // this.leagueService.addLeague(results)
-    //   .subscribe((result) => {
-    //     if (result) {
-    //       this.router.navigate(['Home']);
-    //     }
-    // });
+        // Add when API complete
+        // let results:League = new League(form.league_type, form.league_year)
+        console.log("hello");
+        this.tableService.submitForm(event.value);
+        // this.leagueService.addLeague(results)
+        //   .subscribe((result) => {
+        //     if (result) {
+        //       this.router.navigate(['Home']);
+        //     }
+        // });
   }
 }

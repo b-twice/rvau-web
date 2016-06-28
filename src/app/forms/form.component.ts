@@ -29,11 +29,9 @@ export class DynamicFormComponent implements OnInit {
 
   constructor(private qcs: QuestionControlService) {  }
   ngOnInit(){
-    console.log("hello")
     this.form = this.qcs.toFormGroup(this.questions);
   }
   submit() {
-    console.log(this.form)
      this.onSubmit.emit({value: this.form.value})
   }
 }

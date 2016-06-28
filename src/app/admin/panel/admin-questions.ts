@@ -6,10 +6,10 @@ export const AdminQuestions = {
             key: 'league_type',
             label: 'League Type',
             options: [
-                { key: 'spring', value: 'Spring' },
-                { key: 'summer', value: 'Summer' },
-                { key: 'winter', value: 'Winter' },
-                { key: 'fall', value: 'Fall' }
+                { key: 'Spring', value: 'Spring' },
+                { key: 'Summer', value: 'Summer' },
+                { key: 'Winter', value: 'Winter' },
+                { key: 'Fall', value: 'Fall' }
             ],
             required: true,
             order: 1

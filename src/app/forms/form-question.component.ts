@@ -12,10 +12,11 @@ import { ValidationMessagesPipe } from './form-question.pipe'
 
                 <label *ngSwitchWhen="'textbox'" [attr.for]="question.key">{{question.label}}</label>
                 <input *ngSwitchWhen="'textbox'" [formControlName]="question.key"
-                        [id]="question.key" [type]="question.type" class="form-control">
+                        [id]="question.key" [type]="question.type" class="form-control"
+                        [value]="question.value">
                 
                 <label *ngSwitchWhen="'dropdown'" [attr.for]="question.key">{{question.label}}</label>
-                <select *ngSwitchWhen="'dropdown'" [id]="question.key" [formControlName]="question.key" class="form-control">
+                <select *ngSwitchWhen="'dropdown'" [id]="question.key" [formControlName]="question.key" class="form-control" [value]="question.value">
                     <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
                 </select>
 

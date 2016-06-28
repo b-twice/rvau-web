@@ -12,11 +12,6 @@ export const AdminRoutes: RouterConfig = [
                 redirectTo: 'leagues',
             },
             {
-                path:'edit',
-                component: AdminEditComponent
-
-            },
-            {
                 path: ':table',
                 component: AdminPanelComponent,
             },
