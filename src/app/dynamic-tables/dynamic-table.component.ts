@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
-import { DynamicTable } from './';
+import { Component, OnInit, Input } from '@angular/core';
 import { DynamicRowComponent } from './dynamic-row';
+import { DynamicFormComponent } from '../forms';
 import { TableService } from './dynamic-table.service';
+import { FormSubmit } from '../models';
 import { Subscription }   from 'rxjs/Subscription';
 
 
@@ -10,36 +10,82 @@ import { Subscription }   from 'rxjs/Subscription';
   selector: 'dynamic-table',
   template: require('./dynamic-table.component.html'),
   styles: [require('./dynamic-table.component.scss')],
-  directives: [DynamicRowComponent],
-  providers: [TableService]
+  directives: [DynamicRowComponent, DynamicFormComponent],
+  providers: []
 })
 export class DynamicTableComponent implements OnInit {
   @Input() theme;
   @Input() editable: boolean = false;
-  @Input() questions: {}[];
+  @Input() formQuestions: any[];
+
   private keys: any[]; // column names
   private collection: any[][] = []; // array of row values
+  private editSession: boolean = false;
+  private editSessionType: string; // Edit Add Delete
+  private editId: number; // id of collection row
 
-  subscription: Subscription;
-  constructor(private router: Router,
+  rowsSub: Subscription;
+  formSub: Subscription;
+  
+  constructor(
     private tableService: TableService) {
-
-    this.subscription = tableService.formSubmitted$.subscribe(
-      form => {
-      });
   }
 
   ngOnInit() {
+
+    this.rowsSub = this.tableService.rowsAdded$.subscribe(
+      rows => {
+        this.keys = Object.keys(rows[0]).filter(key => key !== 'id');
+        this.collection = rows;
+      });
+
+    this.formSub = this.tableService.formResponse$.subscribe(
+      response => {
+          this.handleFormResponse(response)
+      })
   }
 
-  ngOnDestryo() {
-    this.subscription.unsubscribe();
+  ngOnDestroy() {
+    this.rowsSub.unsubscribe();
   }
 
-  setData(data) {
-
-    this.keys = Object.keys(data[0]).filter(key => key !== 'id');
-    this.collection = data
+  setFormValues(row, empty:boolean = false): void {
+      if (empty) {
+        this.formQuestions.forEach(question => question.value = '')
+        return
+      }
+      this.keys.forEach(key => {
+          this.formQuestions.forEach(question => {
+              if (key === question.key) {
+                  question.value = row[key]
+              }
+          })
+      })
   }
 
+  startEditSession(row: {} = {}) {
+    let rowEmpty = Object.keys(row).length === 0 ? true : false;
+    this.editSessionType = rowEmpty ? "Add": "Edit";
+    this.setFormValues(row, rowEmpty);
+    this.editSession = true;
+    if (!rowEmpty) {
+      this.editId =  row["id"]
+    }
+  }
+
+  handleFormResponse(form: FormSubmit) {
+    if (form.editType === "Edit") {
+        form["id"] = this.editId;
+        this.tableService.changeRow(form);
+    }
+    if (form.editType === "Add") {
+      // this.tableService.submitForm(event.value);
+    }
+  }
+  onSubmit(event): void {
+    let form = new FormSubmit({editType: this.editSessionType, value:event.value});
+    // Edit session type logic
+    this.tableService.submitForm(event.value);
+
+  }
 }

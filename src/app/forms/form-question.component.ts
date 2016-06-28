@@ -10,17 +10,17 @@ import { ValidationMessagesPipe } from './form-question.pipe'
         <div class="form-group">
             <div [ngSwitch]="question.controlType">
 
-                <label *ngSwitchWhen="'textbox'" [attr.for]="question.key">{{question.label}}</label>
-                <input *ngSwitchWhen="'textbox'" [formControlName]="question.key"
+                <label *ngSwitchCase="'textbox'" [attr.for]="question.key">{{question.label}}</label>
+                <input *ngSwitchCase="'textbox'" [formControlName]="question.key"
                         [id]="question.key" [type]="question.type" class="form-control"
                         [value]="question.value">
                 
-                <label *ngSwitchWhen="'dropdown'" [attr.for]="question.key">{{question.label}}</label>
-                <select *ngSwitchWhen="'dropdown'" [id]="question.key" [formControlName]="question.key" class="form-control" [value]="question.value">
+                <label *ngSwitchCase="'dropdown'" [attr.for]="question.key">{{question.label}}</label>
+                <select *ngSwitchCase="'dropdown'" [id]="question.key" [formControlName]="question.key" class="form-control" [value]="question.value">
                     <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
                 </select>
 
-                <div *ngSwitchWhen="'checkbox'" class="checkbox">
+                <div *ngSwitchCase="'checkbox'" class="checkbox">
                     <label>
                         <input formControl="{{question.key}}" [id]="question.key" type="checkbox"> 
                         {{question.label}}

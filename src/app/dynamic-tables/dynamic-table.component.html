@@ -1,9 +1,20 @@
+<div class="table-controls">
+    <button (click)="startEditSession()" class="btn btn-default btn-primary pull-left">Add a row</button>
+</div>
 <div class="table {{theme}}">
     <div class="table-row table-header">
         <div class="table-row-cell" *ngFor="let k of keys">{{k}}</div>
     </div>
     <div class="table-body">
         <div *ngFor="let row of collection">
-            <dynamic-row class="table-row" [canEdit]="editable" [row]="row" [formQuestions]="questions"></dynamic-row>
+            <dynamic-row class="table-row" (click)="startEditSession(row)" [keys]="keys" [row]="row"></dynamic-row>
         </div>
+    </div>
+</div>
+<div *ngIf="editSession">
+    <div class="form-content">
+        <dynamic-form [questions]="formQuestions" [submitButtonText]="'Save'" (onSubmit)="onSubmit($event)"></dynamic-form>
+        <button class="btn btn-primary btn-block" (click)="editSession = false" type="submit">Cancel</button>
+    </div>
+    <div (click)="editSession = false" class="form-background"></div>
 </div>

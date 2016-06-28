@@ -1,7 +1,7 @@
 import { Validators } from '@angular/common';
 
 export class QuestionBase<T>{
-    value: T;
+    value: any;
     key: string;
     label: string;
     required: boolean;
@@ -10,7 +10,7 @@ export class QuestionBase<T>{
     validators: any[];
     validationMessages: {[key:string] :string};
     constructor(options: {
-        value?: T,
+        value?: any,
         key?: string,
         label?: string,
         required?: boolean,
@@ -20,7 +20,7 @@ export class QuestionBase<T>{
         validationMessages?: {[key:string] : string}
     } = { } )
     {   
-        this.value = options.value;
+        this.value = options.value || '';
         this.key = options.key || '';
         this.label = options.label || '';
         this.required = !!options.required;
