@@ -6,6 +6,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { APP_ROUTER_PROVIDERS } from './app/';
 import {AppComponent} from './app/app.component';
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
 const ENV_PROVIDERS = [];
 // depending on the env mode, enable prod mode or add debugging modules
@@ -16,6 +17,8 @@ if (process.env.ENV === 'build') {
 }
 
 bootstrap(AppComponent, [
+    disableDeprecatedForms(),
+    provideForms(),
     // These are dependencies of our App
     ...APP_ROUTER_PROVIDERS,
     ...HTTP_PROVIDERS,

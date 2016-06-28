@@ -1,14 +1,14 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-import { ControlGroup } from '@angular/common';
-import { QuestionBase,
-         DynamicFormQuestionComponent,
-         QuestionControlService  } from './';
+import { FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
+import { QuestionBase } from './question-base';
+import { DynamicFormQuestionComponent } from './form-question.component';
+import { QuestionControlService  } from './question-control.service';
 
 
 @Component({
   selector: 'dynamic-form',
   template: `
-    <form (ngSubmit)="submit()" [ngFormModel]="form">
+    <form (ngSubmit)="submit()" [formGroup]="form">
         <div *ngFor="let question of questions" class="form-row">
           <df-question [question]="question" [form]="form"></df-question>
         </div>
@@ -17,19 +17,20 @@ import { QuestionBase,
         </div>
     </form>
   `,
-  directives: [DynamicFormQuestionComponent],
+  directives: [DynamicFormQuestionComponent,  REACTIVE_FORM_DIRECTIVES ],
   providers:  [QuestionControlService]
 })
 export class DynamicFormComponent implements OnInit {
   @Input() questions: QuestionBase<any>[] = [];
-  @Input() submitButtonText: string;
+  @Input() submitButtonText: string = "Submit";
   @Output() onSubmit = new EventEmitter();
 
-  form: ControlGroup;
+  form: FormGroup;
 
   constructor(private qcs: QuestionControlService) {  }
   ngOnInit(){
-    this.form = this.qcs.toControlGroup(this.questions);
+    console.log("hello")
+    this.form = this.qcs.toFormGroup(this.questions);
   }
   submit() {
     console.log(this.form)

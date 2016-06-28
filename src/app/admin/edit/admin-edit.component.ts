@@ -1,8 +1,8 @@
 import { Component, OnInit, Input }       from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ControlGroup } from '@angular/common';
+import { FormGroup } from '@angular/forms';
 import { DynamicFormComponent }      from '../../forms/form.component.ts';
-// import { AdminEditMetadata } from './admin-edit.metadata';
+import { AdminEditMetadata } from '../panel/admin-edit.metadata';
 import { ApiService } from '../../services';
 
 
@@ -11,30 +11,28 @@ import { ApiService } from '../../services';
   template: `
     <div>
       <h2>{{tableName}}</h2>
-      <dynamic-form [questions]="questions" [submitButtonText]="submitButtonText" (onSubmit)="formSubmit($event)"></dynamic-form>
+      <dynamic-form [question]="questions" [submitButtonText]="submitButtonText" (onSubmit)="formSubmit($event)"></dynamic-form>
     </div>
   `,
   directives: [DynamicFormComponent],
-  providers:  [ApiService]
+  providers:  [ApiService, AdminEditMetadata]
 })
-export class AdminEditComponent {
+export class AdminEditComponent implements OnInit {
 
   sub: any;
-  tableName: string;
+  tableName: string ="Sup";
   submitButtonText: string = "Submit";
   questions:any[];
-  form: ControlGroup;
+  form: FormGroup;
   constructor(
                private route: ActivatedRoute,
                private router: Router,
-               private apiService: ApiService) {}
+               private apiService: ApiService,
+               private metadata: AdminEditMetadata) {}
 
-  // ngOnInit() {
-  //       this.sub = this.route.params.subscribe(params => {
-  //           this.tableName = params['table']; 
-  //           this.questions = this.metadata.getQuestions(this.tableName);
-  //       })
-  // }
+  ngOnInit() {
+    this.questions = this.metadata.getQuestions("leagues");
+  }
   formSubmit(event) {
 
     // value emited from form in child view
@@ -50,7 +48,5 @@ export class AdminEditComponent {
     //       this.router.navigate(['Home']);
     //     }
     // });
-
-    this.router.navigate(['Home'])
   }
 }

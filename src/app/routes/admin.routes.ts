@@ -12,13 +12,14 @@ export const AdminRoutes: RouterConfig = [
                 redirectTo: 'leagues',
             },
             {
+                path:'edit',
+                component: AdminEditComponent
+
+            },
+            {
                 path: ':table',
                 component: AdminPanelComponent,
             },
-            {
-                path: ':table/edit/:id',
-                component: AdminEditComponent
-            }
         ]
     }
 ];

@@ -1,2 +1,12 @@
-
-<div class="table-row-cell" *ngFor="let keyValue of row | mapPipe : keys">{{keyValue.value}}</div>
+<div *ngIf="canEdit" class="table-row" (click)="startEditing(row)" [class.editable]="editable">
+    <div class="table-row-cell" *ngFor="let keyValue of row | mapPipe : keys">{{keyValue.value}}</div>
+</div>
+<div *ngIf="canEdit && activeEditSession">
+    <div id="light" class="white_content">
+        <dynamic-form [questions]="formQuestions" (onSubmit)="formSubmit($event)"></dynamic-form>
+    </div>
+    <div id="fade" (click)="cancelEditing(row)" class="black_overlay"></div>
+</div>
+<div *ngIf="!canEdit" class="table-row">
+        <div class="table-row-cell" *ngFor="let keyValue of row | mapPipe : keys">{{keyValue.value}}</div>
+<div>

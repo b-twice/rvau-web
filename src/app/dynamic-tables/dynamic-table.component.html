@@ -2,16 +2,8 @@
     <div class="table-row table-header">
         <div class="table-row-cell" *ngFor="let k of keys">{{k}}</div>
     </div>
-    <div class="table-body" *ngIf="editable">
-        <div class="table-row" (click)="row.editing = true" [class.editable]="editable" *ngFor="let row of collection">
-            <dynamic-row class="table-row" [row]="row.item"></dynamic-row>
-            
-            <dynamic-row-edit [row]="row" [hidden]="!row.editing"></dynamic-row-edit>
+    <div class="table-body">
+        <div *ngFor="let row of collection">
+            <dynamic-row class="table-row" [canEdit]="editable" [row]="row" [formQuestions]="questions"></dynamic-row>
         </div>
-    </div>
-    <div class="table-body" *ngIf="!editable">
-        <div class="table-row" [class.editable]="editable" *ngFor="let row of collection">
-            <dynamic-row class="table-row" [row]="row"></dynamic-row>
-        </div>
-    </div>
 </div>

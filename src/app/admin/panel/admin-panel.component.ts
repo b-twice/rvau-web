@@ -4,11 +4,12 @@ import { ApiService } from '../../services';
 import { DynamicTableComponent } from '../../dynamic-tables';
 import { AdminNavComponent } from '../nav';
 import { Tables } from '../';
+import { AdminEditMetadata } from './admin-edit.metadata';
 
 @Component({
   selector: 'admin-panel',
   template: require('./admin-panel.component.html'),
-  providers: [ApiService],
+  providers: [ApiService, AdminEditMetadata],
   directives: [DynamicTableComponent, AdminNavComponent],
   styles: []
 })
@@ -20,8 +21,13 @@ export class AdminPanelComponent implements OnInit{
     private collection: any[]; // subscription results
     private tableTheme = "light-theme"; // dynamic table theme
     private activeEditing:boolean = true;
+    private formQuestions: {}[];
+
     @ViewChild(DynamicTableComponent) dynamicTable: DynamicTableComponent;
-    constructor(private route: ActivatedRoute, private service: ApiService) {}
+    constructor(private route: ActivatedRoute, 
+                private service: ApiService,
+                private metadata: AdminEditMetadata
+    ) {}
     ngOnInit () {
         this.sub = this.route.params.subscribe(params => {
             this.tableName = params['table']; 
@@ -31,6 +37,9 @@ export class AdminPanelComponent implements OnInit{
                     this.dynamicTable.setData(data);
                 }
             )
+            if (this.activeEditing) {
+                this.formQuestions = this.metadata.getQuestions(this.tableName);
+            }
         })
     }
     ngOnDestroy() {
