@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
-import { FormSubmit} from '../models'
+import { FormPost, FormResponse} from '../models'
 
 export class RowInstance {
     rowSource: any;
@@ -19,21 +19,21 @@ export class TableService {
     private rowInstances: { [id: string]: RowInstance} = {};
 
     private rowsAddedSource = new Subject<any[]>();
-    private formSubmittedSource = new Subject<FormSubmit>();
-    private formResponseSource = new Subject<FormSubmit>();
+    private formPostSource = new Subject<FormPost>();
+    private postResponseSource = new Subject<FormResponse>();
 
-    formSubmitted$ = this.formSubmittedSource.asObservable();
+    formPost$ = this.formPostSource.asObservable();
     rowsAdded$ = this.rowsAddedSource.asObservable();
-    formResponse$ = this.formResponseSource.asObservable();
+    postResponse$ = this.postResponseSource.asObservable();
 
     // send form
-    submitForm(form: FormSubmit) {
-        this.formSubmittedSource.next(form);
+    postForm(form: FormPost) {
+        this.formPostSource.next(form);
     }
 
     // form post results
-    formResponse(form: FormSubmit) {
-        this.formResponseSource.next(form);
+    postResponse(response: FormResponse) {
+        this.postResponseSource.next(response);
     }
 
     addRows(rows: any[]) {

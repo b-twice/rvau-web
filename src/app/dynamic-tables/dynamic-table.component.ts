@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DynamicRowComponent } from './dynamic-row';
 import { DynamicFormComponent } from '../forms';
 import { TableService } from './dynamic-table.service';
-import { FormSubmit } from '../models';
+import { FormPost, FormResponse } from '../models';
 import { Subscription }   from 'rxjs/Subscription';
 
 
@@ -21,8 +21,8 @@ export class DynamicTableComponent implements OnInit {
   private keys: any[]; // column names
   private collection: any[][] = []; // array of row values
   private editSession: boolean = false;
-  private editSessionType: string; // Edit Add Delete
-  private editId: number; // id of collection row
+  private editSessionType: string; // Edit/Add/Delete
+  private editId: number; // track row id when editing
 
   rowsSub: Subscription;
   formSub: Subscription;
@@ -39,14 +39,13 @@ export class DynamicTableComponent implements OnInit {
         this.collection = rows;
       });
 
-    this.formSub = this.tableService.formResponse$.subscribe(
-      response => {
-          this.handleFormResponse(response)
-      })
+    this.formSub = this.tableService.postResponse$.subscribe(
+      response => this.handleFormResponse(response))
   }
 
   ngOnDestroy() {
     this.rowsSub.unsubscribe();
+    this.formSub.unsubscribe();
   }
 
   setFormValues(row, empty:boolean = false): void {
@@ -73,19 +72,19 @@ export class DynamicTableComponent implements OnInit {
     }
   }
 
-  handleFormResponse(form: FormSubmit) {
-    if (form.editType === "Edit") {
-        form["id"] = this.editId;
-        this.tableService.changeRow(form);
+  handleFormResponse(response: FormResponse) {
+    if (response.editType === "Edit") {
+        response.value["id"] = this.editId;
+        this.tableService.changeRow(response.value);
     }
-    if (form.editType === "Add") {
+    if (response.editType === "Add") {
       // this.tableService.submitForm(event.value);
     }
   }
   onSubmit(event): void {
-    let form = new FormSubmit({editType: this.editSessionType, value:event.value});
+    let form = new FormPost({editType: this.editSessionType, value:event.value});
     // Edit session type logic
-    this.tableService.submitForm(event.value);
+    this.tableService.postForm(event.value);
 
   }
 }

@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { DynamicFormComponent } from '../../forms'
 import { MapPipe } from '../dynamic-table.pipes';
 import { TableService } from '../dynamic-table.service';
@@ -11,6 +10,7 @@ import { Subscription }   from 'rxjs/Subscription';
     styles: [require('./dynamic-row.component.scss')],
     directives: [DynamicFormComponent],
     pipes: [MapPipe],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicRowComponent implements OnInit {
     @Input() keys: {};
@@ -18,8 +18,9 @@ export class DynamicRowComponent implements OnInit {
     private componentId:number;
 
     subscription: Subscription;
-    constructor(private router: Router,
-                private tableService: TableService) {
+    constructor(
+                private tableService: TableService,
+                private cd: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -28,6 +29,7 @@ export class DynamicRowComponent implements OnInit {
         this.subscription = instance.rowChanged$.subscribe(
             row => {
                 this.row = row;
+                this.cd.markForCheck();
             });
     }
 
