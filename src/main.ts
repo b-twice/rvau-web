@@ -17,13 +17,13 @@ if (process.env.ENV === 'build') {
 }
 
 bootstrap(AppComponent, [
-    disableDeprecatedForms(),
-    provideForms(),
-    // These are dependencies of our App
-    ...APP_ROUTER_PROVIDERS,
-    ...HTTP_PROVIDERS,
-    provide(PLATFORM_DIRECTIVES, {useValue:ROUTER_DIRECTIVES, multi:true}),
-    ...ENV_PROVIDERS,
-    { provide: LocationStrategy, useClass: HashLocationStrategy } // use #/ routes, remove this for HTML5 mode
-  ])
+  disableDeprecatedForms(),
+  provideForms(),
+  // These are dependencies of our App
+  ...APP_ROUTER_PROVIDERS,
+  ...HTTP_PROVIDERS,
+  provide(PLATFORM_DIRECTIVES, { useValue: ROUTER_DIRECTIVES, multi: true }),
+  ...ENV_PROVIDERS,
+  { provide: LocationStrategy, useClass: HashLocationStrategy } // use #/ routes, remove this for HTML5 mode
+])
   .catch(err => console.error(err));

@@ -6,7 +6,12 @@
         <div class="table-row-cell" *ngFor="let k of keys">{{k}}</div>
     </div>
     <div class="table-body">
-        <div *ngFor="let row of collection">
+        <div *ngFor="let row of addedRows">
+            <dynamic-row class="table-row" (click)="startEditSession(row)" [keys]="keys" [row]="row"></dynamic-row>
+        </div>
+    </div>
+    <div class="table-body">
+        <div *ngFor="let row of rows">
             <dynamic-row class="table-row" (click)="startEditSession(row)" [keys]="keys" [row]="row"></dynamic-row>
         </div>
     </div>

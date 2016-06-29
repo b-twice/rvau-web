@@ -8,7 +8,7 @@ export class QuestionBase<T>{
     order: number;
     controlType: string;
     validators: any[];
-    validationMessages: {[key:string] :string};
+    validationMessages: { [key: string]: string };
     constructor(options: {
         value?: any,
         key?: string,
@@ -17,9 +17,8 @@ export class QuestionBase<T>{
         order?: number,
         controlType?: string,
         validators?: Array<Function>,
-        validationMessages?: {[key:string] : string}
-    } = { } )
-    {   
+        validationMessages?: { [key: string]: string }
+    } = {}) {
         this.value = options.value || '';
         this.key = options.key || '';
         this.label = options.label || '';

@@ -1,10 +1,10 @@
 import { QuestionBase } from './';
 
-export class DropdownQuestion extends QuestionBase<string>{
+export class DropdownQuestion extends QuestionBase<string> {
   controlType = 'dropdown';
-  options: {key: string, value: string}[] = [];
+  options: { key: string, value: string }[] = [];
 
-  constructor(options: {} = {}){
+  constructor(options: {} = {}) {
     super(options);
     this.options = options['options'] || [];
   }

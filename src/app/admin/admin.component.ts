@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AdminHeaderComponent } from './header';
 import { AdminNavComponent} from './nav';
 
@@ -8,5 +8,5 @@ import { AdminNavComponent} from './nav';
   directives: [AdminHeaderComponent, AdminNavComponent],
   styles: []
 })
-export class AdminComponent{
+export class AdminComponent {
 }

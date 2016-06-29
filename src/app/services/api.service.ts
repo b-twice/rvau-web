@@ -9,26 +9,35 @@ export class ApiService {
 
     constructor(private http: Http) { }
 
-    getData (fragment:string): Observable<any> {
+    getData(fragment: string): Observable<any> {
         let requestUrl = this.apiUrl + fragment
         return this.http.get(requestUrl)
-                        .map(this.extractData)
-                        .catch(this.handleError);
+            .map(this.extractData)
+            .catch(this.handleError);
     }
-    
-    addData(params: {}, fragment:string ): Observable<any> {
+
+    postData(params: {}, fragment: string): Observable<any> {
         let requestUrl = this.apiUrl + fragment
         let body = JSON.stringify(params);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this.http.post(requestUrl, body, options)
-                        .map(this.extractData)
-                        .catch(this.handleError);
+            .map(this.extractData)
+            .catch(this.handleError);
     }
-    
+
+    putData(params = {}, fragment: string): Observable<any> {
+        let requestUrl = this.apiUrl + fragment
+        let body = JSON.stringify(params);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.put(requestUrl, body, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
     private extractData(res: Response) {
         let body = res.json();
-        return body.data || { };
+        return body.data || {};
     }
 
     private handleError(error: Response) {

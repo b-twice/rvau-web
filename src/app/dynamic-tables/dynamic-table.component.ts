@@ -19,14 +19,15 @@ export class DynamicTableComponent implements OnInit {
   @Input() formQuestions: any[];
 
   private keys: any[]; // column names
-  private collection: any[][] = []; // array of row values
+  private rows: {}[] = []; // array of row values
+  private addedRows: {}[] = []; // rows added while editing
   private editSession: boolean = false;
   private editSessionType: string; // Edit/Add/Delete
   private editId: number; // track row id when editing
 
   rowsSub: Subscription;
   formSub: Subscription;
-  
+
   constructor(
     private tableService: TableService) {
   }
@@ -36,11 +37,11 @@ export class DynamicTableComponent implements OnInit {
     this.rowsSub = this.tableService.rowsAdded$.subscribe(
       rows => {
         this.keys = Object.keys(rows[0]).filter(key => key !== 'id');
-        this.collection = rows;
+        this.rows = rows;
       });
 
     this.formSub = this.tableService.postResponse$.subscribe(
-      response => this.handleFormResponse(response))
+      response => this.handleFormResponse(response));
   }
 
   ngOnDestroy() {
@@ -48,43 +49,50 @@ export class DynamicTableComponent implements OnInit {
     this.formSub.unsubscribe();
   }
 
-  setFormValues(row, empty:boolean = false): void {
-      if (empty) {
-        this.formQuestions.forEach(question => question.value = '')
-        return
+  setFormValues(row, empty: boolean = false): void {
+    if (empty) {
+      this.formQuestions.forEach(question => question.value = '');
+      return
+    }
+    // Set question value if key exists in keys
+    this.formQuestions.forEach(question => {
+      if (this.keys.indexOf(question.key) !== -1) {
+        question.value = row[question.key];
       }
-      this.keys.forEach(key => {
-          this.formQuestions.forEach(question => {
-              if (key === question.key) {
-                  question.value = row[key]
-              }
-          })
-      })
+    })
   }
 
   startEditSession(row: {} = {}) {
     let rowEmpty = Object.keys(row).length === 0 ? true : false;
-    this.editSessionType = rowEmpty ? "Add": "Edit";
+    this.editSessionType = rowEmpty ? 'Add' : 'Edit';
     this.setFormValues(row, rowEmpty);
     this.editSession = true;
     if (!rowEmpty) {
-      this.editId =  row["id"]
+      this.editId = row['id'];
     }
   }
 
   handleFormResponse(response: FormResponse) {
-    if (response.editType === "Edit") {
-        response.value["id"] = this.editId;
+    console.log(response);
+    if (response.success) {
+      if (this.editSessionType === 'Edit') {
         this.tableService.changeRow(response.value);
-    }
-    if (response.editType === "Add") {
-      // this.tableService.submitForm(event.value);
+        this.editSession = false;
+      }
+      if (this.editSessionType === 'Add') {
+        this.addedRows.push(response.value);
+        this.editSession = false;
+      }
     }
   }
   onSubmit(event): void {
-    let form = new FormPost({editType: this.editSessionType, value:event.value});
+    let value = event.value;
+    if (this.editSessionType === 'Edit') {
+      value['id'] = this.editId;
+    }
+    let form = new FormPost({ editType: this.editSessionType, value: event.value });
     // Edit session type logic
-    this.tableService.postForm(event.value);
+    this.tableService.postForm(form);
 
   }
 }
