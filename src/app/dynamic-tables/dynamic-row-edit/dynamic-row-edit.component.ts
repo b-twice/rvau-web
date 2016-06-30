@@ -54,8 +54,8 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
 
     startEditSession(row: {} = {}) {
         let rowEmpty = Object.keys(row).length === 0 ? true : false;
-        if (rowEmpty) this.editSession.setState('post'); 
-        else this.editSession.setState('put'); 
+        if (rowEmpty) { this.editSession.setState('post'); }
+        else { this.editSession.setState('put'); }
         this.setFormValues(row, rowEmpty);
         this.editSession.active = true;
         if (!rowEmpty) {
