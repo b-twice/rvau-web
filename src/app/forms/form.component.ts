@@ -17,21 +17,21 @@ import { QuestionControlService  } from './question-control.service';
         </div>
     </form>
   `,
-  directives: [DynamicFormQuestionComponent,  REACTIVE_FORM_DIRECTIVES ],
-  providers:  [QuestionControlService]
+  directives: [DynamicFormQuestionComponent, REACTIVE_FORM_DIRECTIVES],
+  providers: [QuestionControlService]
 })
 export class DynamicFormComponent implements OnInit {
   @Input() questions: QuestionBase<any>[] = [];
-  @Input() submitButtonText: string = "Submit";
+  @Input() submitButtonText: string = 'Submit';
   @Output() onSubmit = new EventEmitter();
 
   form: FormGroup;
 
-  constructor(private qcs: QuestionControlService) {  }
-  ngOnInit(){
+  constructor(private qcs: QuestionControlService) { }
+  ngOnInit() {
     this.form = this.qcs.toFormGroup(this.questions);
   }
   submit() {
-     this.onSubmit.emit({value: this.form.value})
+    this.onSubmit.emit({ value: this.form.value });
   }
 }

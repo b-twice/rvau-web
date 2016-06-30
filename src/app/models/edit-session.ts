@@ -16,7 +16,7 @@ export class EditSession {
     }
     
     setState(state: string) {
-        let states:string[] = ["Put", "Post", "Delete"]
+        let states:string[] = ['put', 'post', 'delete']
         if (states.indexOf(state) !== -1 ) {
             this.state = state
         }

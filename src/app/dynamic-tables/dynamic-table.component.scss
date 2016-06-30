@@ -31,13 +31,10 @@
   padding: 16px 32px;
 }
 
-/* Dynamic row child */
-dynamic-row:hover {
-  background: #DCE7F4;
+.response {
+  padding:32px;
 }
-dynamic-row {
-  cursor:pointer;
-}
+
 /* LIGHT THEME */
 .table.light-theme {
     box-shadow: 0 2px 5px 0  rgba(-0, 0, 0,0.26);

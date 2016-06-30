@@ -16,7 +16,7 @@ export class FormRequest {
     }
 
     setAction(action: string) {
-        let actions: string[] = ['Put', 'Post', 'Delete']
+        let actions: string[] = ['put', 'post', 'delete']
         if (actions.indexOf(action) !== -1) {
             this.action = action
         }

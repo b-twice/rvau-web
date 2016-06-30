@@ -4,7 +4,7 @@ import { QuestionBase } from './';
 import { ValidationMessagesPipe } from './form-question.pipe'
 
 @Component({
-    selector:'df-question',
+    selector: 'df-question',
     template: `
     <div [formGroup]="form">
         <div class="form-group">
@@ -38,8 +38,8 @@ import { ValidationMessagesPipe } from './form-question.pipe'
 export class DynamicFormQuestionComponent {
     @Input() question: QuestionBase<any>;
     @Input() form: FormGroup;
-    get isValid(): boolean { 
-        return (this.form.controls[this.question.key].valid || this.form.controls[this.question.key].pristine); 
+    get isValid(): boolean {
+        return (this.form.controls[this.question.key].valid || this.form.controls[this.question.key].pristine);
     }
     get validationErrors(): {} {
         return this.form.controls[this.question.key].errors;

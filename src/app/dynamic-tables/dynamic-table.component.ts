@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, Input, ViewChild } from '@angular/core';
 import { DynamicRowComponent } from './dynamic-row';
 import { DynamicRowEditComponent } from './dynamic-row-edit';
 import { TableService } from './dynamic-table.service';
@@ -58,18 +58,22 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
     this.formSub.unsubscribe();
   }
 
+  addRow(): void {
+    this.tableService.startTransaction({});
+  }
   handleFormResponse(response: FormRequest) {
+    console.log(response);
     if (!response.success) {
       this.responseMessage = response.message;
     }
-    if (response.success && response.action === 'Put') {
-      this.tableService.changeRow(new TableRow({state: 'Put', value:response.value}));
+    if (response.success && response.action === 'put') {
+      this.tableService.changeRow(new TableRow({state: 'put', value:response.value}));
     }
-    else if (response.action === 'Post') {
-      this.addedRows.push(new TableRow({state: 'Post', value:response.value}));
+    else if (response.action === 'post') {
+      this.addedRows.push(new TableRow({state: 'post', value:response.value}));
     }
-    else if (response.action === 'Delete') {
-      this.tableService.changeRow(new TableRow({state: 'Delete', value:response.value}));
+    else if (response.action === 'delete') {
+      this.tableService.changeRow(new TableRow({state: 'delete', value:response.value}));
     }
     this.tableService.closeTransaction(response.value["id"])
     return

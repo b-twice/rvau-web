@@ -20,7 +20,7 @@ export class RowPipe {
     transform(rows: {}[]): any {
         if (!rows)
             return null;
-        return rows.map(row => new TableRow({state: "None", value: row}))
+        return rows.map(row => new TableRow({state: "none", value: row}))
     }
 }
 

@@ -38,10 +38,10 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
         this.startTransactionSub.unsubscribe();
     }
 
-    setFormValues(row, empty: boolean = false): void {
+    setFormValues(row, empty: boolean): void {
         if (empty) {
             this.formQuestions.forEach(question => question.value = '');
-            return
+            return;
         }
         let rowKeys = Object.keys(row);
         // Set question value if key exists in keys
@@ -49,13 +49,13 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
             if (rowKeys.indexOf(question.key) !== -1) {
                 question.value = row[question.key];
             }
-        })
+        });
     }
 
     startEditSession(row: {} = {}) {
         let rowEmpty = Object.keys(row).length === 0 ? true : false;
-        if (rowEmpty) { this.editSession.setState('Post') }
-        else if (!rowEmpty) { this.editSession.setState('Put'); }
+        if (rowEmpty) this.editSession.setState('post'); 
+        else this.editSession.setState('put'); 
         this.setFormValues(row, rowEmpty);
         this.editSession.active = true;
         if (!rowEmpty) {
@@ -69,17 +69,20 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
         }
     }
     deleteRow() {
-        this.editSession.state = "Delete"
-        let form = new FormRequest({ action: this.editSession.state, value: { id: this.editSession.id } })
+        this.editSession.state = 'delete';
+        let form = new FormRequest({ action: this.editSession.state, value: { id: this.editSession.id } });
+        this.editSession.transaction = true;
         this.tableService.postForm(form);
     }
     onSubmit(event): void {
         let value = event.value;
-        if (this.editSession.state === 'Put') {
+        if (this.editSession.state === 'put') {
             value['id'] = this.editSession.id;
         }
         let form = new FormRequest({ action: this.editSession.state, value: event.value });
         this.editSession.transaction = true;
         this.tableService.postForm(form);
     }
+
+    stopPropogation(event): void { event.stopPropagation(); }
 }

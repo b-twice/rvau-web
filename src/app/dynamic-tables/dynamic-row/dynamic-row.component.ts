@@ -28,10 +28,11 @@ export class DynamicRowComponent implements OnInit {
     ngOnInit() {
         let instance = this.tableService.registerInstance(this.row.value["id"]);
         this.componentId = this.row.value["id"];
+        this.state = this.row.state;
         this.subscription = instance.rowChanged$.subscribe(
             row => {
-                console.log(row);
-                if (row.state !== "Delete") {
+                // keep row persistent after delete for restore
+                if (row.state !== "delete") {
                     this.row = row;
                 }
                 this.state = row.state;

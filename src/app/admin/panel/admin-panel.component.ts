@@ -13,7 +13,7 @@ import { FormRequest} from '../../models';
     template: require('./admin-panel.component.html'),
     providers: [ApiService, AdminEditMetadata, TableService],
     directives: [DynamicTableComponent, AdminNavComponent],
-    styles: []
+    styles: [require('./admin-panel.component.scss')]
 })
 export class AdminPanelComponent implements OnInit {
 
@@ -46,26 +46,26 @@ export class AdminPanelComponent implements OnInit {
     }
 
     submitForm(form: FormRequest ): void {
-        if (form.action === 'Post') {
+        if (form.action === 'post') {
             this.apiService.postData(form.value, this.tableName)
                 .subscribe(
                     result => this.tableService.postResponse(new FormRequest({success: true, action:form.action, value: result})),
-                    error =>  this.tableService.postResponse(new FormRequest({success: false, message: error.message}))
+                    error =>  this.tableService.postResponse(new FormRequest({success: false, message: error}))
                 );
         }
-        if (form.action === 'Put') {
+        if (form.action === 'put') {
             this.apiService.putData(form.value, this.tableName)
                 .subscribe(
                     result => this.tableService.postResponse(new FormRequest({success: true, action:form.action, value: result})),
-                    error =>  this.tableService.postResponse(new FormRequest({success: false, message: error.message}))
+                    error =>  this.tableService.postResponse(new FormRequest({success: false, message: error}))
                 );
         }
-        if (form.action === 'Delete') {
+        if (form.action === 'delete') {
 
-            this.apiService.deleteData(form.value["id"], this.tableName)
+            this.apiService.deleteData(form.value['id'], this.tableName)
                 .subscribe(
                     result => this.tableService.postResponse(new FormRequest({success: true, action:form.action, value: result})),
-                    error =>  this.tableService.postResponse(new FormRequest({success: false, message: error.message}))
+                    error =>  this.tableService.postResponse(new FormRequest({success: false, message: error}))
                 );
         }
     }

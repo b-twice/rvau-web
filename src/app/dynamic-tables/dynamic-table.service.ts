@@ -18,11 +18,11 @@ export class TableService {
     // Hook binding an observable to each row
     private rowInstances: { [id: string]: RowInstance} = {};
 
-    private rowsAddedSource = new Subject<any[]>();
-    private formPostSource = new Subject<FormRequest>();
-    private postResponseSource = new Subject<FormRequest>();
-    private closeTransactionSource = new Subject<number>();
-    private startTransactionSource = new Subject<{}>();
+    private rowsAddedSource = new Subject<any[]>(); // Rows passed to table
+    private formPostSource = new Subject<FormRequest>(); // send submitted form
+    private postResponseSource = new Subject<FormRequest>(); // get form results
+    private closeTransactionSource = new Subject<number>(); // stop form editing
+    private startTransactionSource = new Subject<{}>(); // start form editing
 
     formPost$ = this.formPostSource.asObservable();
     rowsAdded$ = this.rowsAddedSource.asObservable();
