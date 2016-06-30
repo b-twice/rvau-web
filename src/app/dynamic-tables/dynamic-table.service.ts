@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
-import { FormPost, FormResponse} from '../models'
+import { FormRequest, TableRow } from '../models'
 
 export class RowInstance {
     rowSource: any;
@@ -19,24 +19,38 @@ export class TableService {
     private rowInstances: { [id: string]: RowInstance} = {};
 
     private rowsAddedSource = new Subject<any[]>();
-    private formPostSource = new Subject<FormPost>();
-    private postResponseSource = new Subject<FormResponse>();
+    private formPostSource = new Subject<FormRequest>();
+    private postResponseSource = new Subject<FormRequest>();
+    private closeTransactionSource = new Subject<number>();
+    private startTransactionSource = new Subject<{}>();
 
     formPost$ = this.formPostSource.asObservable();
     rowsAdded$ = this.rowsAddedSource.asObservable();
     postResponse$ = this.postResponseSource.asObservable();
+    startTransaction$ = this.startTransactionSource.asObservable()
+    closeTransaction$ = this.closeTransactionSource.asObservable();
 
     // send form
-    postForm(form: FormPost) {
+    postForm(form: FormRequest): void {
         this.formPostSource.next(form);
     }
 
     // form post results
-    postResponse(response: FormResponse) {
+    postResponse(response: FormRequest): void {
         this.postResponseSource.next(response);
     }
 
-    addRows(rows: any[]) {
+    // start edit transaction
+    startTransaction(row: {}): void {
+        this.startTransactionSource.next(row);
+    }
+
+    // close edit transaction
+    closeTransaction(id: number): void {
+        this.closeTransactionSource.next(id);
+    }
+
+    addRows(rows: {}[]): void {
         this.rowsAddedSource.next(rows)
     }
 
@@ -44,7 +58,7 @@ export class TableService {
         return this.rowInstances[rowId] = new RowInstance();
     }
 
-    changeRow(row: {}) {
-        this.rowInstances[row["id"]].rowSource.next(row);
+    changeRow(row: TableRow) {
+        this.rowInstances[row.value["id"]].rowSource.next(row);
     }
 }

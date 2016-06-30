@@ -1,26 +1,24 @@
-export class FormPost {
-    editType: string;
-    value: {};
-    constructor(options: {
-        editType?: string,
-        value?: {}
-    } = {}) {
-        this.editType = options.editType || '';
-        this.value = options.value || {};
-    }
-}
-
-export class FormResponse {
+export class FormRequest {
+    action: string;
     message: string;
     success: boolean;
     value: {};
     constructor(options: {
+        action?: string,
         message?: string,
         success?: boolean,
         value?: {}
     } = {}) {
+        this.setAction(options.action || '');
         this.message = options.message || '';
         this.success = options.success || false;
         this.value = options.value || {};
+    }
+
+    setAction(action: string) {
+        let actions: string[] = ['Put', 'Post', 'Delete']
+        if (actions.indexOf(action) !== -1) {
+            this.action = action
+        }
     }
 }

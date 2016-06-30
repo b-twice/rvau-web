@@ -6,7 +6,7 @@ import { AdminNavComponent } from '../nav';
 import { Tables } from '../';
 import { AdminEditMetadata } from './admin-edit.metadata';
 import { TableService } from '../../dynamic-tables';
-import { FormPost, FormResponse } from '../../models';
+import { FormRequest} from '../../models';
 
 @Component({
     selector: 'admin-panel',
@@ -45,26 +45,27 @@ export class AdminPanelComponent implements OnInit {
         this.sub.unsubscribe();
     }
 
-    submitForm(form: FormPost ): void {
-        if (form.editType === 'Add') {
+    submitForm(form: FormRequest ): void {
+        if (form.action === 'Post') {
             this.apiService.postData(form.value, this.tableName)
                 .subscribe(
-                    result => this.tableService.postResponse(new FormResponse({success: true, value: result})),
-                    error =>  this.tableService.postResponse(new FormResponse({success: false, message: error.message}))
+                    result => this.tableService.postResponse(new FormRequest({success: true, action:form.action, value: result})),
+                    error =>  this.tableService.postResponse(new FormRequest({success: false, message: error.message}))
                 );
         }
-        if (form.editType === 'Edit') {
+        if (form.action === 'Put') {
             this.apiService.putData(form.value, this.tableName)
                 .subscribe(
-                    result => this.tableService.postResponse(new FormResponse({success: true, value: result})),
-                    error =>  this.tableService.postResponse(new FormResponse({success: false, message: error.message}))
+                    result => this.tableService.postResponse(new FormRequest({success: true, action:form.action, value: result})),
+                    error =>  this.tableService.postResponse(new FormRequest({success: false, message: error.message}))
                 );
         }
-        if (form.editType === 'Delete') {
-            this.apiService.deleteData(form.value, this.tableName)
+        if (form.action === 'Delete') {
+
+            this.apiService.deleteData(form.value["id"], this.tableName)
                 .subscribe(
-                    result => this.tableService.postResponse(new FormResponse({success: true, value: result})),
-                    error =>  this.tableService.postResponse(new FormResponse({success: false, message: error.message}))
+                    result => this.tableService.postResponse(new FormRequest({success: true, action:form.action, value: result})),
+                    error =>  this.tableService.postResponse(new FormRequest({success: false, message: error.message}))
                 );
         }
     }

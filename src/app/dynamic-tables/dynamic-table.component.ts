@@ -1,48 +1,40 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, Input } from '@angular/core';
 import { DynamicRowComponent } from './dynamic-row';
-import { DynamicFormComponent } from '../forms';
+import { DynamicRowEditComponent } from './dynamic-row-edit';
 import { TableService } from './dynamic-table.service';
-import { FormPost, FormResponse } from '../models';
+import { FormRequest, TableRow } from '../models';
 import { Subscription }   from 'rxjs/Subscription';
 import { LoadingComponent } from '../loading';
+import { RowPipe } from './dynamic-table.pipes';
 
 
 @Component({
   selector: 'dynamic-table',
   template: require('./dynamic-table.component.html'),
   styles: [require('./dynamic-table.component.scss')],
-  directives: [DynamicRowComponent, DynamicFormComponent, LoadingComponent],
-  providers: []
+  directives: [DynamicRowComponent, DynamicRowEditComponent, LoadingComponent],
+  providers: [],
+  pipes: [RowPipe]
 })
-export class DynamicTableComponent implements OnInit {
+export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input() theme;
   @Input() editable: boolean = false;
   @Input() formQuestions: any[];
 
-  private columnNames: any[]; // for display
-  private keys: any[]; // ordered object keys
+  private columnNames: any[] = []; // for display
+  private keys: any[] = []; // ordered object keys
   private rows: {}[] = []; // array of row values
-  private addedRows: {}[]; // rows added while editing
-  private editSession: boolean = false;
-  private editSessionType: string; // Edit/Add/Delete
-  private editId: number; // track row id when editing
-  private dataTransaction: boolean = false; // Data being sent down the wire
+  private addedRows: TableRow[] = []; // rows added while editing
   private responseMessage: string;
 
   rowsSub: Subscription;
   formSub: Subscription;
 
-  constructor(
-    private tableService: TableService) {
-  }
+  constructor( private tableService: TableService ) { }
 
   ngOnInit() {
     this.rowsSub = this.tableService.rowsAdded$.subscribe(
       rows => {
-        // only way to clean up arrays on route change....
-        this.keys = [];
-        this.columnNames = [];
-        this.addedRows = [];
         // Not ideal but form questions has column order
         this.formQuestions.map(question => { 
           this.keys.push(question.key);
@@ -55,69 +47,32 @@ export class DynamicTableComponent implements OnInit {
       response => this.handleFormResponse(response));
   }
 
+  ngOnChanges() {
+    // Cleanup arrays on table change
+    this.keys = [];
+    this.columnNames = [];
+    this.addedRows = [];
+  }
   ngOnDestroy() {
     this.rowsSub.unsubscribe();
     this.formSub.unsubscribe();
   }
 
-  setFormValues(row, empty: boolean = false): void {
-    if (empty) {
-      this.formQuestions.forEach(question => question.value = '');
-      return
-    }
-    // Set question value if key exists in keys
-    this.formQuestions.forEach(question => {
-      if (this.keys.indexOf(question.key) !== -1) {
-        question.value = row[question.key];
-      }
-    })
-  }
-
-  startEditSession(row: {} = {}) {
-    let rowEmpty = Object.keys(row).length === 0 ? true : false;
-    this.editSessionType = rowEmpty ? 'Add' : 'Edit';
-    this.setFormValues(row, rowEmpty);
-    this.editSession = true;
-    if (!rowEmpty) {
-      this.editId = row['id'];
-    }
-  }
-
-  stopEditSession(): void {
-    if (!this.dataTransaction) {
-      this.editSession = false;
-    }
-  }
-
-  handleFormResponse(response: FormResponse) {
+  handleFormResponse(response: FormRequest) {
     if (!response.success) {
       this.responseMessage = response.message;
     }
-    else if (this.editSessionType === 'Edit') {
-      this.tableService.changeRow(response.value);
+    if (response.success && response.action === 'Put') {
+      this.tableService.changeRow(new TableRow({state: 'Put', value:response.value}));
     }
-    else if (this.editSessionType === 'Add') {
-      this.addedRows.push(response.value);
+    else if (response.action === 'Post') {
+      this.addedRows.push(new TableRow({state: 'Post', value:response.value}));
     }
-    this.dataTransaction = false;
-    this.editSession = false;
+    else if (response.action === 'Delete') {
+      this.tableService.changeRow(new TableRow({state: 'Delete', value:response.value}));
+    }
+    this.tableService.closeTransaction(response.value["id"])
     return
   }
 
-  deleteRow() {
-    this.editSessionType = "Delete"
-    let form = new FormPost({ editType: this.editSessionType, value: {id: this.editId}})
-    this.tableService.postForm(form);
-  }
-  
-  onSubmit(event): void {
-    let value = event.value;
-    if (this.editSessionType === 'Edit') {
-      value['id'] = this.editId;
-    }
-    let form = new FormPost({ editType: this.editSessionType, value: event.value });
-    this.dataTransaction = true;
-    this.tableService.postForm(form);
-
-  }
 }

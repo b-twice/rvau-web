@@ -13,3 +13,7 @@
 :host-context(.theme-light) .table-row-cell {
     border-bottom: 1px solid #ECEFF1;
 }
+
+.table-row.Delete {
+  background:red;
+}

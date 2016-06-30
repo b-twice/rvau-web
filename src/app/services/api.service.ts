@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { FormResponse } from '../models';
 
 @Injectable()
 export class ApiService {
-    private apiUrl = 'http://localhost:5000/rvau/api/';
+    private apiUrl = 'http://localhost:5000/rvau/api';
 
     constructor(private http: Http) { }
 
     getData(fragment: string): Observable<any> {
-        let requestUrl = this.apiUrl + fragment
+        let requestUrl = `${this.apiUrl}/${fragment}`
         return this.http.get(requestUrl)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
     postData(params: {}, fragment: string): Observable<any> {
-        let requestUrl = this.apiUrl + fragment
+        let requestUrl = `${this.apiUrl}/${fragment}`
         let body = JSON.stringify(params);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
@@ -27,7 +26,7 @@ export class ApiService {
     }
 
     putData(params = {}, fragment: string): Observable<any> {
-        let requestUrl = this.apiUrl + fragment
+        let requestUrl = `${this.apiUrl}/${fragment}/${params["id"]}`
         let body = JSON.stringify(params);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
@@ -36,9 +35,8 @@ export class ApiService {
             .catch(this.handleError);
     }
 
-    deleteData(params = {}, fragment: string): Observable<any> {
-        let requestUrl = this.apiUrl + fragment
-        let body = JSON.stringify(params);
+    deleteData(id:number, fragment: string): Observable<any> {
+        let requestUrl = `${this.apiUrl}/${fragment}/${id}`
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this.http.delete(requestUrl, options)

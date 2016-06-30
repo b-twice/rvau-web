@@ -1,0 +1,13 @@
+<div *ngIf="editSession.active">
+    <div class="form-content">
+        <div *ngIf="!editSession.transaction">
+            <dynamic-form [questions]="formQuestions" [submitButtonText]="'Save'" (onSubmit)="onSubmit($event)"></dynamic-form>
+            <button class="btn btn-danger btn-block" (click)="deleteRow()" type="submit">Delete</button>
+            <button class="btn btn-default btn-block" (click)="stopEditSession()" type="submit">Cancel</button>
+        </div>
+        <div *ngIf="editSession.transaction">
+            <loading-indicator></loading-indicator>
+        </div>
+    </div>
+    <div (click)="stopEditSession()" class="form-background"></div>
+</div>

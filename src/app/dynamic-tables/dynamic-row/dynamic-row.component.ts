@@ -3,6 +3,7 @@ import { DynamicFormComponent } from '../../forms'
 import { MapPipe } from '../dynamic-table.pipes';
 import { TableService } from '../dynamic-table.service';
 import { Subscription }   from 'rxjs/Subscription';
+import { TableRow } from '../../models';
 
 @Component({
     selector: 'dynamic-row',
@@ -14,26 +15,35 @@ import { Subscription }   from 'rxjs/Subscription';
 })
 export class DynamicRowComponent implements OnInit {
     @Input() keys: {};
-    @Input() row: {};
-    private componentId:number;
+    @Input() row: TableRow;
+    private componentId: number;
+    private state: string;
 
     subscription: Subscription;
     constructor(
-                private tableService: TableService,
-                private cd: ChangeDetectorRef) {
+        private tableService: TableService,
+        private cd: ChangeDetectorRef) {
     }
 
     ngOnInit() {
-        let instance = this.tableService.registerInstance(this.row["id"])
-        this.componentId = this.row["id"];
+        let instance = this.tableService.registerInstance(this.row.value["id"]);
+        this.componentId = this.row.value["id"];
         this.subscription = instance.rowChanged$.subscribe(
             row => {
-                this.row = row;
+                console.log(row);
+                if (row.state !== "Delete") {
+                    this.row = row;
+                }
+                this.state = row.state;
                 this.cd.markForCheck();
             });
     }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+    }
+
+    startEditSession(): void {
+        this.tableService.startTransaction(this.row.value);
     }
 }
