@@ -2,8 +2,9 @@
     <button (click)="startEditSession()" class="btn btn-default btn-primary pull-left">Add a row</button>
 </div>
 <div class="table {{theme}}">
+    <div *ngIf="responseMessage" class="jumbotron">{{responseMessage}}</div>
     <div class="table-row table-header">
-        <div class="table-row-cell" *ngFor="let k of keys">{{k}}</div>
+        <div class="table-row-cell" *ngFor="let columnName of columnNames">{{columnName}}</div>
     </div>
     <div class="table-body">
         <div *ngFor="let row of addedRows">
@@ -18,8 +19,15 @@
 </div>
 <div *ngIf="editSession">
     <div class="form-content">
-        <dynamic-form [questions]="formQuestions" [submitButtonText]="'Save'" (onSubmit)="onSubmit($event)"></dynamic-form>
-        <button class="btn btn-primary btn-block" (click)="editSession = false" type="submit">Cancel</button>
+        <div *ngIf="!dataTransaction">
+            <dynamic-form [questions]="formQuestions" [submitButtonText]="'Save'" (onSubmit)="onSubmit($event)"></dynamic-form>
+            <button class="btn btn-danger btn-block" (click)="deleteRow()" type="submit">Delete</button>
+            <button class="btn btn-default btn-block" (click)="stopEditSession()" type="submit">Cancel</button>
+        </div>
+        <div *ngIf="dataTransaction">
+            <loading-indicator></loading-indicator>
+        </div>
     </div>
-    <div (click)="editSession = false" class="form-background"></div>
+    <div (click)="stopEditSession()" class="form-background"></div>
+    
 </div>

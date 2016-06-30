@@ -35,6 +35,16 @@ export class ApiService {
             .map(this.extractData)
             .catch(this.handleError);
     }
+
+    deleteData(params = {}, fragment: string): Observable<any> {
+        let requestUrl = this.apiUrl + fragment
+        let body = JSON.stringify(params);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.delete(requestUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
     private extractData(res: Response) {
         let body = res.json();
         return body.data || {};
@@ -44,6 +54,7 @@ export class ApiService {
         // in a real world app, we may send the server to some remote logging infrastructure
         // instead of just logging it to the console
         console.error(error);
+        console.log(error);
         return Observable.throw(error.json().error || 'Server error');
     }
 }

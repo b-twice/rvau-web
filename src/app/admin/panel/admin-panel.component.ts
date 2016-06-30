@@ -50,14 +50,21 @@ export class AdminPanelComponent implements OnInit {
             this.apiService.postData(form.value, this.tableName)
                 .subscribe(
                     result => this.tableService.postResponse(new FormResponse({success: true, value: result})),
-                    error =>  console.log(error)
+                    error =>  this.tableService.postResponse(new FormResponse({success: false, message: error.message}))
                 );
         }
         if (form.editType === 'Edit') {
             this.apiService.putData(form.value, this.tableName)
                 .subscribe(
                     result => this.tableService.postResponse(new FormResponse({success: true, value: result})),
-                    error =>  console.log(error)
+                    error =>  this.tableService.postResponse(new FormResponse({success: false, message: error.message}))
+                );
+        }
+        if (form.editType === 'Delete') {
+            this.apiService.deleteData(form.value, this.tableName)
+                .subscribe(
+                    result => this.tableService.postResponse(new FormResponse({success: true, value: result})),
+                    error =>  this.tableService.postResponse(new FormResponse({success: false, message: error.message}))
                 );
         }
     }
