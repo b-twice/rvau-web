@@ -32,7 +32,7 @@ export class AdminPanelComponent implements OnInit {
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
             this.tableName = params['table'];
-            this.apiService.getData(this.tableName)
+            this.apiService.getData(this.tableName, true)
                 .subscribe(data => this.tableService.addRows(data))
             if (this.activeEditing) {
                 this.formQuestions = this.metadata.getQuestions(this.tableName);

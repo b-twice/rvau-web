@@ -10,8 +10,13 @@ export class ApiService {
 
     constructor(private http: Http, private authHttp: AuthHttp) { }
 
-    getData(fragment: string): Observable<any> {
+    getData(fragment: string, authorized?: boolean): Observable<any> {
         let requestUrl = `${this.apiUrl}/${fragment}`
+        if (authorized) {
+            return this.authHttp.get(requestUrl)
+                .map(this.extractData)
+                .catch(this.handleAuthenticationError);
+        }
         return this.http.get(requestUrl)
             .map(this.extractData)
             .catch(this.handleError);
@@ -24,7 +29,7 @@ export class ApiService {
         let options = new RequestOptions({ headers: headers });
         return this.authHttp.post(requestUrl, body, options)
             .map(this.extractData)
-            .catch(this.handleError);
+            .catch(this.handleAuthenticationError);
     }
 
     putData(params = {}, fragment: string): Observable<any> {
@@ -34,7 +39,7 @@ export class ApiService {
         let options = new RequestOptions({ headers: headers });
         return this.authHttp.put(requestUrl, body, options)
             .map(this.extractData)
-            .catch(this.handleError);
+            .catch(this.handleAuthenticationError);
     }
 
     deleteData(id: number, fragment: string): Observable<any> {
@@ -43,13 +48,16 @@ export class ApiService {
         let options = new RequestOptions({ headers: headers });
         return this.authHttp.delete(requestUrl, options)
             .map(this.extractData)
-            .catch(this.handleError);
+            .catch(this.handleAuthenticationError);
     }
     private extractData(res: Response) {
         let body = res.json();
         return body.data || {};
     }
 
+    private handleAuthenticationError(error: Response) {
+        return Observable.throw(error || 'Server error');
+    }
     private handleError(error: Response) {
         console.error(error);
         return Observable.throw(error.json().errors || 'Server error');

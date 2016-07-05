@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.apiService.getData("teams", true ).subscribe(data => console.log(data))
   }
 
 }

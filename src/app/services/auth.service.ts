@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import { Router} from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
-
+import { tokenNotExpired } from 'angular2-jwt';
 
 // Avoid name not found warnings
 declare var Auth0: any;
@@ -46,7 +46,8 @@ export class AuthService {
     }
 
     get isAuthorized(): boolean {
-        console.log("Checking authentication")
+        console.log('Checking Authentication');
+        this.authenticated = tokenNotExpired('jwt') ? true : false;
         console.log(this.authenticated);
         return this.authenticated;
     }
