@@ -52,6 +52,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
     this.keys = [];
     this.columnNames = [];
     this.addedRows = [];
+    this.rows = [];
   }
   ngOnDestroy() {
     this.rowsSub.unsubscribe();

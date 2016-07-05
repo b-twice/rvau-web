@@ -13,7 +13,7 @@ import { QuestionControlService  } from './question-control.service';
           <df-question [question]="question" [form]="form"></df-question>
         </div>
         <div class="form-row">
-            <button class="btn btn-primary btn-block" type="submit" [disabled]="!form.valid">{{submitButtonText}}</button>
+            <button class="btn btn-success btn-block" type="submit" [disabled]="!form.valid">{{submitButtonText}}</button>
         </div>
     </form>
   `,

@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { AuthHttp } from 'angular2-jwt';
+
 
 @Injectable()
 export class ApiService {
     private apiUrl = 'http://localhost:5000/rvau/api';
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private authHttp: AuthHttp) { }
 
     getData(fragment: string): Observable<any> {
         let requestUrl = `${this.apiUrl}/${fragment}`
@@ -20,7 +22,7 @@ export class ApiService {
         let body = JSON.stringify(params);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post(requestUrl, body, options)
+        return this.authHttp.post(requestUrl, body, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -30,16 +32,16 @@ export class ApiService {
         let body = JSON.stringify(params);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.put(requestUrl, body, options)
+        return this.authHttp.put(requestUrl, body, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    deleteData(id:number, fragment: string): Observable<any> {
+    deleteData(id: number, fragment: string): Observable<any> {
         let requestUrl = `${this.apiUrl}/${fragment}/${id}`
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.delete(requestUrl, options)
+        return this.authHttp.delete(requestUrl, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -49,8 +51,6 @@ export class ApiService {
     }
 
     private handleError(error: Response) {
-        // in a real world app, we may send the server to some remote logging infrastructure
-        // instead of just logging it to the console
         console.error(error);
         return Observable.throw(error.json().errors || 'Server error');
     }

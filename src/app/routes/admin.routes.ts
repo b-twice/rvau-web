@@ -1,10 +1,12 @@
 import { RouterConfig } from '@angular/router';
 import { AdminComponent, AdminPanelComponent } from '../admin';
+import { AuthGuard } from '../user';
 
 export const AdminRoutes: RouterConfig = [
     {
         path: 'admin',
         component: AdminComponent,
+        canActivate: [AuthGuard],
         children: [
             {
                 path: '',
