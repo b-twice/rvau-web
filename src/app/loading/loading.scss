@@ -1,3 +1,9 @@
+.loader-wrapper {
+  display:flex;
+  flex:1;
+  align-items:center;
+  justify-content:center;
+}
 .loader{
   margin: 0 0 2em;
   height: 100px;

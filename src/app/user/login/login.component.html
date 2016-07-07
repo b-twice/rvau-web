@@ -1,5 +1,9 @@
 <div class="user-login">
     <div class="login-form">
-        <dynamic-form [questions]="questions" [submitButtonText]="'Login'" (onSubmit)="formSubmit($event)"></dynamic-form>
+        <div *ngIf="authenticationError" class="danger-message">{{authenticationError}}</div>
+        <div *ngIf="!authenticating"> 
+            <dynamic-form [questions]="questions" [submitButtonText]="'Login'" (onSubmit)="formSubmit($event)"></dynamic-form>
+        </div>
+        <loading-indicator *ngIf="authenticating"></loading-indicator>
     </div>
 </div>
