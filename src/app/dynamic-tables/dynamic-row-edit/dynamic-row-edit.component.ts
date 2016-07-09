@@ -15,7 +15,10 @@ import { LoadingComponent } from '../../loading';
 export class DynamicRowEditComponent implements OnInit, OnDestroy {
 
     @Input() formQuestions: any[];
+    private formRow: {};
+    private responseMessage: string;
 
+    private deleteEnabled: boolean = true; // change state if post
     private editSession = new EditSession();
     closeTransactionSub: Subscription;
     startTransactionSub: Subscription;
@@ -39,6 +42,7 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
     }
 
     setFormValues(row, empty: boolean): void {
+        this.formRow = row;
         if (empty) {
             this.formQuestions.forEach(question => question.value = '');
             return;
@@ -54,8 +58,14 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
 
     startEditSession(row: {} = {}) {
         let rowEmpty = Object.keys(row).length === 0 ? true : false;
-        if (rowEmpty) { this.editSession.setState('post'); }
-        else { this.editSession.setState('put'); }
+        if (rowEmpty) { 
+            this.editSession.setState('post');
+            this.deleteEnabled = false;
+         }
+        else { 
+            this.editSession.setState('put');
+            this.deleteEnabled = true;
+         }
         this.setFormValues(row, rowEmpty);
         this.editSession.active = true;
         if (!rowEmpty) {
@@ -67,8 +77,12 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
         if (!this.editSession.transaction) {
             this.editSession.active = false;
         }
+        this.responseMessage = '';
     }
     deleteRow() {
+        if (!this.editSession.id) {
+            return
+        }
         this.editSession.state = 'delete';
         let form = new FormRequest({ action: this.editSession.state, value: { id: this.editSession.id } });
         this.editSession.transaction = true;
@@ -78,8 +92,12 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
         let value = event.value;
         if (this.editSession.state === 'put') {
             value['id'] = this.editSession.id;
+            if (this.formRow = value) {
+                this.responseMessage = "Make a change before saving."
+                return 
+            }
         }
-        let form = new FormRequest({ action: this.editSession.state, value: event.value });
+        let form = new FormRequest({ action: this.editSession.state, value: value });
         this.editSession.transaction = true;
         this.tableService.postForm(form);
     }

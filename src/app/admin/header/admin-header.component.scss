@@ -1,16 +1,29 @@
 header {
     display:flex;
     flex:1;
-    height:60px;
-    flex-direction:row;
+    flex-direction:row-reverse;
     align-items:center;
-    justify-content:space-between;
-    background: #FAFAFA;
-    border-bottom:2px solid #E9E9E9;
-    padding-left:1em;
-    padding-right:1em;
+    height:60px;
+    margin-left:1em;
+    margin-right:1em;
 }
 
 .header-logo{
+    position:fixed;
+    margin-top:13px;
+    left:50%;
+    margin-left:-25px; // half width of logo
+    font-weight:700;
     font-size:18px;
+}
+
+.header-nav {
+    opacity:.75
+}
+
+.header-nav:hover {
+    opacity:.9;
+}
+.header-nav:focus{
+    opacity:.9;
 }

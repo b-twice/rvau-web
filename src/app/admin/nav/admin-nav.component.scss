@@ -5,11 +5,13 @@ a {
 .navbar {
     display:flex;
     flex-direction:row;
+    justify-content:center;
+    align-items:center;
     flex:1;
     height:50px;
-    align-items:center;
-    background: #FAFAFA;
+    background: #FFF;
     border-bottom:2px solid #E9E9E9;
+    margin-bottom:0;
 }
 .nav-link {
     padding-top:16px;

@@ -1,4 +1,6 @@
-.admin-panel {
-    margin-left:1em;
-    margin-right:1em;
+:host {
+    display:flex;
+    flex:1;
+    flex-direction:column;
+    background-color: #FAFAFA;
 }

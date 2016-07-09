@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, OnChanges, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DynamicRowComponent } from './dynamic-row';
 import { DynamicRowEditComponent } from './dynamic-row-edit';
 import { TableService } from './dynamic-table.service';
@@ -14,7 +14,8 @@ import { RowPipe } from './dynamic-table.pipes';
   styles: [require('./dynamic-table.component.scss')],
   directives: [DynamicRowComponent, DynamicRowEditComponent, LoadingComponent],
   providers: [],
-  pipes: [RowPipe]
+  pipes: [RowPipe],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input() theme;
@@ -60,12 +61,23 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   addRow(): void {
+    this.responseMessage = '';
     this.tableService.startTransaction({});
   }
+
+  filterRow(): void {
+
+  }
+
+  exportToCsv(): void {
+
+  }
+
   handleFormResponse(response: FormRequest) {
+    this.responseMessage = '';
     console.log(response);
     if (!response.success) {
-      this.responseMessage = response.message;
+      this.responseMessage = response.message["errors"];
     }
     if (response.success && response.action === 'put') {
       this.tableService.changeRow(new TableRow({state: 'put', value:response.value}));

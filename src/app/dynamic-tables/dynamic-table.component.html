@@ -1,19 +1,29 @@
-<div *ngIf="responseMessage" class="response bg-danger">{{responseMessage}}</div>
-<div class="table-controls">
-    <button (click)="addRow()" class="btn btn-default btn-primary pull-left">Add a row</button>
-</div>
-<div *ngIf="rows.length" class="table {{theme}}">
-    <div class="table-row table-header">
-        <div class="table-row-cell" *ngFor="let columnName of columnNames">{{columnName}}</div>
+<div class="table-wrapper {{theme}}">
+    <div *ngIf="responseMessage" class="response bg-danger">{{responseMessage}}</div>
+    <div class="table-controls">
+        <button (click)="addRow()" class="btn-action table-button">
+            <i class="fa fa-plus fa-18" aria-hidden="true"></i>Add a row
+        </button>
+        <button (click)="filterRow()" class="btn-action table-button">
+            <i class="fa fa-filter fa-18" aria-hidden="true"></i>Filter rows
+        </button>
+        <button (click)="exportToCsv()" class="btn-action table-button">
+            <i class="fa fa-table" aria-hidden="true"></i>Export to csv
+        </button>
     </div>
-    <div class="table-body">
-        <div *ngFor="let row of addedRows">
-            <dynamic-row class="table-row" [keys]="keys" [row]="row"></dynamic-row>
+    <div *ngIf="rows.length" class="table">
+        <div class="table-row table-header">
+            <div class="table-row-cell" *ngFor="let columnName of columnNames">{{columnName}}</div>
         </div>
-    </div>
-    <div class="table-body">
-        <div *ngFor="let row of rows | rowPipe">
-            <dynamic-row class="table-row" [keys]="keys" [row]="row"></dynamic-row>
+        <div class="table-body">
+            <div *ngFor="let row of addedRows">
+                <dynamic-row class="table-row" [keys]="keys" [row]="row"></dynamic-row>
+            </div>
+        </div>
+        <div class="table-body">
+            <div *ngFor="let row of rows | rowPipe">
+                <dynamic-row class="table-row" [keys]="keys" [row]="row"></dynamic-row>
+            </div>
         </div>
     </div>
 </div>

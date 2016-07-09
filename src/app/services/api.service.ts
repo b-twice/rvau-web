@@ -56,8 +56,10 @@ export class ApiService {
     }
 
     private handleAuthenticationError(error: Response) {
-        return Observable.throw(error || 'Server error');
+        console.log(error.json()); 
+        return Observable.throw(error.json() || 'Server error');
     }
+    
     private handleError(error: Response) {
         console.error(error);
         return Observable.throw(error.json().errors || 'Server error');
