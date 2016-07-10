@@ -5,20 +5,18 @@ export const AdminQuestions = {
         new DropdownQuestion({
             key: 'league_type',
             label: 'League Type',
-            options: [
-                { key: 'Spring', value: 'Spring' },
-                { key: 'Summer', value: 'Summer' },
-                { key: 'Winter', value: 'Winter' },
-                { key: 'Fall', value: 'Fall' }
-            ],
+            options: ['Spring', 'Summer', 'Fall', 'Winter'],
             required: true,
-            order: 1
+            filter: true,
+            order: 1,
         }),
-        new TextboxQuestion({
+        new DropdownQuestion({
             key: 'league_year',
             label: 'League Year',
-            type: 'Text',
+            type: 'Integer',
+            options: [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
             required: true,
+            filter: true,
             order: 2
         }),
     ],
@@ -50,7 +48,7 @@ export const AdminQuestions = {
             key: 'email',
             label: 'Email',
             type: 'Email',
-            required: true,
+            required: false,
             order: 3
         }),
     ],
@@ -58,40 +56,41 @@ export const AdminQuestions = {
         new DropdownQuestion({
             key: 'league_type',
             label: 'League Type',
-            options: [
-                { key: 'Spring', value: 'Spring' },
-                { key: 'Summer', value: 'Summer' },
-                { key: 'Winter', value: 'Winter' },
-                { key: 'Fall', value: 'Fall' }
-            ],
+            options: ['Spring', 'Summer', 'Fall', 'Winter'],
             required: true,
+            filter: true,
             order: 1
         }),
-        new TextboxQuestion({
+        new DropdownQuestion({
             key: 'league_year',
             label: 'League Year',
-            type: 'Text',
+            type: 'Integer',
+            options: [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
             required: true,
+            filter: true,
             order: 2
         }),
-        new TextboxQuestion({
+        new DropdownQuestion({
             key: 'team_name',
             label: 'Team Name',
             type: 'Text',
+            options: [],
             required: true,
             order: 3
         }),
-        new TextboxQuestion({
+        new DropdownQuestion({
             key: 'player_first_name',
             label: 'Player First Name',
             type: 'Text',
+            options: [],
             required: true,
             order: 4
         }),
-        new TextboxQuestion({
+        new DropdownQuestion({
             key: 'player_last_name',
             label: 'Player Last Name',
             type: 'Text',
+            options: [],
             required: true,
             order: 5
         }),
@@ -105,51 +104,68 @@ export const AdminQuestions = {
             order: 1
         }),
         new DropdownQuestion({
-            key: 'league_type',
-            label: 'League Type',
+            key: 'game_type',
+            label: 'Game Type',
+            type: 'Text',
             options: [
-                { key: 'Spring', value: 'Spring' },
-                { key: 'Summer', value: 'Summer' },
-                { key: 'Winter', value: 'Winter' },
-                { key: 'Fall', value: 'Fall' }
+                'Preseason',
+                'Season',
+                'Prequarter',
+                'Quartefinal',
+                'Semifinal',
+                'Final',
             ],
-            required: true,
+            require: true,
             order: 2
         }),
-        new TextboxQuestion({
-            key: 'league_year',
-            label: 'League Year',
-            type: 'Text',
+        new DropdownQuestion({
+            key: 'league_type',
+            label: 'League Type',
+            options: ['Spring', 'Summer', 'Fall', 'Winter'],
             required: true,
+            filter: true,
             order: 3
         }),
-        new TextboxQuestion({
+        new DropdownQuestion({
+            key: 'league_year',
+            label: 'League Year',
+            options: [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
+            type: 'Integer',
+            required: true,
+            filter: true,
+            order: 4
+        }),
+        new DropdownQuestion({
             key: 'home_team',
             label: 'Home Team',
             type: 'Text',
-            required: true,
-            order: 4
-        }),
-        new TextboxQuestion({
-            key: 'away_team',
-            label: 'Away Team',
-            type: 'Text',
+            options: [],
             required: true,
             order: 5
         }),
-        new TextboxQuestion({
-            key: 'home_score',
-            label: 'Home Team',
+        new DropdownQuestion({
+            key: 'away_team',
+            label: 'Away Team',
             type: 'Text',
+            options: [],
             required: true,
             order: 6
         }),
-        new TextboxQuestion({
+        new DropdownQuestion({
+            key: 'home_score',
+            label: 'Home Score',
+            type: 'Text',
+            options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ,16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
+            required: true,
+            order: 7
+        }),
+        new DropdownQuestion({
             key: 'away_score',
             label: 'Away Score',
             type: 'Text',
+            options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ,16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
             required: true,
-            order: 7
+            order: 8
         })
     ],
 

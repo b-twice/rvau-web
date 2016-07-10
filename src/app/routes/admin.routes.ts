@@ -14,9 +14,25 @@ export const AdminRoutes: RouterConfig = [
                 redirectTo: 'leagues',
             },
             {
-                path: ':table',
-                component: AdminPanelComponent,
+                path: 'leagues',
+                component: AdminPanelComponent
             },
+            {
+                path: 'teams',
+                component: AdminPanelComponent
+            },
+            {
+                path: 'players',
+                component: AdminPanelComponent
+            },
+            {
+                path: 'leagueplayers',
+                component: AdminPanelComponent
+            },
+            {
+                path: 'games',
+                component: AdminPanelComponent
+            }
         ]
     }
 ];

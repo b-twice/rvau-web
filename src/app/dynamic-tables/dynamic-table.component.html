@@ -4,9 +4,7 @@
         <button (click)="addRow()" class="btn-action table-button">
             <i class="fa fa-plus fa-18" aria-hidden="true"></i>Add a row
         </button>
-        <button (click)="filterRow()" class="btn-action table-button">
-            <i class="fa fa-filter fa-18" aria-hidden="true"></i>Filter rows
-        </button>
+        <filter-menu *ngIf='filterKeys.length > 0' [filterKeys]='filterKeys'></filter-menu>
         <button (click)="exportToCsv()" class="btn-action table-button">
             <i class="fa fa-table" aria-hidden="true"></i>Export to csv
         </button>
@@ -20,7 +18,7 @@
                 <dynamic-row class="table-row" [keys]="keys" [row]="row"></dynamic-row>
             </div>
         </div>
-        <div class="table-body">
+        <div class="table-body table-main-content">
             <div *ngFor="let row of rows | rowPipe">
                 <dynamic-row class="table-row" [keys]="keys" [row]="row"></dynamic-row>
             </div>

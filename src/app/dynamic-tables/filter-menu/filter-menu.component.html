@@ -1,0 +1,6 @@
+<div class="btn-action table-button">
+    <i class="fa fa-filter fa-18" aria-hidden="true"></i>Filter rows
+    <ul *ngIf="filterActivated" class="filter-menu">
+        <a *ngFor="let row of rows" [routerLink]="[routePath, row]">{{row | filterMenuPipe}}</a>
+    </ul>
+</div>

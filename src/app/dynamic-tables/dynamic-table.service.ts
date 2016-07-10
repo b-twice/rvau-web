@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
-import { FormRequest, TableRow } from '../models'
+import { FormRequest, TableRow, GetRequest } from '../models'
 
 export class RowInstance {
     rowSource: any;
     rowChanged$: any;
-    constructor()
-    {
+    constructor() {
         this.rowSource = new Subject<{}>();
         this.rowChanged$ = this.rowSource.asObservable();
     }
@@ -14,21 +13,27 @@ export class RowInstance {
 
 @Injectable()
 export class TableService {
-    
+
     // Hook binding an observable to each row
-    private rowInstances: { [id: string]: RowInstance} = {};
+    private rowInstances: { [id: string]: RowInstance } = {};
 
     private rowsAddedSource = new Subject<any[]>(); // Rows passed to table
     private formPostSource = new Subject<FormRequest>(); // send submitted form
     private postResponseSource = new Subject<FormRequest>(); // get form results
     private closeTransactionSource = new Subject<number>(); // stop form editing
     private startTransactionSource = new Subject<{}>(); // start form editing
+    private getRequestSource = new Subject<GetRequest>();
+    private getResponseSource = { 'filter': new Subject<GetRequest>() };
+
 
     formPost$ = this.formPostSource.asObservable();
     rowsAdded$ = this.rowsAddedSource.asObservable();
+    getRequest$ = this.getRequestSource.asObservable();
+    getFilterResponse$ = this.getResponseSource.filter.asObservable();
     postResponse$ = this.postResponseSource.asObservable();
     startTransaction$ = this.startTransactionSource.asObservable()
     closeTransaction$ = this.closeTransactionSource.asObservable();
+
 
     // send form
     postForm(form: FormRequest): void {
@@ -40,6 +45,15 @@ export class TableService {
         this.postResponseSource.next(response);
     }
 
+    getRequest(request: GetRequest): void {
+        this.getRequestSource.next(request)
+    }
+
+    getResponse(response: GetRequest): void {
+        if (response.action) {
+            this.getResponseSource[response.action].next(response)
+        }
+    }
     // start edit transaction
     startTransaction(row: {}): void {
         this.startTransactionSource.next(row);
@@ -51,6 +65,7 @@ export class TableService {
     }
 
     addRows(rows: {}[]): void {
+        this.rowInstances = {};
         this.rowsAddedSource.next(rows)
     }
 

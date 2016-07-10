@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttp } from 'angular2-jwt';
+import { GetRequest } from '../models'
 
 
 @Injectable()
@@ -10,23 +11,31 @@ export class ApiService {
 
     constructor(private http: Http, private authHttp: AuthHttp) { }
 
-    getData(fragment: string, authorized?: boolean): Observable<any> {
-        let requestUrl = `${this.apiUrl}/${fragment}`
-        if (authorized) {
-            return this.authHttp.get(requestUrl)
-                .map(this.extractData)
-                .catch(this.handleAuthenticationError);
+    getData(fragment: string, query): Observable<any> {
+        let params: URLSearchParams = new URLSearchParams();
+        for (let key of Object.keys(query)) {
+            params.set(key, query[key])
         }
-        return this.http.get(requestUrl)
+        let requestUrl = `${this.apiUrl}/${fragment}`
+        return this.authHttp.get(requestUrl, { search: params })
             .map(this.extractData)
-            .catch(this.handleError);
+            .catch(this.handleAuthenticationError);
     }
 
+    getRequest(request: GetRequest): Observable<any> {
+        let params = this.setParams(request.params)
+        let requestUrl = `${this.apiUrl}/${request.table}`
+        return this.authHttp.get(requestUrl, { search: params })
+            .map(this.extractData)
+            .catch(this.handleAuthenticationError);
+
+    }
     postData(params: {}, fragment: string): Observable<any> {
         let requestUrl = `${this.apiUrl}/${fragment}`
         let body = JSON.stringify(params);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
+        console.log(body)
         return this.authHttp.post(requestUrl, body, options)
             .map(this.extractData)
             .catch(this.handleAuthenticationError);
@@ -55,11 +64,18 @@ export class ApiService {
         return body.data || {};
     }
 
+    private setParams(query: {}): URLSearchParams {
+        let params: URLSearchParams = new URLSearchParams();
+        for (let key of Object.keys(query)) {
+            params.set(key, query[key])
+        }
+        return params
+    }
     private handleAuthenticationError(error: Response) {
-        console.log(error.json()); 
+        console.log(error.json());
         return Observable.throw(error.json() || 'Server error');
     }
-    
+
     private handleError(error: Response) {
         console.error(error);
         return Observable.throw(error.json().errors || 'Server error');

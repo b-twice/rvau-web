@@ -1,6 +1,7 @@
 import { Pipe } from '@angular/core';
 import { TableRow } from '../models'
 
+var _ = require('lodash');
 @Pipe({
     name: 'mapPipe'
 })
@@ -20,7 +21,19 @@ export class RowPipe {
     transform(rows: {}[]): any {
         if (!rows)
             return null;
-        return rows.map(row => new TableRow({state: "none", value: row}))
+        return rows.map(row => new TableRow({ state: "none", value: row }))
     }
 }
 
+
+@Pipe({
+    name: 'filterMenuPipe'
+})
+export class FilterMenuPipe {
+    transform(row: {}): any {
+        if (!row) {
+            return null;
+        }
+        return _.values(row).join(" ")
+    }
+}

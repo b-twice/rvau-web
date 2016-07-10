@@ -6,13 +6,15 @@ import { FormRequest, TableRow } from '../models';
 import { Subscription }   from 'rxjs/Subscription';
 import { LoadingComponent } from '../loading';
 import { RowPipe } from './dynamic-table.pipes';
+import { FilterMenuComponent } from './filter-menu';
 
+var _ = require('lodash');
 
 @Component({
   selector: 'dynamic-table',
   template: require('./dynamic-table.component.html'),
   styles: [require('./dynamic-table.component.scss')],
-  directives: [DynamicRowComponent, DynamicRowEditComponent, LoadingComponent],
+  directives: [DynamicRowComponent, DynamicRowEditComponent, FilterMenuComponent, LoadingComponent],
   providers: [],
   pipes: [RowPipe],
   encapsulation: ViewEncapsulation.None,
@@ -22,8 +24,9 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input() editable: boolean = false;
   @Input() formQuestions: any[];
 
-  private columnNames: any[] = []; // for display
-  private keys: any[] = []; // ordered object keys
+  private columnNames: string[] = []; // for display
+  private keys: string[] = []; // ordered object keys
+  private filterKeys: string[] = []; // list of keys to filter by
   private rows: {}[] = []; // array of row values
   private addedRows: TableRow[] = []; // rows added while editing
   private responseMessage: string;
@@ -31,29 +34,43 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   rowsSub: Subscription;
   formSub: Subscription;
 
-  constructor( private tableService: TableService ) { }
+  constructor(private tableService: TableService) { }
 
   ngOnInit() {
     this.rowsSub = this.tableService.rowsAdded$.subscribe(
       rows => {
+        // For questions that were not provided options
+        let questionsToAddOptions = [];
+        // Refresh component when query param passed
+        this.clearComponent();
         // Not ideal but form questions has column order
-        this.formQuestions.map(question => { 
+        this.formQuestions.map(question => {
           this.keys.push(question.key);
           this.columnNames.push(question.label)
+          if (question.filter) {
+            this.filterKeys.push(question.key)
+          }
+          if ('options' in question && question.options.length === 0) {
+            questionsToAddOptions.push(question)
+          }
         });
         this.rows = rows;
+        this.addQuestionOptions(questionsToAddOptions)
       });
 
     this.formSub = this.tableService.postResponse$.subscribe(
       response => this.handleFormResponse(response));
   }
 
-  ngOnChanges() {
-    // Cleanup arrays on table change
+  clearComponent() {
     this.keys = [];
     this.columnNames = [];
     this.addedRows = [];
     this.rows = [];
+  }
+  ngOnChanges() {
+    // Cleanup arrays on table change
+    this.clearComponent();
   }
   ngOnDestroy() {
     this.rowsSub.unsubscribe();
@@ -65,9 +82,33 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
     this.tableService.startTransaction({});
   }
 
-  filterRow(): void {
-
+  addQuestionOptions(questions: {}[]): void {
+    for (let row of this.rows) {
+      questions.forEach(question => {
+        let value = row[question["key"]]
+        if (question["options"].indexOf(value) === -1) {
+          question["options"].push(value)
+        }
+      })
+    }
   }
+
+  // filterRows(): void {
+  //   // only generate when called and do it once
+  //   if (_.isEmpty(this.filterValues)) {
+  //     // not the prettiest implementation
+  //     // since objects are references can't use set, map, need a key
+  //     let foundValues = [];
+  //     for (let r of this.rows) {
+  //       let filterSelect = _.pick(r, this.filterKeys)
+  //       let key = _.values(filterSelect).toString()
+  //       if (foundValues.indexOf(key) == -1) {
+  //         this.filterValues.push(filterSelect);
+  //         foundValues.push(key);
+  //       }
+  //     }
+  //   }
+  // }
 
   exportToCsv(): void {
 
@@ -80,13 +121,14 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
       this.responseMessage = response.message["errors"];
     }
     if (response.success && response.action === 'put') {
-      this.tableService.changeRow(new TableRow({state: 'put', value:response.value}));
+      this.tableService.changeRow(new TableRow({ state: 'put', value: response.value }));
     }
     else if (response.action === 'post') {
-      this.addedRows.push(new TableRow({state: 'post', value:response.value}));
+      console.log(response.value);
+      this.addedRows.push(new TableRow({ state: 'post', value: response.value }));
     }
     else if (response.action === 'delete') {
-      this.tableService.changeRow(new TableRow({state: 'delete', value:response.value}));
+      this.tableService.changeRow(new TableRow({ state: 'delete', value: response.value }));
     }
     this.tableService.closeTransaction(response.value["id"])
     return
