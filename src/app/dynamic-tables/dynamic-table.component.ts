@@ -50,12 +50,8 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
           if (question.filter) {
             this.filterKeys.push(question.key)
           }
-          if ('options' in question && question.options.length === 0) {
-            questionsToAddOptions.push(question)
-          }
         });
         this.rows = rows;
-        this.addQuestionOptions(questionsToAddOptions)
       });
 
     this.formSub = this.tableService.postResponse$.subscribe(
@@ -80,17 +76,6 @@ export class DynamicTableComponent implements OnInit, OnDestroy, OnChanges {
   addRow(): void {
     this.responseMessage = '';
     this.tableService.startTransaction({});
-  }
-
-  addQuestionOptions(questions: {}[]): void {
-    for (let row of this.rows) {
-      questions.forEach(question => {
-        let value = row[question["key"]]
-        if (question["options"].indexOf(value) === -1) {
-          question["options"].push(value)
-        }
-      })
-    }
   }
 
   // filterRows(): void {
