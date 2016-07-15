@@ -79,6 +79,7 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
         }
         this.responseMessage = '';
     }
+
     deleteRow() {
         if (!this.editSession.id) {
             return
@@ -88,6 +89,7 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
         this.editSession.transaction = true;
         this.tableService.postForm(form);
     }
+    
     onSubmit(event): void {
         let value = event.value;
         if (this.editSession.state === 'put') {

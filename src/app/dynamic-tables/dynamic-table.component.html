@@ -9,7 +9,7 @@
             <i class="fa fa-table" aria-hidden="true"></i>Export to csv
         </button>
     </div>
-    <div *ngIf="rows.length" class="table">
+    <div class="table">
         <div class="table-row table-header">
             <div class="table-row-cell" *ngFor="let columnName of columnNames">{{columnName}}</div>
         </div>
@@ -24,8 +24,5 @@
             </div>
         </div>
     </div>
-</div>
-<div *ngIf="!rows.length" class="table">
-    <loading-indicator></loading-indicator>
 </div>
 <dynamic-row-edit [formQuestions]="formQuestions"></dynamic-row-edit>

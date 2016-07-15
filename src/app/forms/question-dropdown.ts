@@ -3,7 +3,7 @@ import { QuestionBase } from './';
 export class DropdownQuestion extends QuestionBase<string> {
   controlType = 'dropdown';
   options: any[] = [];
-  source: string;
+  source: string; // table source for querying default values
 
   constructor(options: {} = {}) {
     super(options);

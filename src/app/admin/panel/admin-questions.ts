@@ -7,7 +7,6 @@ export const AdminQuestions = {
             label: 'League Type',
             options: ['Spring', 'Summer', 'Fall', 'Winter'],
             required: true,
-            filter: true,
             order: 1,
         }),
         new DropdownQuestion({
@@ -16,7 +15,6 @@ export const AdminQuestions = {
             type: 'Integer',
             options: [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
             required: true,
-            filter: true,
             order: 2
         }),
     ],
@@ -54,23 +52,13 @@ export const AdminQuestions = {
     ],
     leagueplayers: [
         new DropdownQuestion({
-            key: 'league_type',
-            label: 'League Type',
+            key: 'league',
+            label: 'League',
             options: [],
             source: 'leagues',
             required: true,
             filter: true,
             order: 1
-        }),
-        new DropdownQuestion({
-            key: 'league_year',
-            label: 'League Year',
-            type: 'Integer',
-            options: [],
-            source: 'leagues',
-            required: true,
-            filter: true,
-            order: 2
         }),
         new DropdownQuestion({
             key: 'team_name',
@@ -79,25 +67,16 @@ export const AdminQuestions = {
             options: [],
             source: 'teams',
             required: true,
+            order: 2
+        }),
+        new DropdownQuestion({
+            key: 'player_name',
+            label: 'Player Name',
+            type: 'Text',
+            options: [],
+            source: 'players',
+            required: true,
             order: 3
-        }),
-        new DropdownQuestion({
-            key: 'first_name',
-            label: 'Player First Name',
-            type: 'Text',
-            options: [],
-            source: 'players',
-            required: true,
-            order: 4
-        }),
-        new DropdownQuestion({
-            key: 'last_name',
-            label: 'Player Last Name',
-            type: 'Text',
-            options: [],
-            source: 'players',
-            required: true,
-            order: 5
         }),
         new DropdownQuestion({
             key: 'player_type',
@@ -105,7 +84,7 @@ export const AdminQuestions = {
             type: 'Text',
             options: ['Player', 'Captain'],
             required: true,
-            order: 6
+            order: 4
         })
     ],
     games: [
@@ -132,8 +111,8 @@ export const AdminQuestions = {
             order: 2
         }),
         new DropdownQuestion({
-            key: 'league_type',
-            label: 'League Type',
+            key: 'league',
+            label: 'League',
             options: [],
             source: 'leagues',
             required: true,
@@ -141,18 +120,9 @@ export const AdminQuestions = {
             order: 3
         }),
         new DropdownQuestion({
-            key: 'league_year',
-            label: 'League Year',
-            options: [],
-            type: 'Integer',
-            source: 'leagues',
-            required: true,
-            filter: true,
-            order: 4
-        }),
-        new DropdownQuestion({
             key: 'home_team',
             label: 'Home Team',
+            alias: 'team_name',
             type: 'Text',
             options: [],
             source: 'teams',
@@ -162,6 +132,7 @@ export const AdminQuestions = {
         new DropdownQuestion({
             key: 'away_team',
             label: 'Away Team',
+            alias: 'team_name',
             type: 'Text',
             options: [],
             source: 'teams',
