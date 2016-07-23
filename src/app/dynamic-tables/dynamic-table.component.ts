@@ -25,7 +25,6 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
   private columnNames: string[] = []; // for display
   private keys: string[] = []; // ordered object keys
   private filterKeys: string[] = []; // list of keys to filter by
-  // private rows: {}[] = []; // array of row values
   private addedRows: TableRow[] = []; // rows added while editing
   private responseMessage: string;
 
