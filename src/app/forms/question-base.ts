@@ -5,9 +5,9 @@ export class QuestionBase<T>{
     key: string; // table key name
     label: string; // form label
     alias: string; // key alias
+    placeholder: string; // input placeholder text
     required: boolean; // required field
     filter: boolean; // field allows filtering
-    compose: any[]; //
     order: number; // order in form questions
     controlType: string; // ??
     validators: any[]; // form validation
@@ -17,9 +17,9 @@ export class QuestionBase<T>{
         key?: string,
         label?: string,
         alias?: string,
+        placeholder?: string,
         required?: boolean,
         filter?: boolean,
-        compose?: any[],
         order?: number,
         controlType?: string,
         validators?: Array<Function>,
@@ -29,9 +29,9 @@ export class QuestionBase<T>{
         this.key = options.key || '';
         this.label = options.label || '';
         this.alias = options.alias || options.key || '';
+        this.placeholder = options.placeholder || '';
         this.required = !!options.required;
         this.filter = !!options.filter;
-        this.compose = options.compose || [];
         this.order = options.order === undefined ? 1 : options.order;
         this.controlType = options.controlType || '';
         this.validationMessages = options.validationMessages || {};

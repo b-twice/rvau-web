@@ -1,10 +1,36 @@
-import { QuestionBase, TextboxQuestion, DropdownQuestion }     from '../../forms';
+import { QuestionBase, TextboxQuestion, DropdownQuestion, characterValidator, emailValidator, dateValidator}     from '../../forms';
+import * as moment from 'moment';
 
+
+let getScores = function(score:number): number[] {
+    let scores = []
+    for (let i = 0; i <= score; i++) {
+        scores.push(i)
+    }
+    return scores
+}
+let getYears = function(years: number): number[] {
+        let now = moment().year();
+        let yearList = [];
+        for (let i =0; i<= years; i ++) {
+            yearList.push(now + i);
+            yearList.push(now - i)
+        }
+        return yearList.sort()
+    }
 export const AdminQuestions = {
+    getYears: function(years: number): number[] {
+        let now = moment().year();
+        let previous = [...Array(5).map(num => now -1)]
+        let next = [...Array(5).map(num => now + 1)]
+
+        return [...previous, ...next]
+    },
     leagues: [
         new DropdownQuestion({
             key: 'league_type',
             label: 'League Type',
+            placeholder: 'Select a season',
             options: ['Spring', 'Summer', 'Fall', 'Winter'],
             required: true,
             order: 1,
@@ -12,8 +38,9 @@ export const AdminQuestions = {
         new DropdownQuestion({
             key: 'league_year',
             label: 'League Year',
+            placeholder: 'Select a year',
             type: 'Integer',
-            options: [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
+            options: [...getYears(5)],
             required: true,
             order: 2
         }),
@@ -24,7 +51,11 @@ export const AdminQuestions = {
             label: 'Team Name',
             type: 'Text',
             required: true,
-            order: 1
+            order: 1,
+            validators: [characterValidator],
+            validationMessages: {
+                'invalidCharacter': 'Team name must contain letters only'
+            }
         }),
     ],
     players: [
@@ -32,22 +63,37 @@ export const AdminQuestions = {
             key: 'first_name',
             label: 'First Name',
             type: 'Text',
+            placeholder: 'Enter first name of player',
             required: true,
-            order: 1
+            order: 1,
+            validators: [characterValidator],
+            validationMessages: {
+                'invalidCharacter': 'Name must contain letters only'
+            }
         }),
         new TextboxQuestion({
             key: 'last_name',
             label: 'Last Name',
             type: 'Text',
+            placeholder: 'Enter last name of player',
             required: true,
-            order: 2
+            order: 2,
+            validators: [characterValidator],
+            validationMessages: {
+                'invalidCharacter': 'Name must contain letters only'
+            }
         }),
         new TextboxQuestion({
             key: 'email',
             label: 'Email',
             type: 'Email',
+            placeholder: 'Enter player email address',
             required: false,
-            order: 3
+            order: 3,
+            validators: [emailValidator],
+            validationMessages: {
+                'invalidEmail': 'Not a valid email address'
+            }
         }),
     ],
     leagueplayers: [
@@ -91,9 +137,14 @@ export const AdminQuestions = {
         new TextboxQuestion({
             key: 'game_date',
             label: 'Game Date',
+            placeholder: 'Enter a date (DD/MM/YYYY)',
             type: 'Text',
             required: true,
-            order: 1
+            order: 1,
+            validators: [dateValidator],
+            validationMessages: {
+                'invalidDate': 'Date must a valid date and DD/MM/YYY format'
+            }
         }),
         new DropdownQuestion({
             key: 'game_type',
@@ -103,7 +154,7 @@ export const AdminQuestions = {
                 'Preseason',
                 'Season',
                 'Prequarter',
-                'Quartefinal',
+                'Quarterfinal',
                 'Semifinal',
                 'Final',
             ],
@@ -143,7 +194,7 @@ export const AdminQuestions = {
             key: 'home_score',
             label: 'Home Score',
             type: 'Text',
-            options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ,16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
+            options: [...getScores(50)],
             required: true,
             order: 7
         }),
@@ -151,7 +202,7 @@ export const AdminQuestions = {
             key: 'away_score',
             label: 'Away Score',
             type: 'Text',
-            options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ,16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
+            options: [...getScores(50)],
             required: true,
             order: 8
         })

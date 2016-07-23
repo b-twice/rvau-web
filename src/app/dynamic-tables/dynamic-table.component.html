@@ -14,14 +14,10 @@
             <div class="table-row-cell" *ngFor="let columnName of columnNames">{{columnName}}</div>
         </div>
         <div class="table-body">
-            <div *ngFor="let row of addedRows">
-                <dynamic-row class="table-row" [keys]="keys" [row]="row"></dynamic-row>
-            </div>
+            <dynamic-row *ngFor="let row of addedRows" [keys]="keys" [row]="row"></dynamic-row>
         </div>
         <div class="table-body table-main-content">
-            <div *ngFor="let row of rows | rowPipe">
-                <dynamic-row class="table-row" [keys]="keys" [row]="row"></dynamic-row>
-            </div>
+            <dynamic-row *ngFor="let row of rows | rowPipe" [keys]="keys" [row]="row"></dynamic-row>
         </div>
     </div>
 </div>

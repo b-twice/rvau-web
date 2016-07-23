@@ -24,9 +24,14 @@
   width:100%;
   cursor:pointer;
   min-height:min-content;
+  margin:0;
+  border-bottom: 1px solid #ECEFF1;
+  border-top: 1px solid rgba(0,0,0,0);
 }
 .table-row:hover {
-  background: #DCE7F4;
+  border-top: 1px solid #B2D7FF;
+  background: #F7FAFF;
+  border-bottom: 1px solid #B2D7FF;
 }
 .table-row.delete {
   background:#f2dede;
@@ -88,12 +93,6 @@
   .table-header {
     background: rgba(236,239,241,0.24);
     border: 1px solid #ECEff1;
-  }
-  .table-cell {
-    border-bottom: 1px solid #ECEFF1;
-  }
-  .table-row-cell {
-    border-bottom: 1px solid #ECEFF1;
   }
   .table-controls {
       background: rgba(236,239,241,0.5);

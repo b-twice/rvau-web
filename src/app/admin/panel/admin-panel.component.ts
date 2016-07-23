@@ -58,13 +58,14 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
         this.tableSubscription.unsubscribe();
     }
 
+    // Get question options sourced from other tables
+    // i.e. PlayerLeague needs all league values from Leagues
     addQuestionOptions(questions): void {
         let questionOptions = [];
         let requests: Observable<any>[] = [];
         questions.map(q => {
             if (q.source && 'options' in q && q.options.length === 0) {
-                let columnName = q.alias ? q.alias : q.key
-                let request = new GetRequest({ table: q.source, params: { unique: [columnName] } })
+                let request = new GetRequest({ table: q.source, params: { unique: [q.alias] } })
                 requests.push(this.getRequestSingle(request))
                 questionOptions.push(q);
             }
@@ -73,7 +74,6 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
             this.formQuestions = questions
             return
         }
-        console.log(requests);
         Observable.forkJoin.apply(this, requests).subscribe(responses => {
             let results = {}
             // requests holds at most one request for a table and one column from that table
