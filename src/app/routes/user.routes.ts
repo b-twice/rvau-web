@@ -1,10 +1,10 @@
-import { RouterConfig }          from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { UserComponent,  
          LoginComponent } from '../user';
 import { AuthGuard } from '../user';
 import { AuthService } from '../services';
 
-export const AuthRoutes: RouterConfig = [
+export const UserRoutes: Routes = [
   {
     path: 'user',
     component: UserComponent,
@@ -14,6 +14,4 @@ export const AuthRoutes: RouterConfig = [
     ]
   }
 ];
-
-
-export const AUTH_PROVIDERS = [AuthGuard, AuthService];
+export const authProviders = [AuthGuard, AuthService];

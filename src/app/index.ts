@@ -1,1 +1,1 @@
-export { APP_ROUTER_PROVIDERS } from './app.routes';
+export { AppModule } from './app.module';

@@ -1,8 +1,8 @@
-import { RouterConfig } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent, AdminPanelComponent } from '../admin';
 import { AuthGuard } from '../user';
 
-export const AdminRoutes: RouterConfig = [
+export const AdminRoutes: Routes = [
     {
         path: 'admin',
         component: AdminComponent,
@@ -36,3 +36,4 @@ export const AdminRoutes: RouterConfig = [
         ]
     }
 ];
+

@@ -1,9 +1,9 @@
 import { Control } from '@angular/common';
-import * as moment from 'Moment';
+import * as Moment from 'Moment';
 
 
 export function dateValidator(c: Control): { [s: string]: boolean } {
-    let validDate = moment(c.value, 'DD/MM/YYYY').isValid();
+    let validDate = Moment(c.value, 'DD/MM/YYYY').isValid();
     if (c.value && !validDate) return { invalidDate: true };
 }
 export function characterValidator(c: Control): { [s: string]: boolean } {

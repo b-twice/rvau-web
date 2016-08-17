@@ -1,13 +1,12 @@
-import { provideRouter } from '@angular/router';
-import { DashboardRoutes, AdminRoutes, AuthRoutes, AUTH_PROVIDERS } from './routes';
-
+import { Router, RouterModule } from '@angular/router';
+import { AdminRoutes, UserRoutes, authProviders } from './routes';
 export const routes = [
-    ...AuthRoutes,
-    ...DashboardRoutes,
+    ...UserRoutes,
     ...AdminRoutes
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-    provideRouter(routes),
-    AUTH_PROVIDERS
+export const appRoutingProviders: any[] = [
+    authProviders,
 ];
+
+export const routing = RouterModule.forRoot(routes);

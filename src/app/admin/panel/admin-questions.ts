@@ -1,5 +1,5 @@
 import { QuestionBase, TextboxQuestion, DropdownQuestion, characterValidator, emailValidator, dateValidator}     from '../../forms';
-import * as moment from 'moment';
+import * as Moment from 'moment';
 
 
 let getScores = function(score:number): number[] {
@@ -10,7 +10,7 @@ let getScores = function(score:number): number[] {
     return scores
 }
 let getYears = function(years: number): number[] {
-        let now = moment().year();
+        let now = Moment().year();
         let yearList = [];
         for (let i =0; i<= years; i ++) {
             yearList.push(now + i);
@@ -20,7 +20,7 @@ let getYears = function(years: number): number[] {
     }
 export const AdminQuestions = {
     getYears: function(years: number): number[] {
-        let now = moment().year();
+        let now = Moment().year();
         let previous = [...Array(5).map(num => now -1)]
         let next = [...Array(5).map(num => now + 1)]
 
