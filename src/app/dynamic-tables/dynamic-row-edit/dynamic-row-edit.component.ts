@@ -1,14 +1,10 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { FormRequest, EditSession } from '../../models';
-import { TableService } from '../dynamic-table.service';
+import { DynamicTableService } from '../dynamic-table.service';
 import { Subscription }   from 'rxjs/Subscription';
-import { DynamicFormComponent } from '../../forms';
-import { LoadingComponent } from '../../loading';
 
 @Component({
     selector: 'dynamic-row-edit',
-    providers: [],
-    directives: [DynamicFormComponent, LoadingComponent],
     template: require('./dynamic-row-edit.component.html'),
     styles: [require('./dynamic-row-edit.component.scss')],
 })
@@ -23,7 +19,7 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
     closeTransactionSub: Subscription;
     startTransactionSub: Subscription;
 
-    constructor(private tableService: TableService) { }
+    constructor(private tableService: DynamicTableService) { }
 
     ngOnInit() {
         this.closeTransactionSub = this.tableService.closeTransaction$.subscribe(
@@ -58,14 +54,14 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
 
     startEditSession(row: {} = {}) {
         let rowEmpty = Object.keys(row).length === 0 ? true : false;
-        if (rowEmpty) { 
+        if (rowEmpty) {
             this.editSession.setState('post');
             this.deleteEnabled = false;
-         }
-        else { 
+        }
+        else {
             this.editSession.setState('put');
             this.deleteEnabled = true;
-         }
+        }
         this.setFormValues(row, rowEmpty);
         this.editSession.active = true;
         if (!rowEmpty) {
@@ -82,25 +78,26 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
 
     deleteRow() {
         if (!this.editSession.id) {
-            return
+            return;
         }
         this.editSession.state = 'delete';
         let form = new FormRequest({ action: this.editSession.state, value: { id: this.editSession.id } });
         this.editSession.transaction = true;
         this.tableService.postForm(form);
     }
-    
+
     onSubmit(event): void {
         let value = event.value;
         if (this.editSession.state === 'put') {
             value['id'] = this.editSession.id;
             if (this.formRow = value) {
-                this.responseMessage = "Make a change before saving."
-                return 
+                this.responseMessage = 'Make a change before saving.';
+                return;
             }
         }
         let form = new FormRequest({ action: this.editSession.state, value: value });
         this.editSession.transaction = true;
+        console.log("Dynamic row sending data")
         this.tableService.postForm(form);
     }
 

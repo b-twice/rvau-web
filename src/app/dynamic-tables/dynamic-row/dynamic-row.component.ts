@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { DynamicFormComponent } from '../../forms'
-import { MapPipe } from '../dynamic-table.pipes';
-import { TableService } from '../dynamic-table.service';
+import { DynamicTableService } from '../dynamic-table.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { TableRow } from '../../models';
 
@@ -9,8 +7,6 @@ import { TableRow } from '../../models';
     selector: 'dynamic-row',
     template: require('./dynamic-row.component.html'),
     styles: [require('./dynamic-row.component.scss')],
-    directives: [DynamicFormComponent],
-    pipes: [MapPipe],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicRowComponent implements OnInit {
@@ -21,18 +17,18 @@ export class DynamicRowComponent implements OnInit {
 
     subscription: Subscription;
     constructor(
-        private tableService: TableService,
+        private tableService: DynamicTableService,
         private cd: ChangeDetectorRef) {
     }
 
     ngOnInit() {
-        let instance = this.tableService.registerInstance(this.row.value["id"]);
-        this.componentId = this.row.value["id"];
+        let instance = this.tableService.registerInstance(this.row.value['id']);
+        this.componentId = this.row.value['id'];
         this.state = this.row.state;
         this.subscription = instance.rowChanged$.subscribe(
             row => {
                 // keep row persistent after delete for restore
-                if (row.state !== "delete") {
+                if (row.state !== 'delete') {
                     this.row = row;
                 }
                 this.state = row.state;

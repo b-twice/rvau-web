@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router} from '@angular/router';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable }     from 'rxjs/Observable';
+import { Http } from '@angular/http';
 import { Subject }    from 'rxjs/Subject';
 import { tokenNotExpired } from 'angular2-jwt';
 
@@ -29,14 +28,14 @@ export class AuthService {
             password: password,
         }, (err, profile) => {
             if (err) {
-                console.log("Authentication Error")
-                this.authenticationResponse({error: "User could not be authenticated" });
+                console.log('Authentication Error');
+                this.authenticationResponse({error: 'User could not be authenticated' });
             };
-            console.log("Authentication Success");
-            localStorage.setItem('jwt', profile["idToken"]);
+            console.log('Authentication Success');
+            localStorage.setItem('jwt', profile['idToken']);
             this.authenticated = true;
-            this.router.navigate(['/admin'])
-            return
+            this.router.navigate(['/admin']);
+            return;
         });
 
     }
@@ -44,8 +43,8 @@ export class AuthService {
     logout(): void {
         localStorage.removeItem('jwt');
         this.authenticated = false;
-        this.router.navigate(['/'])
-        return
+        this.router.navigate(['/']);
+        return;
     }
 
     get isAuthorized(): boolean {

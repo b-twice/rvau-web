@@ -1,8 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent, AdminPanelComponent } from '../admin';
+import { AdminComponent } from './admin.component';
+import { AdminPanelComponent } from './panel/admin-panel.component';
 import { AuthGuard } from '../user';
 
-export const AdminRoutes: Routes = [
+const adminRoutes: Routes = [
     {
         path: 'admin',
         component: AdminComponent,
@@ -37,3 +38,4 @@ export const AdminRoutes: Routes = [
     }
 ];
 
+export const adminRouting = RouterModule.forChild(adminRoutes);

@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { AuthService } from '../../services';
+
 @Component({
   selector: 'admin-header',
   template: require('./admin-header.component.html'),
@@ -7,9 +8,9 @@ import { AuthService } from '../../services';
 })
 export class AdminHeaderComponent {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
-  logout():void {
+  logout(): void {
     this.authService.logout();
   }
 }

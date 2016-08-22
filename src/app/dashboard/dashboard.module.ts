@@ -1,13 +1,13 @@
-import { NgModule }       from '@angular/core';
-import { CommonModule }   from '@angular/common';
+import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared.module';
+import { HomeComponent } from './home';
+import { HeaderComponent } from './header';
 
-import { HomeComponent }    from './home';
-import { HeaderComponent }  from './header';
 import { dashboardRouting } from './dashboard.routes';
 
 @NgModule({
   imports: [
-    CommonModule,
+    SharedModule,
     dashboardRouting
   ],
   declarations: [

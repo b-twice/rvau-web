@@ -4,5 +4,5 @@ export class League {
         public league_type: string,
         public league_year: number
     ) { }
-    
+
 }

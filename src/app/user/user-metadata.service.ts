@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { QuestionBase,
          TextboxQuestion} from '../forms';
-import { emailValidator, passwordValidator } from '../validation/user.validation';
+import { emailValidator } from './user.validation';
 
 @Injectable()
 export class UserMetadataService {
@@ -28,7 +28,7 @@ export class UserMetadataService {
             order: 2
         })
     ];
-    getMetadata(metadata) {
-        return metadata.sort((a, b) => a.order - b.order);
+    getMetadata() {
+        return this.loginMetadata.sort((a, b) => a.order - b.order);
     }
 }

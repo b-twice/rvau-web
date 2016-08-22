@@ -1,4 +1,2 @@
-export * from './dynamic-table.component';
-export { MapPipe } from './dynamic-table.pipes';
-export * from './dynamic-row';
-export * from './dynamic-table.service';
+export { DynamicTableModule } from './dynamic-table.module';
+export { DynamicTableService } from './dynamic-table.service';

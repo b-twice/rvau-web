@@ -1,7 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-import { FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { QuestionBase } from './question-base';
-import { DynamicFormQuestionComponent } from './form-question.component';
 import { QuestionControlService  } from './question-control.service';
 
 
@@ -17,10 +16,8 @@ import { QuestionControlService  } from './question-control.service';
         </div>
     </form>
   `,
-  directives: [DynamicFormQuestionComponent, REACTIVE_FORM_DIRECTIVES],
-  providers: [QuestionControlService]
 })
-export class DynamicFormComponent implements OnInit {
+export class FormComponent implements OnInit {
   @Input() questions: QuestionBase<any>[] = [];
   @Input() submitButtonText: string = 'Submit';
   @Output() onSubmit = new EventEmitter();

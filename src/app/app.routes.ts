@@ -1,8 +1,6 @@
-import { Router, RouterModule } from '@angular/router';
-import { AdminRoutes, UserRoutes, authProviders } from './routes';
-export const routes = [
-    ...UserRoutes,
-    ...AdminRoutes
+import { RouterModule } from '@angular/router';
+import { authProviders } from './user/user.routes';
+const routes = [
 ];
 
 export const appRoutingProviders: any[] = [

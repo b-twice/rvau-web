@@ -1,19 +1,12 @@
-import { Component, OnInit, OnDestroy, OnChanges, Input, ViewChild, ViewEncapsulation } from '@angular/core';
-import { DynamicRowComponent } from './dynamic-row';
-import { DynamicRowEditComponent } from './dynamic-row-edit';
-import { TableService } from './dynamic-table.service';
+import { Component, OnInit, OnDestroy, Input, ViewEncapsulation } from '@angular/core';
+import { DynamicTableService } from './dynamic-table.service';
 import { FormRequest, TableRow } from '../models';
 import { Subscription }   from 'rxjs/Subscription';
-import { RowPipe } from './dynamic-table.pipes';
-import { FilterMenuComponent } from './filter-menu';
 
 @Component({
   selector: 'dynamic-table',
   template: require('./dynamic-table.component.html'),
   styles: [require('./dynamic-table.component.scss')],
-  directives: [DynamicRowComponent, DynamicRowEditComponent, FilterMenuComponent],
-  providers: [],
-  pipes: [RowPipe],
   encapsulation: ViewEncapsulation.None,
 })
 export class DynamicTableComponent implements OnInit, OnDestroy {
@@ -30,17 +23,17 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
 
   formSub: Subscription;
 
-  constructor(private tableService: TableService) { }
+  constructor(private tableService: DynamicTableService) { }
 
   ngOnInit() {
     // Not ideal but form questions has column order
     this.formQuestions.map(question => {
       this.keys.push(question.key);
-      this.columnNames.push(question.label)
+      this.columnNames.push(question.label);
       if (question.filter) {
-        this.filterKeys.push(question.key)
+        this.filterKeys.push(question.key);
       }
-    })
+    });
     this.formSub = this.tableService.postResponse$.subscribe(
       response => this.handleFormResponse(response));
   }
@@ -61,20 +54,19 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
   handleFormResponse(response: FormRequest) {
     this.responseMessage = '';
     if (!response.success) {
-      this.responseMessage = response.message["errors"];
+      this.responseMessage = response.message['errors'];
     }
     if (response.success && response.action === 'put') {
       this.tableService.changeRow(new TableRow({ state: 'put', value: response.value }));
     }
     else if (response.action === 'post') {
-      console.log(response.value);
       this.addedRows.push(new TableRow({ state: 'post', value: response.value }));
     }
     else if (response.action === 'delete') {
       this.tableService.changeRow(new TableRow({ state: 'delete', value: response.value }));
     }
-    this.tableService.closeTransaction(response.value["id"])
-    return
+    this.tableService.closeTransaction(response.value['id']);
+    return;
   }
 
 }

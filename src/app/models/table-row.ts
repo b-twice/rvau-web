@@ -10,9 +10,9 @@ export class TableRow {
     }
 
     setAction(action: string) {
-        let states: string[] = ['none', 'put', 'post', 'delete']
+        let states: string[] = ['none', 'put', 'post', 'delete'];
         if (states.indexOf(action) !== -1) {
-            this.state = action
+            this.state = action;
         }
     }
 }

@@ -1,14 +1,15 @@
-import { Pipe } from '@angular/core';
-import { TableRow } from '../models'
+import { Pipe, PipeTransform } from '@angular/core';
+import { TableRow } from '../models';
 
-var _ = require('lodash');
+const _ = require('lodash');
 @Pipe({
     name: 'mapPipe'
 })
-export class MapPipe {
+export class MapPipe implements PipeTransform {
     transform(map: {}, collectionKeys: any[]): any {
-        if (!map)
+        if (!map) {
             return null;
+        }
         return collectionKeys.map((key) => ({ 'key': key, 'value': map[key] }));
     }
 }
@@ -17,11 +18,12 @@ export class MapPipe {
 @Pipe({
     name: 'rowPipe'
 })
-export class RowPipe {
+export class RowPipe implements PipeTransform {
     transform(rows: {}[]): any {
-        if (!rows)
+        if (!rows) {
             return null;
-        return rows.map(row => new TableRow({ state: "none", value: row }))
+        }
+        return rows.map(row => new TableRow({ state: 'none', value: row }));
     }
 }
 
@@ -29,11 +31,11 @@ export class RowPipe {
 @Pipe({
     name: 'filterMenuPipe'
 })
-export class FilterMenuPipe {
+export class FilterMenuPipe implements PipeTransform {
     transform(row: {}): any {
         if (!row) {
             return null;
         }
-        return _.values(row).join(" ")
+        return _.values(row).join(' ');
     }
 }

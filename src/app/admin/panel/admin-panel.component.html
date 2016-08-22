@@ -3,7 +3,7 @@
     <dynamic-table *ngIf="tableData && formQuestions"
         [rows]="tableData" 
         [theme]="tableTheme" 
-        [editable]="activeEditing"
+        [editable]="true"
         [formQuestions]="formQuestions">
     </dynamic-table>
     <loading-indicator *ngIf="!(tableData && formQuestions)"></loading-indicator>

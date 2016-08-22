@@ -1,6 +1,6 @@
 import { Injectable }   from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { QuestionBase } from './';
+import { QuestionBase } from './question-base';
 const _ = require('lodash');
 
 @Injectable()

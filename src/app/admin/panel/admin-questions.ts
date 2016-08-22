@@ -1,30 +1,30 @@
-import { QuestionBase, TextboxQuestion, DropdownQuestion, characterValidator, emailValidator, dateValidator}     from '../../forms';
-import * as Moment from 'moment';
+import { QuestionBase, TextboxQuestion, DropdownQuestion, }     from '../../forms';
+// characterValidator, emailValidator, dateValidator
+const Moment = require('moment');
 
 
-let getScores = function(score:number): number[] {
-    let scores = []
+let getScores = function (score: number): number[] {
+    let scores = [];
     for (let i = 0; i <= score; i++) {
-        scores.push(i)
+        scores.push(i);
     }
-    return scores
-}
-let getYears = function(years: number): number[] {
-        let now = Moment().year();
-        let yearList = [];
-        for (let i =0; i<= years; i ++) {
-            yearList.push(now + i);
-            yearList.push(now - i)
-        }
-        return yearList.sort()
+    return scores;
+};
+let getYears = function (years: number): number[] {
+    let now = Moment().year();
+    let yearList = [];
+    for (let i = 0; i <= years; i++) {
+        yearList.push(now + i);
+        yearList.push(now - i);
     }
+    return yearList.sort();
+};
 export const AdminQuestions = {
-    getYears: function(years: number): number[] {
+    getYears: function (years: number): number[] {
         let now = Moment().year();
-        let previous = [...Array(5).map(num => now -1)]
-        let next = [...Array(5).map(num => now + 1)]
-
-        return [...previous, ...next]
+        let previous = [...Array(5).map(num => now - 1)];
+        let next = [...Array(5).map(num => now + 1)];
+        return [...previous, ...next];
     },
     leagues: [
         new DropdownQuestion({
@@ -52,7 +52,7 @@ export const AdminQuestions = {
             type: 'Text',
             required: true,
             order: 1,
-            validators: [characterValidator],
+            // validators: [characterValidator],
             validationMessages: {
                 'invalidCharacter': 'Team name must contain letters only'
             }
@@ -66,7 +66,7 @@ export const AdminQuestions = {
             placeholder: 'Enter first name of player',
             required: true,
             order: 1,
-            validators: [characterValidator],
+            // validators: [characterValidator],
             validationMessages: {
                 'invalidCharacter': 'Name must contain letters only'
             }
@@ -78,7 +78,7 @@ export const AdminQuestions = {
             placeholder: 'Enter last name of player',
             required: true,
             order: 2,
-            validators: [characterValidator],
+            // validators: [characterValidator],
             validationMessages: {
                 'invalidCharacter': 'Name must contain letters only'
             }
@@ -90,7 +90,7 @@ export const AdminQuestions = {
             placeholder: 'Enter player email address',
             required: false,
             order: 3,
-            validators: [emailValidator],
+            // validators: [emailValidator],
             validationMessages: {
                 'invalidEmail': 'Not a valid email address'
             }
@@ -141,7 +141,7 @@ export const AdminQuestions = {
             type: 'Text',
             required: true,
             order: 1,
-            validators: [dateValidator],
+            // validators: [dateValidator],
             validationMessages: {
                 'invalidDate': 'Date must a valid date and DD/MM/YYY format'
             }
@@ -208,4 +208,4 @@ export const AdminQuestions = {
         })
     ],
 
-}
+};

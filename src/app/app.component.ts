@@ -7,9 +7,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
   directives: [],
   template: require('./app.component.html'),
   styles: [require('./app.component.scss')],
-   encapsulation: ViewEncapsulation.None,
-  
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+  }
 }

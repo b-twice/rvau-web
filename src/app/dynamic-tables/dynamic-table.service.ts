@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
-import { FormRequest, TableRow, GetRequest } from '../models'
+import { FormRequest, TableRow, GetRequest } from '../models';
 
 export class RowInstance {
     rowSource: any;
@@ -12,7 +12,7 @@ export class RowInstance {
 }
 
 @Injectable()
-export class TableService {
+export class DynamicTableService {
 
     // Hook binding an observable to each row
     private rowInstances: { [id: string]: RowInstance } = {};
@@ -31,7 +31,7 @@ export class TableService {
     getRequest$ = this.getRequestSource.asObservable();
     getFilterResponse$ = this.getResponseSource.filter.asObservable();
     postResponse$ = this.postResponseSource.asObservable();
-    startTransaction$ = this.startTransactionSource.asObservable()
+    startTransaction$ = this.startTransactionSource.asObservable();
     closeTransaction$ = this.closeTransactionSource.asObservable();
 
 
@@ -46,12 +46,12 @@ export class TableService {
     }
 
     getRequest(request: GetRequest): void {
-        this.getRequestSource.next(request)
+        this.getRequestSource.next(request);
     }
 
     getResponse(response: GetRequest): void {
         if (response.action) {
-            this.getResponseSource[response.action].next(response)
+            this.getResponseSource[response.action].next(response);
         }
     }
     // start edit transaction
@@ -66,7 +66,7 @@ export class TableService {
 
     addRows(rows: {}[]): void {
         this.rowInstances = {};
-        this.rowsAddedSource.next(rows)
+        this.rowsAddedSource.next(rows);
     }
 
     registerInstance(rowId: number) {
@@ -74,6 +74,6 @@ export class TableService {
     }
 
     changeRow(row: TableRow) {
-        this.rowInstances[row.value["id"]].rowSource.next(row);
+        this.rowInstances[row.value['id']].rowSource.next(row);
     }
 }

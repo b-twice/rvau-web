@@ -1,16 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
-import { QuestionBase } from './';
-import { ValidationMessagesPipe } from './form-question.pipe'
+import { FormGroup } from '@angular/forms';
+import { QuestionBase } from '../';
 
 @Component({
     selector: 'df-question',
     template: require('./form-question.component.html'),
     styles: [require('./form-question.component.scss')],
-    directives: [REACTIVE_FORM_DIRECTIVES],
-    pipes: [ValidationMessagesPipe]
 })
-export class DynamicFormQuestionComponent {
+export class FormQuestionComponent {
     @Input() question: QuestionBase<any>;
     @Input() form: FormGroup;
     get isValid(): boolean {
