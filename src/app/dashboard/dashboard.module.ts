@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared.module';
 import { HomeComponent } from './home';
-import { HeaderComponent } from './header';
+import { MetabarComponent } from './metabar/metabar.component';
 
 import { dashboardRouting } from './dashboard.routes';
 
@@ -12,7 +12,7 @@ import { dashboardRouting } from './dashboard.routes';
   ],
   declarations: [
     HomeComponent,
-    HeaderComponent
+    MetabarComponent
   ],
   providers: [
   ]
