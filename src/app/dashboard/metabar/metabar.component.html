@@ -1,0 +1,12 @@
+<div class="metabar">
+  <div class="metabar-inner">
+    <div class="metabar-site">
+      <div class="site-brand">
+        <a [routerLink]="['/home']">Richmond Ultimate</a>
+      </div>
+    </div>
+    <nav class="metbar-nav">
+      <dropdown [items]="leagues" [selected]="currentRoute" (onSelect)="onSelect($event)"></dropdown>
+    </nav>
+  </div>
+</div>

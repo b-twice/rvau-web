@@ -1,0 +1,22 @@
+.metabar {
+    display:flex;
+    box-shadow: 0 0 1px rgba(0,0,0,.15);
+    width:100%;    
+}
+
+.metabar-inner {
+    display:flex;
+    flex-direction:column;  
+    width:100rem;
+    margin: 0 auto;
+}
+
+.metabar-site {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.site-brand {
+    font-size:3.2rem;
+}

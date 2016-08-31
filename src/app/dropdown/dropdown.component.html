@@ -1,0 +1,8 @@
+<div>
+    <ul>
+        <li>{{selected}}</li>
+        <ul>
+            <li *ngFor="let item of items" (click)="select(item)">{{item}}</li>
+        </ul>
+
+    </ul>
