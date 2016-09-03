@@ -5,7 +5,7 @@ import { Http } from '@angular/http';
 
 // General Components
 import { LoadingComponent } from './loading';
-import { DropdownComponent } from './dropdown';
+import { DropdownModule } from './dropdown';
 
 import { ApiService, AuthService } from './services';
 import { AuthConfig, AuthHttp } from 'angular2-jwt';
@@ -17,12 +17,12 @@ import { appRoutingProviders } from './app.routes';
     ],
     declarations: [
         LoadingComponent,
-        DropdownComponent
     ],
     exports: [
         CommonModule,
         HttpModule,
-        LoadingComponent
+        LoadingComponent,
+        DropdownModule
     ]
 })
 export class SharedModule {

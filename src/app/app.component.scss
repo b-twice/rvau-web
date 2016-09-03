@@ -42,6 +42,7 @@ body {
 
 .site-width {
     width:100rem;
+    margin: 0 auto;
 }
 .site-padding {
     padding-left:2rem;
@@ -110,6 +111,11 @@ button {
     background:none;
 }
 
+ol, ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
 
 /* ==========================================================================
    BASE-FONT-AWESOME
@@ -141,4 +147,11 @@ admin {
     align-items:center;
     justify-content:center;
     padding:15px 9px;
+}
+
+.center-content {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex:1;
 }

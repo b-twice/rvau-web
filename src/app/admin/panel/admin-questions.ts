@@ -1,5 +1,6 @@
-import { QuestionBase, TextboxQuestion, DropdownQuestion, }     from '../../forms';
-// characterValidator, emailValidator, dateValidator
+import { QuestionBase, TextboxQuestion, DropdownQuestion,
+    characterValidator,  dateValidator }     from '../../forms';
+
 const Moment = require('moment');
 
 
@@ -52,7 +53,7 @@ export const AdminQuestions = {
             type: 'Text',
             required: true,
             order: 1,
-            // validators: [characterValidator],
+            validators: [characterValidator],
             validationMessages: {
                 'invalidCharacter': 'Team name must contain letters only'
             }
@@ -66,7 +67,7 @@ export const AdminQuestions = {
             placeholder: 'Enter first name of player',
             required: true,
             order: 1,
-            // validators: [characterValidator],
+            validators: [characterValidator],
             validationMessages: {
                 'invalidCharacter': 'Name must contain letters only'
             }
@@ -78,7 +79,7 @@ export const AdminQuestions = {
             placeholder: 'Enter last name of player',
             required: true,
             order: 2,
-            // validators: [characterValidator],
+            validators: [characterValidator],
             validationMessages: {
                 'invalidCharacter': 'Name must contain letters only'
             }
@@ -141,7 +142,7 @@ export const AdminQuestions = {
             type: 'Text',
             required: true,
             order: 1,
-            // validators: [dateValidator],
+            validators: [dateValidator],
             validationMessages: {
                 'invalidDate': 'Date must a valid date and DD/MM/YYY format'
             }

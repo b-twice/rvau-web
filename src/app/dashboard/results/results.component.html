@@ -1,0 +1,9 @@
+<div class="panel">
+    <div *ngFor="let game of games">
+        <div>{{game.home_team}}</div>
+        <div>{{game.away_team}}</div>
+    </div>
+    <div class="loading center-content" *ngIf="!games">
+        <loading-indicator></loading-indicator>
+    </div>
+</div>

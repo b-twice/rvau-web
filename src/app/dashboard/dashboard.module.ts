@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared.module';
-import { HomeComponent } from './home';
-import { MetabarComponent } from './metabar/metabar.component';
 
+import { PanelComponent } from './panel';
+import { MetabarComponent } from './metabar/metabar.component';
+import { ResultsComponent } from './results';
 import { dashboardRouting } from './dashboard.routes';
+import { DashboardService } from './dashboard.service';
 
 @NgModule({
   imports: [
@@ -11,10 +13,12 @@ import { dashboardRouting } from './dashboard.routes';
     dashboardRouting
   ],
   declarations: [
-    HomeComponent,
-    MetabarComponent
+    PanelComponent,
+    MetabarComponent,
+    ResultsComponent
   ],
   providers: [
+    DashboardService
   ]
 })
 export class DashboardModule {}
