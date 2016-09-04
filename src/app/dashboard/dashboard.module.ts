@@ -4,6 +4,7 @@ import { SharedModule } from '../shared.module';
 import { PanelComponent } from './panel';
 import { MetabarComponent } from './metabar/metabar.component';
 import { ResultsComponent } from './results';
+import { ScoreboxComponent } from './scorebox';
 import { dashboardRouting } from './dashboard.routes';
 import { DashboardService } from './dashboard.service';
 
@@ -15,7 +16,8 @@ import { DashboardService } from './dashboard.service';
   declarations: [
     PanelComponent,
     MetabarComponent,
-    ResultsComponent
+    ResultsComponent,
+    ScoreboxComponent
   ],
   providers: [
     DashboardService

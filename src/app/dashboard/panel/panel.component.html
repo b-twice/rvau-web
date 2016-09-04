@@ -1,8 +1,15 @@
 <dashboard-metabar></dashboard-metabar>
 <main class="dashboard">
     <div class="dashboard-inner site-width">
-        <div class="panel">
-            <dashboard-results [league]="activeLeague"></dashboard-results>
-        </div>
+        <main>
+            <div class="panel">
+                <div class="filler"></div>
+            </div>
+        </main>
+        <aside>
+            <div class="panel">
+                <dashboard-results [league]="activeLeague"></dashboard-results>
+            </div>
+        </aside>
     </div>
 </main>

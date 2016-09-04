@@ -1,9 +1,13 @@
-<div class="panel">
-    <div *ngFor="let game of games">
-        <div>{{game.home_team}}</div>
-        <div>{{game.away_team}}</div>
+<div class="results" *ngIf="games">
+    <header>
+        <div>Scores</div>
+        <dropdown [items]="dayList" [selected]="activeDay" (onSelect)="setActiveGames($event)"></dropdown>
+    </header>
+    <div *ngIf="activeDate">
+        <div class="game-date">{{activeDate | date:'EEEE, MMMM d'}}</div>
+        <scorebox *ngFor="let game of games[activeSeasonType][activeDate]" [game]="game"></scorebox>
     </div>
-    <div class="loading center-content" *ngIf="!games">
-        <loading-indicator></loading-indicator>
-    </div>
+</div>
+<div class="loading center-content" *ngIf="!games">
+    <loading-indicator></loading-indicator>
 </div>
