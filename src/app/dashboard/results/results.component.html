@@ -1,13 +1,13 @@
-<div class="results" *ngIf="games">
+<div class="results" *ngIf="loaded">
     <header>
         <div>Scores</div>
         <dropdown [items]="dayList" [selected]="activeDay" (onSelect)="setActiveGames($event)"></dropdown>
     </header>
-    <div *ngIf="activeDate">
+    <div>
         <div class="game-date">{{activeDate | date:'EEEE, MMMM d'}}</div>
         <scorebox *ngFor="let game of games[activeSeasonType][activeDate]" [game]="game"></scorebox>
     </div>
 </div>
-<div class="loading center-content" *ngIf="!games">
+<div class="loading center-content" *ngIf="!loaded">
     <loading-indicator></loading-indicator>
 </div>

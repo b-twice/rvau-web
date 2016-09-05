@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ApiService } from '../../services';
+import { Component, Input } from '@angular/core';
 const Moment = require('moment');
 const _ = require('lodash');
 
@@ -8,10 +7,9 @@ const _ = require('lodash');
     template: require('./results.component.html'),
     styles: [require('./results.component.scss')],
 })
-export class ResultsComponent implements OnInit {
+export class ResultsComponent {
 
-
-    @Input() league: string;
+    loaded: boolean = false;
     private games: {}[]; // all games by season type and date, e.g. games['season']['04/2015/16']
     private activeDate: string; // date of active games e.g. 05/10/2016
     private activeSeasonType: string; // season of active games e.g. preseason
@@ -20,16 +18,8 @@ export class ResultsComponent implements OnInit {
     private dayList: string[] = []; // array of game days e.g. Preason Game 1
     private activeDay: string; // day set in nav
 
-    constructor(private apiService: ApiService) {
+    constructor() {
     }
-
-    ngOnInit() {
-
-        this.apiService.getData('games', { league: this.league }).subscribe(data => {
-            this.setGames(data.data);
-        }
-        );
-    };
 
     setGames(data): void {
         this.games = _.groupBy(data, data => data['game_type']);
@@ -58,6 +48,7 @@ export class ResultsComponent implements OnInit {
         this.activeSeasonType = season;
         this.activeDate = _.keys(this.games[season])[dayIdx]
         this.activeDay = activeDay;
+        this.loaded = true;
     }
 
 }

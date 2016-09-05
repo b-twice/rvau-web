@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services';
 import { DashboardService } from '../dashboard.service';
@@ -12,8 +12,8 @@ import { Subscription } from 'rxjs/Subscription';
   styles: [require('./metabar.component.scss')],
 })
 export class MetabarComponent {
-  name = 'Richmond Ultimate';
-  leagues: string[] = [];
+  private name = 'Richmond Ultimate';
+  private leagues: string[] = [];
   currentRoute: string;
   leagueSubscription: Subscription;
 
@@ -21,7 +21,6 @@ export class MetabarComponent {
     private apiService: ApiService,
     private router: Router,
     private route: ActivatedRoute,
-    private ref: ChangeDetectorRef,
     private ds: DashboardService) {
   }
 
@@ -31,7 +30,6 @@ export class MetabarComponent {
       // TODO: do not hard code latest league
       this.currentRoute = params['league'] || '2016 Spring';
       this.ds.sendLeague(this.currentRoute);
-      this.ref.detectChanges(); // updates dropdown component with selection
     });
     this.apiService.getData("leagues", []).subscribe(data => {
         this.leagues = data.data.map(league => league.league);

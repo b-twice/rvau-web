@@ -6,7 +6,7 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
     styles: [require('./dropdown.component.scss')],
 
 })
-export class DropdownComponent {
+export class DropdownComponent{
 
     active: boolean = false;
     @Input() items: any[] = [];
