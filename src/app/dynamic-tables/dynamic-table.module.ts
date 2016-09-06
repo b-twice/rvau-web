@@ -9,10 +9,12 @@ import { DynamicRowComponent } from './dynamic-row';
 import { DynamicRowEditComponent } from './dynamic-row-edit';
 import { DynamicTableComponent } from './dynamic-table.component';
 import { DynamicTableService } from './dynamic-table.service';
+import { SharedModule }  from '../shared.module';
 
 @NgModule({
     imports: [
         CommonModule,
+        SharedModule,
         RouterModule,
         DynamicFormModule
     ],

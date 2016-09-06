@@ -1,4 +1,4 @@
-import { Validators } from '@angular/common';
+import { Validators } from '@angular/forms';
 
 export class QuestionBase<T>{
     value: any; // form value
