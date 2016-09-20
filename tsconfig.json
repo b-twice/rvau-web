@@ -9,9 +9,7 @@
     "noEmitHelpers": true,
     "types": [
       "core-js",
-      "jasmine",
       "node",
-      "protractor",
       "selenium-webdriver"
     ]
   },

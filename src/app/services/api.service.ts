@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttp } from 'angular2-jwt';
-import { GetRequest } from '../models';
+import { GetRequest } from '../shared';
 
 
 @Injectable()

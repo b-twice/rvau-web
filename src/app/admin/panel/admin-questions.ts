@@ -1,5 +1,5 @@
 import { QuestionBase, TextboxQuestion, DropdownQuestion,
-    characterValidator,  dateValidator }     from '../../forms';
+    characterValidator,  dateValidator }     from '../../shared';
 
 const Moment = require('moment');
 

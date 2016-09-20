@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared.module';
 
-import { PanelComponent } from './panel';
+
 import { MetabarComponent } from './metabar/metabar.component';
-import { ResultsComponent } from './panel/results';
-import { ScoreboxComponent } from './panel/results/scorebox';
-import { LeagueSummaryComponent } from './panel/league-summary';
+
+// Panel 
+import { PanelComponent } from './panel';
+// Season Scores
+import { ScoresComponent } from './scores';
+import { ScoreboxComponent } from './scores/scorebox';
+// Season Results
+import { LeagueSummaryComponent } from './league-summary';
+
+
 import { dashboardRouting } from './dashboard.routes';
 import { DashboardService } from './dashboard.service';
 
@@ -17,7 +24,7 @@ import { DashboardService } from './dashboard.service';
   declarations: [
     PanelComponent,
     MetabarComponent,
-    ResultsComponent,
+    ScoresComponent,
     ScoreboxComponent,
     LeagueSummaryComponent
   ],

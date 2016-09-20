@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module.ts';
-import { DynamicFormModule } from '../forms/forms.module';
+import { SharedModule } from '../shared.module';
+import { DynamicFormModule } from '../shared/forms';
 
 // Components
 import { UserComponent }   from './user.component';

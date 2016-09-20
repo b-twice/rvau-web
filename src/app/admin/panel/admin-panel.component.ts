@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services';
 import { Tables } from '../tables';
 import { AdminEditMetadata } from './admin-edit.metadata';
-import { DynamicTableService } from '../../dynamic-tables/dynamic-table.service';
-import { FormRequest, GetRequest } from '../../models';
+import { DynamicTableService } from '../../shared/dynamic-table';
+import { FormRequest, GetRequest } from '../../shared';
 import { Subscription }   from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 

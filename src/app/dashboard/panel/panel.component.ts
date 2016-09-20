@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ApiService } from '../../services';
 import { Subscription } from 'rxjs/Subscription';
-import { ResultsComponent }  from './results';
-
+import { ScoresComponent }  from '../scores';
+import { LeagueSummaryComponent }  from '../league-summary';
 
 @Component({
   selector: 'dashboard-panel',
@@ -12,8 +12,8 @@ import { ResultsComponent }  from './results';
 })
 export class PanelComponent implements OnInit, OnDestroy {
 
-  @ViewChild(ResultsComponent)
-  private resultsComponent: ResultsComponent;
+  @ViewChild(ScoresComponent)
+  private scoresComponent: ScoresComponent;
   leagueSub: Subscription;
 
   constructor(
@@ -24,9 +24,9 @@ export class PanelComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.leagueSub = this.ds.leagueSource$.subscribe(
       league =>  {
-        this.resultsComponent.loaded = false;
+        this.scoresComponent.loaded = false;
         this.apiService.getData('games', { league: league }).subscribe(data =>
-          this.resultsComponent.setGames(data.data)
+          this.scoresComponent.setGames(data.data)
         )
         this.apiService.getData('leaguesummary', {league: league}).subscribe(data =>
           console.log(data)

@@ -4,8 +4,8 @@ import { HttpModule } from '@angular/http';
 import { Http } from '@angular/http';
 
 // General Components
-import { LoadingComponent } from './loading';
-import { DropdownModule } from './dropdown';
+import { LoadingComponent } from './shared/loading';
+import { DropdownModule } from './shared/dropdown';
 
 import { ApiService, AuthService } from './services';
 import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';

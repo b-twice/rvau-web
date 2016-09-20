@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { QuestionBase,
-         TextboxQuestion} from '../forms';
+         TextboxQuestion} from '../shared/forms';
 import { emailValidator } from './user.validation';
 
 @Injectable()
