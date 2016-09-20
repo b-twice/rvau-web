@@ -3,8 +3,9 @@ import { SharedModule } from '../shared.module';
 
 import { PanelComponent } from './panel';
 import { MetabarComponent } from './metabar/metabar.component';
-import { ResultsComponent } from './results';
-import { ScoreboxComponent } from './scorebox';
+import { ResultsComponent } from './panel/results';
+import { ScoreboxComponent } from './panel/results/scorebox';
+import { LeagueSummaryComponent } from './panel/league-summary';
 import { dashboardRouting } from './dashboard.routes';
 import { DashboardService } from './dashboard.service';
 
@@ -17,7 +18,8 @@ import { DashboardService } from './dashboard.service';
     PanelComponent,
     MetabarComponent,
     ResultsComponent,
-    ScoreboxComponent
+    ScoreboxComponent,
+    LeagueSummaryComponent
   ],
   providers: [
     DashboardService

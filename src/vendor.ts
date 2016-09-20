@@ -8,7 +8,7 @@ import '@angular/router';
 
 // RxJS
 import 'rxjs';
-
+import '@angularclass/hmr';
 
 // Auth
 import 'auth0';

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ApiService } from '../../services';
 import { Subscription } from 'rxjs/Subscription';
-import { ResultsComponent }  from '../results';
+import { ResultsComponent }  from './results';
 
 
 @Component({
@@ -27,6 +27,9 @@ export class PanelComponent implements OnInit, OnDestroy {
         this.resultsComponent.loaded = false;
         this.apiService.getData('games', { league: league }).subscribe(data =>
           this.resultsComponent.setGames(data.data)
+        )
+        this.apiService.getData('leaguesummary', {league: league}).subscribe(data =>
+          console.log(data)
         )
       }
     );
