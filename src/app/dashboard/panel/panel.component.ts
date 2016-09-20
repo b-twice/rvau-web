@@ -14,6 +14,10 @@ export class PanelComponent implements OnInit, OnDestroy {
 
   @ViewChild(ScoresComponent)
   private scoresComponent: ScoresComponent;
+
+  @ViewChild(LeagueSummaryComponent)
+  private leagueSummaryComponent: LeagueSummaryComponent;
+
   leagueSub: Subscription;
 
   constructor(
@@ -25,11 +29,11 @@ export class PanelComponent implements OnInit, OnDestroy {
     this.leagueSub = this.ds.leagueSource$.subscribe(
       league =>  {
         this.scoresComponent.loaded = false;
-        this.apiService.getData('games', { league: league }).subscribe(data =>
-          this.scoresComponent.setGames(data.data)
+        this.apiService.getData('games', { league: league }).subscribe(response =>
+          this.scoresComponent.set(response.data, response.keys)
         )
-        this.apiService.getData('leaguesummary', {league: league}).subscribe(data =>
-          console.log(data)
+        this.apiService.getData('leaguesummary', {league: league}).subscribe(response => 
+          this.leagueSummaryComponent.set(response.data, response.keys)
         )
       }
     );

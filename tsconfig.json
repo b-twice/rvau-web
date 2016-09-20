@@ -10,7 +10,8 @@
     "types": [
       "core-js",
       "node",
-      "selenium-webdriver"
+      "selenium-webdriver",
+      "lodash"
     ]
   },
   "compileOnSave": false,
