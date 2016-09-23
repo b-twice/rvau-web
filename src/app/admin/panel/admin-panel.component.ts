@@ -82,7 +82,7 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
             questionOptions.map(q => q.options = results[q.source]);
             this.formQuestions = questions; this.ref.detectChanges(); // Changes are not *always* being detected unless this is called
         });
-    }
+    }   
 
     getRequestSingle(request: GetRequest): any {
         return this.apiService.getRequest(request);

@@ -1,14 +1,13 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
-import { Http } from '@angular/http';
 
 // General Components
 import { LoadingComponent } from './shared/loading';
 import { DropdownModule } from './shared/dropdown';
 
 import { ApiService, AuthService } from './services';
-import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
+import { AuthHttp, provideAuth } from 'angular2-jwt';
 import { appRoutingProviders } from './app.routes';
 
 @NgModule({

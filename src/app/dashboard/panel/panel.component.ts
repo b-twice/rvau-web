@@ -32,7 +32,7 @@ export class PanelComponent implements OnInit, OnDestroy {
         this.apiService.getData('games', { league: league }).subscribe(response =>
           this.scoresComponent.set(response.data, response.keys)
         )
-        this.apiService.getData('leaguesummary', {league: league}).subscribe(response => 
+        this.apiService.getData('leaguesummary', {league: league, exclude: ['id', 'league']}).subscribe(response => 
           this.leagueSummaryComponent.set(response.data, response.keys)
         )
       }
