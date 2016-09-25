@@ -13,7 +13,8 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class MetabarComponent {
   private name = 'Richmond Ultimate';
-  private leagues: string[] = [];
+  private leagues: string[];
+  private latestLeague:string = '2016 Spring'
   currentRoute: string;
   leagueSubscription: Subscription;
 
@@ -25,15 +26,14 @@ export class MetabarComponent {
   }
 
   ngOnInit() {
-
-    this.leagueSubscription = this.route.params.subscribe(params => {
-      // TODO: do not hard code latest league
-      this.currentRoute = params['league'] || '2016 Spring';
-      this.ds.sendLeague(this.currentRoute);
-    });
     this.apiService.getData("leagues", []).subscribe(data => {
+      this.leagueSubscription = this.route.params.subscribe(params => {
+        // TODO: do not hard code latest league
+        this.currentRoute = params['league'] || this.latestLeague;
         this.leagues = data.data.map(league => league.league);
-    })
+        this.ds.sendLeague(this.currentRoute);
+      });
+    });
   }
   ngOnDestroy() {
     this.leagueSubscription.unsubscribe();

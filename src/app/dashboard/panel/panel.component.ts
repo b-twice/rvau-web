@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef} from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ApiService } from '../../services';
 import { Subscription } from 'rxjs/Subscription';
@@ -22,19 +22,24 @@ export class PanelComponent implements OnInit, OnDestroy {
 
   constructor(
     private ds: DashboardService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private ref: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
     this.leagueSub = this.ds.leagueSource$.subscribe(
       league =>  {
         this.scoresComponent.loaded = false;
-        this.apiService.getData('games', { league: league }).subscribe(response =>
+        this.leagueSummaryComponent.loaded = false;
+        this.apiService.getData('games', { league: league }).subscribe(response => 
           this.scoresComponent.set(response.data, response.keys)
         )
-        this.apiService.getData('leaguesummary', {league: league, exclude: ['id', 'league']}).subscribe(response => 
-          this.leagueSummaryComponent.set(response.data, response.keys)
-        )
+        this.apiService.getData('leaguesummary', {
+          league: league, exclude: ['id', 'league', 'champion'], DESC: ['win_count', 'tie_count', "point_diff"] 
+        }).subscribe(response => {
+          this.leagueSummaryComponent.set(response.data, response.keys);
+          this.ref.detectChanges
+        })
       }
     );
   };

@@ -1,6 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
 
 // General Components
 import { LoadingComponent } from './shared/loading';
@@ -19,7 +18,6 @@ import { appRoutingProviders } from './app.routes';
     ],
     exports: [
         CommonModule,
-        HttpModule,
         LoadingComponent,
         DropdownModule
     ]

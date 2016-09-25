@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { routing } from './app.routes';
+import { HttpModule } from '@angular/http';
 
 
 // Modules
@@ -17,7 +18,8 @@ import { UserModule } from './user/user.module';
         DashboardModule,
         routing,
         AdminModule,
-        UserModule
+        UserModule,
+        HttpModule
     ],
     declarations: [
         AppComponent

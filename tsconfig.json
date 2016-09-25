@@ -10,7 +10,6 @@
     "types": [
       "core-js",
       "node",
-      "selenium-webdriver",
       "lodash"
     ]
   },

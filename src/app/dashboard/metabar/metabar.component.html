@@ -6,7 +6,7 @@
       </div>
     </div>
     <nav class="metbar-nav">
-      <dropdown [items]="leagues" [selected]="currentRoute" (onSelect)="onSelect($event)"></dropdown>
+      <dropdown *ngIf="leagues" [items]="leagues" [selected]="currentRoute" (onSelect)="onSelect($event)"></dropdown>
     </nav>
   </div>
 </div>
