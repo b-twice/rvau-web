@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services';
 import { DashboardService } from '../dashboard.service';
@@ -11,10 +11,10 @@ import { Subscription } from 'rxjs/Subscription';
   template: require('./metabar.component.html'),
   styles: [require('./metabar.component.scss')],
 })
-export class MetabarComponent {
-  private name = 'Richmond Ultimate';
+export class MetabarComponent implements OnInit, OnDestroy {
+  private name: string = 'Richmond Ultimate';
   private leagues: string[];
-  private latestLeague:string = '2016 Spring'
+  private latestLeague: string = '2016 Spring';
   currentRoute: string;
   leagueSubscription: Subscription;
 
@@ -26,7 +26,7 @@ export class MetabarComponent {
   }
 
   ngOnInit() {
-    this.apiService.getData("leagues", []).subscribe(data => {
+    this.apiService.getData('leagues', []).subscribe(data => {
       this.leagueSubscription = this.route.params.subscribe(params => {
         // TODO: do not hard code latest league
         this.currentRoute = params['league'] || this.latestLeague;
@@ -39,7 +39,7 @@ export class MetabarComponent {
     this.leagueSubscription.unsubscribe();
   }
   onSelect(event): void {
-    var leagueRoute: string = event.value;
+    let leagueRoute: string = event.value;
     this.router.navigate([`/league`, leagueRoute]);
   };
 }

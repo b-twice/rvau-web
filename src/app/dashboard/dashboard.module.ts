@@ -16,7 +16,7 @@ import { LeagueSummaryComponent } from './league-summary';
 import { dashboardRouting } from './dashboard.routes';
 import { DashboardService } from './dashboard.service';
 
-import { StaticTableModule } from '../shared/static-table'
+import { StaticTableModule } from '../shared/static-table';
 
 @NgModule({
   imports: [

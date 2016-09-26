@@ -1,4 +1,4 @@
-import { QuestionBase, TextboxQuestion, DropdownQuestion,
+import { TextboxQuestion, DropdownQuestion,
     characterValidator,  dateValidator }     from '../../shared';
 
 const Moment = require('moment');
