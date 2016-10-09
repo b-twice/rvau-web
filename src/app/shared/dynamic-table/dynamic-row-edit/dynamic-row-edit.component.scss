@@ -1,0 +1,40 @@
+.form-wrapper {
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    position: absolute;
+    top:0;
+    right: 0;
+    left: 0;
+    bottom:0;
+    z-index:1002;
+    background-color: rgba(0,0,0,0.1);
+}
+.form-content {
+    display:flex;
+    flex:1;
+    align-items:center;
+    justify-content:center;
+    max-width:500px;
+    padding: 3em;
+    background-color: white;
+    overflow: auto;
+    border-radius: 5px;
+}
+.form-body {
+    width:100%;
+}
+
+.form-close {
+    display:flex;
+    flex-direction:row-reverse;
+    flex:1;
+    margin-bottom:.5em;
+}
+.form-close i {
+    cursor:pointer;
+}
+button {
+  margin-top:16px;
+  margin-bottom:16px;
+}

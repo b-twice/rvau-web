@@ -1,0 +1,10 @@
+<div class="scoreline" [class.winner]="game.home_team === winner" [class.tie]="winner === ''">
+    <div class="team-icon {{game.home_team | lowercase}}"></div>
+    <div class="team">{{game.home_team}}</div>
+    <div class="score">{{game.home_score}}</div>
+</div>
+<div class="scoreline" [class.winner]="game.away_team === winner" [class.tie]="winner === ''">
+    <div class="team-icon {{game.away_team | lowercase}} "></div>
+    <div class="team">{{game.away_team}}</div>
+    <div class="score">{{game.away_score}}</div>
+</div>
