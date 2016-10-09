@@ -17,8 +17,8 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
   @Input() rows: {}[];
 
   private columnNames: string[] = []; // for display
-  private keys: string[] = []; // ordered object keys
   private filterKeys: string[] = []; // list of keys to filter by
+  private keys:string[] = [];
   private addedRows: TableRow[] = []; // rows added while editing
   private responseMessage: string;
 
@@ -29,7 +29,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // Not ideal but form questions has column order
     this.formQuestions.map(question => {
-      this.keys.push(question.key);
+      this.keys.push(question.key)
       this.columnNames.push(question.label);
       if (question.filter) {
         this.filterKeys.push(question.key);

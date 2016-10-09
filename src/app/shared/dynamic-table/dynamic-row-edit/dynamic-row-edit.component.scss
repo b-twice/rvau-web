@@ -37,4 +37,16 @@
 button {
   margin-top:16px;
   margin-bottom:16px;
+  background-color: #d43f3a;
+  color:#FFFFFF;
+}
+
+button:focus {
+    background-color: #d43f3a;
+    transition: background 0.1s;
+}
+
+button:hover {
+    background-color: #d43f3a;
+    transition: background 0.1s;
 }

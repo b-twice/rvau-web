@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input, HostListener } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DynamicTableService } from '../dynamic-table.service';
 import { Subscription }   from 'rxjs/Subscription';
 import { GetRequest } from '../../request-models';
@@ -18,7 +18,6 @@ export class FilterMenuComponent implements OnInit, OnDestroy {
     private routePath: string;
     private routeSub: Subscription;
     constructor(
-        private router: Router,
         private route: ActivatedRoute,
         private tableService: DynamicTableService
     ) { }
@@ -33,13 +32,14 @@ export class FilterMenuComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.routePath = this.router.url;
+        this.routePath = this.route.snapshot.url[0].path;
         this.routeSub = this.route.params.subscribe(routeParams => {
             if (!routeParams || !this.rows) {
                 let req: GetRequest = new GetRequest(
                     {
-                        table: this.route.snapshot.url[0].path,
-                        params: { unique: this.filterKeys.join(',') }, action: 'filter'
+                        table: this.routePath,
+                        params: { unique: this.filterKeys.join(',') }, 
+                        action: 'filter'
                     }
                 );
                 this.tableService.getRequest(req);

@@ -10,7 +10,7 @@ import { QuestionControlService  } from '../question-control.service';
   styles: [require('./form.component.scss')]
 })
 export class FormComponent implements OnInit {
-  @Input() questionLabel: boolean = true;
+  @Input() questionLabel: boolean = true; 
   @Input() legend: string;
   @Input() questions: QuestionBase<any>[] = [];
   @Input() submitButtonText: string = 'Submit';

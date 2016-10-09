@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { QuestionBase,
          TextboxQuestion} from '../shared/forms';
-import { emailValidator } from './user.validation';
-
+         
 @Injectable()
 export class UserMetadataService {
     loginMetadata: QuestionBase<any>[] = [
@@ -12,11 +11,6 @@ export class UserMetadataService {
             type: 'email',
             placeholder: 'Email',
             required: true,
-            validators: [emailValidator],
-            validationMessages: {
-                'invalidEmail': 'Not a valid email address',
-                'required': 'Email is required'
-            },
             order: 1
         }),
         new TextboxQuestion({

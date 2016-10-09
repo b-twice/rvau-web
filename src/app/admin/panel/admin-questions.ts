@@ -51,6 +51,7 @@ export const AdminQuestions = {
             key: 'team_name',
             label: 'Team Name',
             type: 'Text',
+            placeholder: 'Team name',
             required: true,
             order: 1,
             validators: [characterValidator],
@@ -101,6 +102,7 @@ export const AdminQuestions = {
         new DropdownQuestion({
             key: 'league',
             label: 'League',
+            placeholder: 'League name',
             options: [],
             source: 'leagues',
             required: true,
@@ -111,6 +113,7 @@ export const AdminQuestions = {
             key: 'team_name',
             label: 'Team Name',
             type: 'Text',
+            placeholder: 'Team name',
             options: [],
             source: 'teams',
             required: true,
@@ -120,6 +123,7 @@ export const AdminQuestions = {
             key: 'player_name',
             label: 'Player Name',
             type: 'Text',
+            placeholder: 'Player name',
             options: [],
             source: 'players',
             required: true,
@@ -129,6 +133,7 @@ export const AdminQuestions = {
             key: 'player_type',
             label: 'Player Type',
             type: 'Text',
+            placeholder: 'Player type',
             options: ['Player', 'Captain'],
             required: true,
             order: 4
@@ -151,6 +156,7 @@ export const AdminQuestions = {
             key: 'game_type',
             label: 'Game Type',
             type: 'Text',
+            placeholder: 'Game type',
             options: [
                 'Preseason',
                 'Season',
@@ -165,6 +171,7 @@ export const AdminQuestions = {
         new DropdownQuestion({
             key: 'league',
             label: 'League',
+            placeholder: 'League',
             options: [],
             source: 'leagues',
             required: true,
@@ -176,6 +183,7 @@ export const AdminQuestions = {
             label: 'Home Team',
             alias: 'team_name',
             type: 'Text',
+            placeholder: 'Home team',
             options: [],
             source: 'teams',
             required: true,
@@ -186,6 +194,7 @@ export const AdminQuestions = {
             label: 'Away Team',
             alias: 'team_name',
             type: 'Text',
+            placeholder: 'Away team',
             options: [],
             source: 'teams',
             required: true,
@@ -195,6 +204,7 @@ export const AdminQuestions = {
             key: 'home_score',
             label: 'Home Score',
             type: 'Text',
+            placeholder: 'Home score',
             options: [...getScores(50)],
             required: true,
             order: 7
@@ -203,6 +213,7 @@ export const AdminQuestions = {
             key: 'away_score',
             label: 'Away Score',
             type: 'Text',
+            placeholder: 'Away score',
             options: [...getScores(50)],
             required: true,
             order: 8

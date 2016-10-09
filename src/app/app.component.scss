@@ -110,11 +110,17 @@ p {
 
 button {
     display: block;
-    width: 100%;
-    margin: 20px auto;
+    margin: 20px;
     padding: 15px;
     border:none;
     background:none;
+    font-size: 22px;
+    text-align: center;
+    cursor: pointer;
+}
+.button-full {
+  width:100%;
+  margin: 20px auto;
 }
 
 ol, ul {

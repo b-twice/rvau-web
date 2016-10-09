@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services';
 import { Tables } from '../tables';
@@ -7,9 +7,8 @@ import { DynamicTableService } from '../../shared/dynamic-table';
 import { FormRequest, GetRequest } from '../../shared';
 import { Subscription }   from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
-
-
 const _ = require('lodash');
+
 @Component({
     selector: 'admin-panel',
     template: require('./admin-panel.component.html'),
@@ -29,8 +28,7 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private apiService: ApiService,
         private metadata: AdminEditMetadata,
-        private dynamicTableService: DynamicTableService,
-        private ref: ChangeDetectorRef
+        private dynamicTableService: DynamicTableService
     ) { }
     ngOnInit() {
         // e.g. get leagues from admin/leagues (TODO: check for updates)
@@ -69,7 +67,6 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
         // If no additional requests to be made
         if (Object.keys(requests).length === 0) {
             this.formQuestions = questions;
-            this.ref.detectChanges(); // Changes are not *always* being detected unless this is called
             return;
         }
         // 
@@ -80,7 +77,7 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
             responses.map(response =>
                 results[response.table] = response.data.map(obj => _.values(obj)[0]));
             questionOptions.map(q => q.options = results[q.source]);
-            this.formQuestions = questions; this.ref.detectChanges(); // Changes are not *always* being detected unless this is called
+            this.formQuestions = questions;
         });
     }
 

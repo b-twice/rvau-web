@@ -1,7 +1,7 @@
-<div class="btn-action table-button">
+<div class="table-button">
     <i class="fa fa-filter fa-18" aria-hidden="true"></i>Filter rows
     <ul *ngIf="filterActivated" class="filter-menu">
-        <a [routerLink]="[routePath]">Clear filter</a>
-        <a *ngFor="let row of rows" [routerLink]="[routePath, row]">{{row | filterMenuPipe}}</a>
+        <a [routerLink]="['../', routePath]">Clear filter</a>
+        <a *ngFor="let row of rows" [routerLink]="['../', routePath, row]" preserveQueryParams="false" >{{row | filterMenuPipe}}</a>
     </ul>
 </div>
