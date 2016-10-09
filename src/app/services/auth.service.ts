@@ -4,9 +4,8 @@ import { Http } from '@angular/http';
 import { Subject }    from 'rxjs/Subject';
 import { tokenNotExpired } from 'angular2-jwt';
 
-// Avoid name not found warnings
-declare var Auth0: any;
 
+declare var Auth0: any;
 @Injectable()
 export class AuthService {
     authenticated: boolean = false;

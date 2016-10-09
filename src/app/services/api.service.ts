@@ -7,7 +7,7 @@ import { GetRequest } from '../shared';
 
 @Injectable()
 export class ApiService {
-    private apiUrl = 'http://localhost:5000/rvau/api';
+    private apiUrl:string = 'http://api.bgeo.io/rvau/api';
 
     constructor(private http: Http, private authHttp: AuthHttp) { }
 
@@ -17,6 +17,7 @@ export class ApiService {
             params.set(key, query[key]);
         }
         let requestUrl = `${this.apiUrl}/${fragment}`;
+                console.log(requestUrl)
         return this.http.get(requestUrl, { search: params })
             .map(this.extractData)
             .catch(this.handleAuthenticationError);
@@ -35,7 +36,6 @@ export class ApiService {
         let body = JSON.stringify(params);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        console.log(body);
         return this.authHttp.post(requestUrl, body, options)
             .map(this.extractData)
             .catch(this.handleAuthenticationError);

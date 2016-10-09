@@ -2,20 +2,14 @@
     display:flex;
     align-items:center;
     justify-content:center;
+    align-items:center;
+    min-height:40rem;
 }
-
-.login-form {
-    border:2px solid grey;
-    border-radius:5px;
-    width:340px;
-    padding:32px;
-}
-
-.danger-message {
+.auth-error {
     color: #fff;
     background-color: #d9534f;
     border-color: #d43f3a;
     padding:12px;
-    margin-bottom:1em;
-    border-radius: 5px;
+    margin:1em auto;
+    width:40rem;
 }
