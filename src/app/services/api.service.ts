@@ -17,7 +17,6 @@ export class ApiService {
             params.set(key, query[key]);
         }
         let requestUrl = `${this.apiUrl}/${fragment}`;
-                console.log(requestUrl)
         return this.http.get(requestUrl, { search: params })
             .map(this.extractData)
             .catch(this.handleAuthenticationError);
@@ -26,6 +25,7 @@ export class ApiService {
     getRequest(request: GetRequest): Observable<any> {
         let params = this.setParams(request.params);
         let requestUrl = `${this.apiUrl}/${request.table}`;
+        
         return this.authHttp.get(requestUrl, { search: params })
             .map(this.extractData)
             .catch(this.handleAuthenticationError);
@@ -72,10 +72,12 @@ export class ApiService {
         return params;
     }
     private handleAuthenticationError(error: Response) {
+        console.log(error)
         return Observable.throw(error || 'Server error');
     }
 
     private handleError(error: Response) {
+        console.log(error);
         console.error(error);
         return Observable.throw(error.json().errors || 'Server error');
     }

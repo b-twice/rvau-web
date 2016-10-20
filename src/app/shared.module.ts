@@ -6,7 +6,7 @@ import { LoadingComponent } from './shared/loading';
 import { DropdownModule } from './shared/dropdown';
 
 import { ApiService, AuthService } from './services';
-import { AuthHttp, provideAuth } from 'angular2-jwt';
+import { AuthHttp, provideAuth, AUTH_PROVIDERS } from 'angular2-jwt';
 import { appRoutingProviders } from './app.routes';
 
 @NgModule({
@@ -36,7 +36,7 @@ export class SharedModule {
                     headerPrefix: 'bearer',
                     tokenName: 'token',
                     tokenGetter: (() => localStorage.getItem('id_token')),
-                    globalHeaders: [{ 'Content-Type': 'application/json' }],
+                    globalHeaders: [{'Content-Type':'application/json'}],
                     noJwtError: true
                 })
             ]

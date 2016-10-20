@@ -167,3 +167,49 @@ admin {
   align-items:center;
   flex:1;
 }
+
+
+/* ==========================================================================
+   #SCORES
+   ========================================================================== */
+
+.table-row-cell.White {
+  border-left:7px solid white;
+}
+.table-row-cell.Gray {
+  border-left:7px solid #D1D2D4;
+}
+
+.table-row-cell.Forest.Green {
+  border-left:7px solid #015029;
+}
+.table-row-cell.Red{
+  border-left:7px solid #CC2035;
+}
+.table-row-cell.Pink {
+  border-left:7px solid #EF5D94;
+}
+.table-row-cell.Turf.Green {
+  border-left:7px solid #AECD48;
+}
+.table-row-cell.Green {
+  border-left:7px solid #015029;
+}
+.table-row-cell.Wake.Blue {
+  border-left:7px solid #78A6D9;
+}
+.table-row-cell.Cobalt.Blue {
+  border-left:7px solid #144782;
+}
+.table-row-cell.Blue {
+  border-left:7px solid #144782;
+}
+.table-row-cell.Orange {
+  border-left:7px solid #E95C28;
+}
+.table-row-cell.Purple {
+  border-left:7px solid #4B2C6E;
+}
+.table-row-cell.Black {
+  border-left:7px solid black;
+}
