@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'static-table',
@@ -6,15 +6,12 @@ import { Component, OnInit, Input } from '@angular/core';
     styles: [require('./static-table.component.scss')],
 
 })
-export class StaticTableComponent implements OnInit {
+export class StaticTableComponent {
 
-    @Input() header: string;
     @Input() columnNames: string[]; // pretty column names
     @Input() keys: string[]; // raw column names to format row order
     @Input() rows: {}[];
 
     constructor() { }
 
-    ngOnInit() {
-    }
 }

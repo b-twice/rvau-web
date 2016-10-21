@@ -10,6 +10,7 @@ export class LeagueSummaryComponent {
     private columns: string[]; // pretty names
     private keys: string[]; // raw names
     private data: {}[];
+    private header:string = "Standings";
     loaded: boolean = false;
 
     readonly keysAlias = {

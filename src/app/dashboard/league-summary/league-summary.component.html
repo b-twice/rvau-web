@@ -1,5 +1,4 @@
-<div>{{random}}</div>
-<static-table *ngIf="loaded" [header]="header" [rows]="data" [columnNames]="columns" [keys]="keys"></static-table>
+<static-table *ngIf="loaded" [rows]="data" [columnNames]="columns" [keys]="keys"></static-table>
 <div class="loading center-content" *ngIf="!loaded">
     <loading-indicator></loading-indicator>
 </div>

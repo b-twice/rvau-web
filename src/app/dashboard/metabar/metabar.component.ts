@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
   styles: [require('./metabar.component.scss')],
 })
 export class MetabarComponent implements OnInit, OnDestroy {
-  private name: string = 'Richmond Ultimate';
+  private name: string = 'Richmond Ultimate Score Reporter';
   private leagues: string[];
   private latestLeague: string = '2016 Spring';
   currentRoute: string;

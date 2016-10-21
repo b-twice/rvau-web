@@ -7,6 +7,8 @@
 .metabar-inner {
     display:flex;
     flex-direction:column;  
+    align-items:center;
+    justify-content:center;
 }
 
 .metabar-site {
@@ -17,4 +19,5 @@
 
 .site-brand {
     font-size:3.2rem;
+    font-weight:700;
 }
