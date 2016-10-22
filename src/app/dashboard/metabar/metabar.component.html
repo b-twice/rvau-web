@@ -2,5 +2,8 @@
 	<div class="site-brand">
 		<a [routerLink]="['/']">{{name}}</a>
 	</div>
-		<dropdown *ngIf="leagues" [items]="leagues" [selected]="currentRoute" (onSelect)="onSelect($event)"></dropdown>
+	<nav>
+		<dropdown *ngIf="leagues" [items]="leagues" [selected]="currentRoute" (onSelect)="onLeagueSelect($event)"></dropdown>
+		<dropdown *ngIf="leagues" [items]="teams" [selected]="teamDefault" (onSelect)="onTeamSelect($event)"></dropdown>
+	</nav>
 </div>

@@ -13,6 +13,8 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class MetabarComponent implements OnInit, OnDestroy {
   private name: string = 'Richmond Ultimate Scores';
+  private teams: string[] = [];
+  private teamDefault: string = 'Teams'
   private leagues: string[];
   private latestLeague: string = '2016 Spring';
   currentRoute: string;
@@ -38,8 +40,12 @@ export class MetabarComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.leagueSubscription.unsubscribe();
   }
-  onSelect(event): void {
+  onLeagueSelect(event): void {
     let leagueRoute: string = event.value;
     this.router.navigate([`/league`, leagueRoute]);
   };
+
+  onTeamSelect(event): void {
+    let teamRoute: string = event.value;
+  }
 }

@@ -7,10 +7,11 @@ import { Component } from '@angular/core';
 })
 export class LeagueSummaryComponent {
 
-    private columns: string[]; // pretty names
-    private keys: string[]; // raw names
-    private data: {}[];
     private header:string = "Standings";
+    private primaryKey: string = 'team_name';
+    private primaryColumn: any[];
+    private centeredColumns: {};
+    private centeredKeys: string[] = [];
     loaded: boolean = false;
 
     readonly keysAlias = {
@@ -23,9 +24,30 @@ export class LeagueSummaryComponent {
     constructor() {}
 
     set(data, keys) {
-        this.keys = keys;
-        this.columns = keys.map(key => this.keysAlias[key]);
-        this.data = data;
+        // map data vertically by column
+        // i.e. team_name : pink, blue, white, orange
+        this.centeredColumns = {};
+        this.primaryColumn = [];
+        this.centeredKeys = keys.filter(k => k !== this.primaryKey);
+        data.map(d =>  
+            keys.map(k => {
+                var cellValue = d[k];
+                if (k === this.primaryKey) {
+                    this.primaryColumn.push(cellValue);
+                }
+                else {
+                    this.setKey(this.centeredColumns, k, []);
+                    this.centeredColumns[k].push(cellValue);
+                }
+
+            })
+        )
         this.loaded = true;
-    }
+    };
+
+    setKey(dict, key, value) {
+        if (!(dict.hasOwnProperty(key))) {
+            dict[key] = value;
+        }
+    };
 }

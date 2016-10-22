@@ -1,4 +1,22 @@
-<static-table *ngIf="loaded" [rows]="data" [columnNames]="columns" [keys]="keys"></static-table>
+<div class="table" *ngIf="loaded">
+    <div class="table-column primary">
+        <div class="table-row-cell table-header">
+            {{keysAlias[primaryKey]}}
+        </div>
+        <div class="table-row-cell full" *ngFor="let cell of primaryColumn">
+            <div class="team-icon {{cell}}"></div>
+            {{cell}}
+        </div>
+    </div>
+    <div class="table-column centered" *ngFor="let key of centeredKeys">
+        <div class="table-row-cell table-header centered">
+            {{keysAlias[key]}}
+        </div>
+        <div class="table-row-cell centered" *ngFor="let cell of centeredColumns[key]">
+            {{cell}}
+        </div>
+    </div>
+</div>
 <div class="loading center-content" *ngIf="!loaded">
     <loading-indicator></loading-indicator>
 </div>

@@ -16,12 +16,11 @@ import { LeagueSummaryComponent } from './league-summary';
 import { dashboardRouting } from './dashboard.routes';
 import { DashboardService } from './dashboard.service';
 
-import { StaticTableModule } from '../shared/static-table';
+import { MapPipe } from './dashboard.pipes';
 
 @NgModule({
   imports: [
     SharedModule,
-    StaticTableModule,
     dashboardRouting
   ],
   declarations: [
@@ -29,7 +28,8 @@ import { StaticTableModule } from '../shared/static-table';
     MetabarComponent,
     ScoresComponent,
     ScoreboxComponent,
-    LeagueSummaryComponent
+    LeagueSummaryComponent,
+    MapPipe
   ],
   providers: [
     DashboardService
