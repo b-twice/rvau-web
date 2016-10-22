@@ -1,13 +1,6 @@
-<div class="metabar">
-  <div class="metabar-inner site-width">
-    <div class="metabar-site">
-      <div class="site-brand">
-        <a [routerLink]="['/']">{{name}}</a>
-      </div>
-    </div>
-    <nav class="metbar-nav">
-      <div>Pick a League:</div>
-      <dropdown *ngIf="leagues" [items]="leagues" [selected]="currentRoute" (onSelect)="onSelect($event)"></dropdown>
-    </nav>
-  </div>
+<div class="metabar-inner">
+	<div class="site-brand">
+		<a [routerLink]="['/']">{{name}}</a>
+	</div>
+		<dropdown *ngIf="leagues" [items]="leagues" [selected]="currentRoute" (onSelect)="onSelect($event)"></dropdown>
 </div>
