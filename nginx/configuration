@@ -1,0 +1,15 @@
+# BUILD DISt
+
+
+# NGINX
+server {
+    listen 0.0.0.0:80;
+
+    server_name rvau.bgeo.io;
+
+    location / {
+        root   /var/www/rvau;
+        index  index.html index.htm;
+        try_files $uri$args $uri$args/ $uri $uri/ /index.html =404;
+        }
+}
