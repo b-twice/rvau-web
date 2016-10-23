@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ApiService } from '../../services';
 import { DashboardService } from '../dashboard.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -12,19 +12,17 @@ import { Subscription } from 'rxjs/Subscription';
     styles: [require('./metabar.component.scss')],
 })
 export class MetabarComponent implements OnInit, OnDestroy {
-    private currentLeague: string;
     private name: string = 'Richmond Ultimate Scores';
+    private currentLeague: string;
+    private leagues: string[];
     private teams: string[];
     private teamDefault: string[]; // hacky way to reset detection
-    private leagues: string[];
     leagueSub: Subscription;
-    routeSub: Subscription;
     teamSub: Subscription;
 
     constructor(
         private apiService: ApiService,
         private router: Router,
-        private route: ActivatedRoute,
         private ds: DashboardService) {
     }
 
