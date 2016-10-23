@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services';
 import { Subscription } from 'rxjs/Subscription';
-import { ScoresComponent }  from '../scores';
-import { LeagueSummaryComponent }  from '../league-summary';
+import { ScoresComponent } from '../scores';
+import { LeagueSummaryComponent } from '../league-summary';
 
 @Component({
   selector: 'dashboard-panel',
@@ -22,27 +23,39 @@ export class PanelComponent implements OnInit, OnDestroy {
 
   constructor(
     private ds: DashboardService,
+    private route: ActivatedRoute,
     private apiService: ApiService
   ) { }
 
   ngOnInit() {
-    this.leagueSub = this.ds.leagueSource$.subscribe(
-      league => {
-        this.scoresComponent.loaded = false;
-        this.leagueSummaryComponent.loaded = false;
-        this.apiService.getData('games', { league: league }).subscribe(response =>
-          this.scoresComponent.set(response.data, response.keys)
-        );
-        this.apiService.getData('leaguesummary', {
-          league: league, exclude: ['id', 'league', 'champion'], DESC: ['win_count', 'tie_count', 'point_diff']
-        }).subscribe(response => {
-          this.leagueSummaryComponent.set(response.data, response.keys);
-        });
+    // First time component loaded send route to metabar
+    // since metabar can't see child route params
+    var currentRoute = "";
+    let route = this.route.snapshot.url;
+    currentRoute = !route.length ? "2016 Summer" : route[0].path   
+    this.ds.sendLeague(currentRoute);
+    this.leagueSub = this.route.params.subscribe(
+      params => {
+        currentRoute = params["league"] || currentRoute
+        this.loadComponents(currentRoute);
       }
     );
   };
 
   ngOnDestroy() {
     this.leagueSub.unsubscribe();
-  }
+  };
+
+  loadComponents(league): void {
+    this.scoresComponent.loaded = false;
+    this.leagueSummaryComponent.loaded = false;
+    this.apiService.getData('games', { league: league }).subscribe(response =>
+      this.scoresComponent.set(response.data, response.keys)
+    );
+    this.apiService.getData('leaguesummary', {
+      league: league, exclude: ['id', 'league', 'champion'], DESC: ['win_count', 'tie_count', 'point_diff']
+    }).subscribe(response => {
+      this.leagueSummaryComponent.set(response.data, response.keys);
+    });
+  };
 }

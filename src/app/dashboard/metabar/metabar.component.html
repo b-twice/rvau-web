@@ -3,7 +3,7 @@
 		<a [routerLink]="['/']">{{name}}</a>
 	</div>
 	<nav>
-		<dropdown *ngIf="leagues" [items]="leagues" [selected]="currentRoute" (onSelect)="onLeagueSelect($event)"></dropdown>
-		<dropdown *ngIf="leagues" [items]="teams" [selected]="teamDefault" (onSelect)="onTeamSelect($event)"></dropdown>
+		<dropdown *ngIf="currentLeague && leagues" [items]="leagues" [selected]="currentLeague" (onSelect)="onLeagueSelect($event)"></dropdown>
+		<dropdown *ngIf="teams" [items]="teams" [selected]="teamDefault" (onSelect)="onTeamSelect($event)"></dropdown>
 	</nav>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter, OnChanges } from '@angular/core';
 
 @Component({
     selector: 'dropdown',
@@ -11,18 +11,29 @@ export class DropdownComponent implements OnInit {
     active: boolean = false;
     @Input() items: any[] = [];
     @Input() selectList: any[] = []; // filtered list of items
-    @Input() selected: string;
+    @Input() selected: string[] = []; // hacky way to
     @Output() onSelect = new EventEmitter();
 
     ngOnInit() {
+        this.filterItems();
+    };
+
+    filterItems(){
         this.selectList = this.items.filter(i => i !== this.selected);
-    }
+
+    };
     select(item: string) {
-        this.onSelect.emit({ value: item });
-        this.selected = item;
+        this.selected = [item];
         this.selectList = this.items.filter(i => i !== this.selected);
+        this.onSelect.emit({ value: item });
         this.active = false;
     };
+
+    // whenever input changes rebuild list
+    // this allows the dropdown to display new data passed in without having to destroy component from parent
+    ngOnChanges() {
+        this.filterItems();
+    }
 
     onMouseEnter() { this.active = true; }
     onMouseLeave() { this.active = false; }
