@@ -6,7 +6,7 @@ import { Component, Input, Output, OnInit, EventEmitter, OnChanges } from '@angu
     styles: [require('./dropdown.component.scss')],
 
 })
-export class DropdownComponent implements OnInit {
+export class DropdownComponent implements OnInit, OnChanges {
 
     active: boolean = false;
     @Input() items: any[] = [];
