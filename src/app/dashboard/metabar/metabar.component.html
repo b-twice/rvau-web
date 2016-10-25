@@ -1,9 +1,9 @@
 <div class="metabar-inner">
 	<div class="site-brand">
-		<a [routerLink]="['/']">{{name}}</a>
+		<a [routerLink]="['/']">{{title}}</a>
 	</div>
 	<nav>
 		<dropdown *ngIf="currentLeague && leagues" [items]="leagues" [selected]="currentLeague" (onSelect)="onLeagueSelect($event)"></dropdown>
-		<dropdown *ngIf="teams" [items]="teams" [selected]="teamDefault" (onSelect)="onTeamSelect($event)"></dropdown>
+		<dropdown *ngIf="teams" [items]="teams" [selected]="currentTeam" (onSelect)="onTeamSelect($event)"></dropdown>
 	</nav>
 </div>

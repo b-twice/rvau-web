@@ -4,17 +4,12 @@ import { Subject }    from 'rxjs/Subject';
 @Injectable()
 export class DashboardService {
 
-    private leagueSource = new Subject<string>();
-    private teamSource = new Subject<string>();
+    private routeSource = new Subject<{}>();
 
-    leagueSource$ = this.leagueSource.asObservable();
-    teamSource$ = this.teamSource.asObservable();
+    routeSource$ = this.routeSource.asObservable();
 
-    // send league change
-    sendLeague(league: string): void {
-        this.leagueSource.next(league);
-    }
-    sendTeam(team:string): void {
-        this.teamSource.next(team);
+    // send route change
+    sendRoute(league, team): void {
+        this.routeSource.next({league:league, team:team});
     }
 }

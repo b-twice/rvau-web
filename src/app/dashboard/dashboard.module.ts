@@ -6,8 +6,6 @@ import { MetabarComponent } from './metabar';
 
 // Dashboard
 import { DashboardComponent } from './';
-// Main
-import { MainComponent } from './main';
 // Panel 
 import { PanelComponent } from './panel';
 // Season Scores
@@ -30,7 +28,6 @@ import { MapPipe } from './dashboard.pipes';
   ],
   declarations: [
     DashboardComponent,
-    MainComponent,
     PanelComponent,
     MetabarComponent,
     ScoresComponent,

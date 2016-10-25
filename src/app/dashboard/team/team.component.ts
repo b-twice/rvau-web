@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { DashboardService } from '../dashboard.service';
+import { ApiService } from '../../services';
 
 @Component({
     selector: 'dashboard-team',
@@ -8,11 +10,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TeamComponent implements OnInit {
 
-    @Input() team: string;
-    @Input() league:     string;
+    constructor(
+        private ds: DashboardService,
+        private apiService: ApiService
+    ) { }
+
     setData(league, team): void {
         return;
     }
     ngOnInit() {
+        this.ds.routeSource$.subscribe(route => this.setData(route['league'], route['team']));
     };
 }
