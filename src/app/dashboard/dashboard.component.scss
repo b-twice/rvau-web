@@ -1,0 +1,194 @@
+
+
+$color-win: #edfeed;
+$color-tie: #fdf5eb;
+
+/* ==========================================================================
+   DASHBOARD-PANELS
+   ========================================================================== */
+
+.panel {
+    margin-top:1.5rem;
+    margin-bottom:2.5rem;
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2);
+}
+.panel-header{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    opacity:.85;
+    margin-top:2.5rem;
+
+    i {
+        font-size:2.4rem;
+        margin-right:1rem;
+    }
+    h2 {
+        margin:0;
+    }
+}
+
+
+/* ==========================================================================
+   #TEAMS
+   ========================================================================== */
+.table {
+  display:flex;
+  flex:1;
+  width:100%;
+  flex-direction:row;
+  background:#FFFFFF;
+}
+.table-body {
+  display:flex;
+  flex-direction:column;
+}
+.table-row {
+  display:flex;
+  flex-direction:row;
+  width:100%;
+  margin:0;
+}
+
+.table-header {
+  width:100%;
+  font-weight:700;
+  background:#EBEBEB;
+  color:rgba(0,0,0,0.7);
+  font-weight:700;
+}
+.table-column {
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+.table-row-cell {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  width:100%;
+  padding: 8px 12px;
+  border-bottom: 1px solid #ECEFF1;
+}
+
+.centered {
+    align-items:center;
+    justify-content:center;
+}
+
+.full {
+    flex-wrap:nowrap;   
+}
+
+.primary {
+    flex:2;
+}
+
+
+/* ==========================================================================
+   #SCORES
+   ========================================================================== */
+
+.team-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    margin-right: 1rem;
+    border: 1px solid rgba(0,0,0,.2);
+}
+
+.team-icon.White {
+  background-color: white;
+}
+.team-color.White {
+  color:white;
+}
+
+.team-icon.Gray {
+  background-color:#D1D2D4;
+}
+.team-color.Gray {
+  color:#D1D2D4;
+}
+
+.team-icon.Forest.Green {
+  background-color:#015029;
+}
+.team-color.Forest.Green {
+  color:#015029;
+}
+
+.team-icon.Red{
+  background-color:#CC2035;
+}
+.team-color.Red{
+  color:#CC2035;
+}
+
+.team-icon.Pink {
+  background-color:#EF5D94;
+}
+.team-color.Pink {
+  color:#EF5D94;
+}
+
+.team-icon.Turf.Green {
+  background-color:#AECD48;
+}
+.team-color.Turf.Green {
+  color:#AECD48;
+}
+
+.team-icon.Green {
+  background-color:#015029;
+  color:#015029;
+}
+.team-color.Green {
+  color:#015029;
+}
+
+
+.team-icon.Wake.Blue {
+  background-color:#78A6D9;
+  color:#78A6D9;
+}
+.team-color.Wake.Blue {
+  color:#78A6D9;
+}
+
+.team-icon.Cobalt.Blue {
+  background-color:#144782;
+  color:#144782;
+}
+.team-color.Cobalt.Blue {
+  color:#144782;
+}
+
+.team-icon.Blue {
+  background-color:#144782;
+  color:#144782;
+}
+.team-color.Blue {
+  color:#144782;
+}
+
+.team-icon.Orange {
+  background-color:#E95C28;
+}
+.team-color.Orange {
+    color:#E95C28;
+}
+
+.team-icon.Purple {
+  background-color:#4B2C6E;
+}
+.team-color.Purple {
+    color:#4B2C6E;
+}
+
+.team-icon.Black {
+  background-color:black;
+}
+.team-color.Black {
+    color:black;
+}

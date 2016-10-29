@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 :host {
     display:flex;
     flex-direction:column;
@@ -27,11 +29,11 @@
     flex:1;
 }
 .winner {
-    background:#edfeed;
+    background-color:$win-background;
 }
 
 .tie {
-    background:#fdf5eb;
+    background-color:$tie-background;
 } 
 
 

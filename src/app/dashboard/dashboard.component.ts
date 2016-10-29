@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from './dashboard.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs/Subscription';
     <dashboard-metabar  [title]='title' [currentTeam]='currentTeam' [currentLeague]='currentLeague'></dashboard-metabar>
     <router-outlet (activate)='onActivate($event)' (deactivate)='onDeactivate($event)'></router-outlet>
     `,
+    styles: [require('./dashboard.component.scss')],
+    encapsulation: ViewEncapsulation.None,
 
 })
 export class DashboardComponent {

@@ -1,0 +1,12 @@
+<div class="table   column" *ngIf="loaded">
+    <div class="table-row game-{{game.result}}" *ngFor="let game of games">
+        <i *ngIf="game.result === 'win'" class="fa fa-check icon-{{game.result}}"></i>
+        <i *ngIf="game.result === 'loss'" class="fa fa-close icon-{{game.result}}"></i>
+        <i *ngIf="game.result === 'tie'" class="fa fa-minus icon-{{game.result}}"></i>
+        <div>{{game.date | date:'EEEE, MMMM d'}}</div>
+    </div>
+
+</div>
+<div class="loading center-content" *ngIf="!loaded">
+    <loading-indicator></loading-indicator>
+</div>

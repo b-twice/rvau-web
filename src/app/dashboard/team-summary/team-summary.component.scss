@@ -1,0 +1,48 @@
+@import '../variables.scss';
+
+:host {
+    display:flex;
+    flex:1;
+    min-height:20rem;
+    width:100%;
+    background:#FFFFFF;
+};
+
+.column {
+    flex-direction:column;
+}
+.table-row {
+  display:flex;
+  flex:1;
+  flex-direction:row;
+  align-items:center;
+  padding: 8px 12px;
+  width:100%;
+  margin:0;
+  border-bottom: 1px solid #ECEFF1;
+
+  i {
+      width:3rem;
+      margin-right:1em;
+  }
+}
+
+.game-win {
+    background-color: $win-background;
+}
+.game-loss {
+
+}
+.game-tie {
+    background-color: $tie-background;
+}
+
+.icon-win {
+    color:$win-color;
+}
+.icon-loss {
+
+}
+.icon-tie {
+    color:$tie-color;
+}

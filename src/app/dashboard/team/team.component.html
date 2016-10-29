@@ -1,1 +1,14 @@
-<h2>Team Page</h2>
+<main>
+    <div class="route-back">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        <a routerLink='../../'>Go back to {{league}}</a>
+    </div>
+    <div class="team-header">
+         <i class="fa fa-users team-color {{team}}"></i>
+        <h2>{{team}}</h2>
+        <div class="results">({{win}}-{{loss}}-{{tie}})</div>
+    </div>
+    <div class="panel">
+        <dashboard-team-summary></dashboard-team-summary>
+    </div>
+</main>

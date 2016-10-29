@@ -3,6 +3,7 @@ import { DashboardService } from '../dashboard.service';
 import { ApiService } from '../../services';
 import { ScoresComponent } from '../scores';
 import { LeagueSummaryComponent } from '../league-summary';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'dashboard-panel',
@@ -10,6 +11,8 @@ import { LeagueSummaryComponent } from '../league-summary';
     styles: [require('./panel.component.scss')],
 })
 export class PanelComponent implements OnInit{
+
+    routeSub: Subscription;
 
     @ViewChild(ScoresComponent)
     private scoresComponent: ScoresComponent;
@@ -23,7 +26,11 @@ export class PanelComponent implements OnInit{
     ) { }
 
     ngOnInit() {
-        this.ds.routeSource$.subscribe(route => this.setData(route['league']));
+        this.routeSub = this.ds.routeSource$.subscribe(route => this.setData(route['league']));
+    }
+
+    ngOnDestroy() {
+        this.routeSub.unsubscribe();
     }
 
     setData(league:string): void {
