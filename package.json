@@ -18,17 +18,16 @@
     "start:hmr": "npm run server -- --hot"
   },
   "dependencies": {
-    "@angular/common": "2.1.0",
-    "@angular/compiler": "2.1.0",
-    "@angular/core": "2.1.0",
-    "@angular/forms": "2.1.0",
-    "@angular/http": "2.1.0",
-    "@angular/platform-browser": "2.1.0",
-    "@angular/platform-browser-dynamic": "2.1.0",
-    "@angular/router": "3.1.0",
+    "@angular/common": "2.1.2",
+    "@angular/compiler": "2.1.2",
+    "@angular/core": "2.1.2",
+    "@angular/forms": "2.1.2",
+    "@angular/http": "2.1.2",
+    "@angular/platform-browser": "2.1.2",
+    "@angular/platform-browser-dynamic": "2.1.2",
+    "@angular/router": "3.1.2",
     "@types/lodash": "^4.14.35",
-    "angular2-jwt": "^0.1.24",
-    "auth0": "^2.3.0",
+    "angular2-jwt": "^0.1.25",
     "core-js": "^2.4.1",
     "font-awesome": "^4.6.3",
     "lodash": "^4.13.1",
@@ -65,16 +64,10 @@
     "tslint": "^3.4.0",
     "tslint-loader": "^2.1.0",
     "typedoc": "^0.4.4",
-    "typescript": "2.0.2",
+    "typescript": "2.0.3",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.13",
     "webpack-dashboard": "^0.1.8",
     "webpack-dev-server": "^1.14.1"
-  },
-  "main": "index.js",
-  "repository": {
-    "url": "git@gitlab.com:bgeo/RVAU-Web.git",
-    "type": "git"
-  },
-  "author": "Brian Brown <brbrowngeo@gmail.com>"
+  }
 }

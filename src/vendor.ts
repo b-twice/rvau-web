@@ -11,4 +11,4 @@ import 'rxjs';
 import '@angularclass/hmr';
 
 // Auth
-import 'auth0';
+// import 'auth0';
