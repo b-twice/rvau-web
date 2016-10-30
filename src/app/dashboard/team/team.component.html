@@ -4,11 +4,18 @@
         <a routerLink='../../'>Go back to {{league}}</a>
     </div>
     <div class="team-header">
-         <i class="fa fa-users team-color {{team}}"></i>
-        <h2>{{team}}</h2>
-        <div class="results">({{win}}-{{loss}}-{{tie}})</div>
+        <h2 class="team-color {{team}}">{{team}}</h2>
+        <div class="results">Record: {{win}}-{{loss}}-{{tie}}</div>
+        <div class="champion" *ngIf="champion">
+            <i class="fa fa-star champion-icon" aria-hidden="true"></i>
+            League Champion
+        </div>
+        <div class="finalist" *ngIf="finalist">
+            <i class="fa fa-star finalist-icon" aria-hidden="true"></i>
+            League Finalist
+        </div>
     </div>
-    <div class="panel">
+    <div class="panel panel-small">
         <dashboard-team-summary></dashboard-team-summary>
     </div>
 </main>

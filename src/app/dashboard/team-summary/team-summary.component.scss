@@ -6,6 +6,8 @@
     min-height:20rem;
     width:100%;
     background:#FFFFFF;
+    margin-top:2rem;
+    margin-bottom:2rem;
 };
 
 .column {
@@ -20,28 +22,42 @@
   width:100%;
   margin:0;
   border-bottom: 1px solid #ECEFF1;
-
   i {
       width:3rem;
       margin-right:1em;
   }
 }
 
-.game-win {
-    background-color: $win-background;
-}
-.game-loss {
+.game-report {
+    display:flex;
+    flex-direction:row; 
+    align-items:center;
+    width:100%;
 
+    .game-score {
+        width:7rem;
+    }
+
+    .team-icon {
+        margin-left:1rem;
+    }
+
+    .game-date {
+        display:flex;
+        flex:1;
+        flex-direction:row;
+        justify-content:flex-end;
+        align-items:center;
+    }
 }
-.game-tie {
-    background-color: $tie-background;
-}
+
+
 
 .icon-win {
     color:$win-color;
 }
 .icon-loss {
-
+    color:$loss-color;
 }
 .icon-tie {
     color:$tie-color;

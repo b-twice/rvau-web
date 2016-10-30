@@ -22,6 +22,8 @@ export class TeamComponent implements OnInit, OnDestroy {
     private win: number = 0;
     private loss: number = 0;
     private tie: number = 0;
+    private champion: boolean = false;
+    private finalist: boolean = false;
 
     // Route sub
     private routeSub: Subscription;
@@ -70,7 +72,22 @@ export class TeamComponent implements OnInit, OnDestroy {
         this.games = this.data.filter(game => game['away_team'] === this.team || game['home_team'] === this.team)
         let summaryList = [];
         this.games.forEach(game => {
-            let summary = {date: game['game_date'], result:'', teamScore:0, opponentScore:0}
+            let summary = {date: game['game_date'], result:'', opponent: '', teamScore:0, opponentScore:0}
+
+            //final results
+            if (game['game_type'] === 'Final') {
+                if (game['away_team'] === this.team && game['away_score'] > game['home_score']) {
+                    this.champion = true
+                }
+                else if (game['home_team'] === this.team && game['home_score'] > game['away_score']) {
+                    this.champion = true
+                }
+                else {
+                    this.finalist = true;
+                }
+            }
+            if (game['game_type'] !== 'Season') { return; }
+            //season results
             if (game['away_team'] === this.team) {
                 if (game['away_score'] > game['home_score']) {
                     this.win++
@@ -86,6 +103,7 @@ export class TeamComponent implements OnInit, OnDestroy {
                 }
                 summary.teamScore = game['away_score'];
                 summary.opponentScore = game['home_score'];
+                summary.opponent = game['home_team'];
             }
             else {
                 if (game['home_score'] > game['away_score']) {
@@ -102,6 +120,7 @@ export class TeamComponent implements OnInit, OnDestroy {
                 }
                 summary.teamScore = game['home_score'];
                 summary.opponentScore = game['away_score'];
+                summary.opponent = game['away_team'];
             }
             summaryList.push(summary);
         })
@@ -113,5 +132,7 @@ export class TeamComponent implements OnInit, OnDestroy {
         this.win = 0;
         this.loss = 0;
         this.tie = 0;
+        this.champion = false;
+        this.finalist = false;
     }
 }

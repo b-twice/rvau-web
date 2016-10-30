@@ -12,6 +12,10 @@ $color-tie: #fdf5eb;
     margin-bottom:2.5rem;
     box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2);
 }
+.panel-small {
+    max-width:100rem;
+    margin:0 auto;
+}
 .panel-header{
     display:flex;
     flex-direction:row;
@@ -111,20 +115,18 @@ $color-tie: #fdf5eb;
   color:#D1D2D4;
 }
 
-.team-icon.Forest.Green {
-  background-color:#015029;
-}
-.team-color.Forest.Green {
-  color:#015029;
-}
-
 .team-icon.Red{
-  background-color:#CC2035;
+  background-color:#e74c3c
 }
 .team-color.Red{
-  color:#CC2035;
+  color:#e74c3c
 }
-
+.team-icon.Cardinal {
+  background-color:#c0392b;
+}
+.team-color.Cardinal {
+  color:#c0392b
+}
 .team-icon.Pink {
   background-color:#EF5D94;
 }
@@ -132,58 +134,74 @@ $color-tie: #fdf5eb;
   color:#EF5D94;
 }
 
+.team-icon.Kelly.Green {
+  background-color:#16a085;
+}
+.team-color.Kelly.Green {
+  color:#16a085;
+}
 .team-icon.Turf.Green {
   background-color:#AECD48;
 }
 .team-color.Turf.Green {
   color:#AECD48;
 }
-
-.team-icon.Green {
-  background-color:#015029;
-  color:#015029;
+.team-icon.Lime.Green {
+  background-color: #07FE00;
 }
-.team-color.Green {
-  color:#015029;
+.team-color.Lime.Green {
+  color: #07FE00;
 }
-
-
-.team-icon.Wake.Blue {
-  background-color:#78A6D9;
-  color:#78A6D9;
+.team-icon.Forest.Green {
+  background-color:#27ae60;
 }
-.team-color.Wake.Blue {
-  color:#78A6D9;
-}
-
-.team-icon.Cobalt.Blue {
-  background-color:#144782;
-  color:#144782;
-}
-.team-color.Cobalt.Blue {
-  color:#144782;
+.team-color.Forest.Green {
+  color:#27ae60;
 }
 
 .team-icon.Blue {
   background-color:#144782;
-  color:#144782;
 }
 .team-color.Blue {
   color:#144782;
 }
+.team-icon.Wake.Blue {
+  background-color:#78A6D9;
+}
+.team-color.Wake.Blue {
+  color:#78A6D9;
+}
+.team-icon.Cobalt.Blue {
+  background-color:#144782;
+}
+.team-color.Cobalt.Blue {
+  color:#144782;
+}
+.team-icon.Columbia.Blue {
+  background-color:#9CDEFF;
+}
+.team-color.Columbia.Blue {
+ color:#9CDEFF;
+}
+.team-icon.Tropic.Blue {
+  background-color:#63C5DE;
+}
+.team-color.Tropic.Blue {
+  color: #63C5DE;
+}
 
 .team-icon.Orange {
-  background-color:#E95C28;
+  background-color:#f39c12;
 }
 .team-color.Orange {
-    color:#E95C28;
+  color:#f39c12;
 }
 
 .team-icon.Purple {
-  background-color:#4B2C6E;
+  background-color:#9b59b6;
 }
 .team-color.Purple {
-    color:#4B2C6E;
+    color:#9b59b6;
 }
 
 .team-icon.Black {
@@ -191,4 +209,18 @@ $color-tie: #fdf5eb;
 }
 .team-color.Black {
     color:black;
+}
+
+.team-icon.Yellow {
+  background-color: #FFF200;
+}
+.team-color.Yellow {
+  color: #FFF200;
+}
+
+.team-icon.Tan {
+  background-color:#DDB480
+}
+.team-color.Tan {
+  color: #DDB480;
 }

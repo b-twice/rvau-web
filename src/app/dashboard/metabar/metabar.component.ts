@@ -39,6 +39,8 @@ export class MetabarComponent implements OnInit {
     };
     onTeamSelect(event): void {
         let teamRoute: string = event.value;
+        // Ignore dropdown title before team selected
+        if (teamRoute === 'Teams') {return;}
         this.router.navigate(['/league', this.currentLeague, 'team', teamRoute]);
     };
 
