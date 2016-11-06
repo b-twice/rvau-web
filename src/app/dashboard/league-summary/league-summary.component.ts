@@ -12,10 +12,12 @@ export class LeagueSummaryComponent {
     private primaryColumn: any[];
     private centeredColumns: {};
     private centeredKeys: string[] = [];
+    private champion: string;
     loaded: boolean = false;
 
     readonly keysAlias = {
         'team_name': 'Team Name',
+	'champion': 'Champion'
         'win_count': 'Wins',
         'loss_count': 'Losses',
         'tie_count': 'Ties',
@@ -28,6 +30,7 @@ export class LeagueSummaryComponent {
         // i.e. team_name : pink, blue, white, orange
         this.centeredColumns = {};
         this.primaryColumn = [];
+	this.champion = '';
         this.centeredKeys = keys.filter(k => k !== this.primaryKey);
         data.map(d =>  
             keys.map(k => {
@@ -40,9 +43,13 @@ export class LeagueSummaryComponent {
                     this.centeredColumns[k].push(cellValue);
                 }
 
+		if (k === 'champion' && !!cellValue){
+		    this.champion = d.team_name;		}
             })
+	    
         )
         this.loaded = true;
+	console.log(this.champion)
     };
 
     setKey(dict, key, value) {

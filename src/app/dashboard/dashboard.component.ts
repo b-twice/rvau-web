@@ -29,6 +29,7 @@ export class DashboardComponent {
 
 
   onActivate(evt) {
+		
     let route = evt.route;
     this.routeSub = this.route.firstChild.params.subscribe(params => {
       let league = params["league"];

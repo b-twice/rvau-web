@@ -69,5 +69,11 @@
     "webpack": "^1.12.13",
     "webpack-dashboard": "^0.1.8",
     "webpack-dev-server": "^1.14.1"
-  }
+  },
+  "main": "index.js",
+  "repository": {
+    "url": "git@gitlab.com:bgeo/RVAU-Web.git",
+    "type": "git"
+  },
+  "author": "bgeo <brbrowngeo@gmail.com>"
 }

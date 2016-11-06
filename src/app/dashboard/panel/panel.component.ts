@@ -40,7 +40,7 @@ export class PanelComponent implements OnInit{
             this.scoresComponent.set(response.data, response.keys)
         );
         this.apiService.getData('leaguesummary', {
-            league: league, exclude: ['id', 'league', 'champion'], DESC: ['win_count', 'tie_count', 'point_diff']
+            league: league, exclude: ['id', 'league'], DESC: ['win_count', 'tie_count', 'point_diff']
         }).subscribe(response => {
             this.leagueSummaryComponent.set(response.data, response.keys);
         });

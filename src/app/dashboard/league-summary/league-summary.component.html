@@ -4,8 +4,9 @@
             {{keysAlias[primaryKey]}}
         </div>
         <div class="table-row-cell full" *ngFor="let cell of primaryColumn">
-            <div class="team-icon {{cell}}"></div>
+	    <div class="team-icon {{cell}}"></div>
             {{cell}}
+            <i *ngIf="champion === cell" class="fa fa-star champion-icon" aria-hidden="true"></i>
         </div>
     </div>
     <div class="table-column centered" *ngFor="let key of centeredKeys">
