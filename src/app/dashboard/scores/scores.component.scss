@@ -14,16 +14,12 @@
 header {
     display:flex;
     flex:1;
-    align-items:center;
     justify-content:center;
+    padding-left:12px;
     flex-direction:column;
-    div {
-        font-size:2rem;
-        font-weight:700;
-    }
 }
 
-.game-date{
+.game-day{
     background:#F8F8F8;  
     padding-left:2rem; 
 }

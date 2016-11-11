@@ -36,7 +36,7 @@ export class PanelComponent implements OnInit{
     setData(league:string): void {
         this.scoresComponent.loaded = false;
         this.leagueSummaryComponent.loaded = false;
-        this.apiService.getData('games', { league: league }).subscribe(response =>
+        this.apiService.getData('games', { league: league, game_type: 'Season' }).subscribe(response =>
             this.scoresComponent.set(response.data, response.keys)
         );
         this.apiService.getData('leaguesummary', {
