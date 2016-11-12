@@ -1,7 +1,6 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '../../services';;
-import { Subscription } from 'rxjs/Subscription';
+import { ApiService } from '../../services';
 
 
 

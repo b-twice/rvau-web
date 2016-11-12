@@ -49,7 +49,6 @@ export class LeagueSummaryComponent {
 	    
         )
         this.loaded = true;
-	console.log(this.champion)
     };
 
     setKey(dict, key, value) {

@@ -16,3 +16,4 @@ import { SelectPipe } from './';
   ]
 })
 export class DropdownModule {}
+

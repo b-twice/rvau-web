@@ -101,133 +101,148 @@ $color-tie: #fdf5eb;
     border: 1px solid rgba(0,0,0,.2);
 }
 
-.team-icon.White {
-  background-color: white;
-}
-.team-color.White {
-  color:white;
-}
+$team-color-white: white;
+$team-color-gray: #D1D2D4;
+$team-color-red: #e74c3c;
+$team-color-cardinal: #c0392b;
+$team-color-pink: #EF5D94;
+$team-color-green: #2ecc71;
+$team-color-kelly-green: #16a085;
+$team-color-turf-green: #AECD48;
+$team-color-lime-green: #07FE00;
+$team-color-forest-green: #144782;
+$team-color-blue: #144782;
+$team-color-wake-blue: #78A6D9;
+$team-color-cobalt-blue: #144782;
+$team-color-columbia-blue: #9CDEFF;
+$team-color-tropic-blue: #63C5DE;
+$team-color-orange: #f39c12;
+$team-color-purple: #9b59b6;
+$team-color-black: black;
+$team-color-yellow: #FFF200;
+$team-color-tan: #DDB480;
 
-.team-icon.Gray {
-  background-color:#D1D2D4;
+.team-icon {
+    &.White {
+        background-color: $team-color-white;
+    }
+    &.Gray {
+        background-color:$team-color-gray;
+    }
+    &.Red {
+        background-color:$team-color-red;
+    }
+    &.Cardinal { 
+        background-color:$team-color-cardinal;
+    }
+    &.Pink {
+        background-color:$team-color-pink;
+    }
+    &.Green {
+        background-color:$team-color-green;
+    }
+    &.Kelly.Green {
+        background-color: $team-color-kelly-green;
+    }
+    &.Turf.Green {
+        background-color:$team-color-turf-green;
+    }
+    &.Lime.Green {
+        background-color:$team-color-lime-green;
+    }
+    &.Forest.Green { 
+        background-color:$team-color-forest-green;
+    }
+    &.Blue {
+        background-color:$team-color-blue;
+    }
+    &.Wake.Blue {
+        background-color:$team-color-wake-blue;
+    }
+    &.Cobalt.Blue {
+        background-color:$team-color-cobalt-blue;
+    }
+    &.Columbia.Blue {
+        background-color:$team-color-columbia-blue;
+    }
+    &.Tropic.Blue {
+        background-color: $team-color-tropic-blue;
+    }
+    &.Orange {
+        background-color:$team-color-orange;
+    }
+    &.Purple {
+        background-color:$team-color-purple;
+    }
+    &.Black{ 
+        background-color:$team-color-black;
+    }
+    &.Yellow {
+        background-color:$team-color-yellow;
+    }
+    &.Tan {
+        background-color:$team-color-tan;
+    }
 }
-.team-color.Gray {
-  color:#D1D2D4;
-}
-
-.team-icon.Red{
-  background-color:#e74c3c
-}
-.team-color.Red{
-  color:#e74c3c
-}
-.team-icon.Cardinal {
-  background-color:#c0392b;
-}
-.team-color.Cardinal {
-  color:#c0392b
-}
-.team-icon.Pink {
-  background-color:#EF5D94;
-}
-.team-color.Pink {
-  color:#EF5D94;
-}
-
-
-.team-icon.Green {
-  background-color:#2ecc71;
-}
-.team-color.Green {
-  color:#2ecc71;
-}
-.team-icon.Kelly.Green {
-  background-color:#16a085;
-}
-.team-color.Kelly.Green {
-  color:#16a085;
-}
-.team-icon.Turf.Green {
-  background-color:#AECD48;
-}
-.team-color.Turf.Green {
-  color:#AECD48;
-}
-.team-icon.Lime.Green {
-  background-color: #07FE00;
-}
-.team-color.Lime.Green {
-  color: #07FE00;
-}
-.team-icon.Forest.Green {
-  background-color:#27ae60;
-}
-.team-color.Forest.Green {
-  color:#27ae60;
-}
-
-.team-icon.Blue {
-  background-color:#144782;
-}
-.team-color.Blue {
-  color:#144782;
-}
-.team-icon.Wake.Blue {
-  background-color:#78A6D9;
-}
-.team-color.Wake.Blue {
-  color:#78A6D9;
-}
-.team-icon.Cobalt.Blue {
-  background-color:#144782;
-}
-.team-color.Cobalt.Blue {
-  color:#144782;
-}
-.team-icon.Columbia.Blue {
-  background-color:#9CDEFF;
-}
-.team-color.Columbia.Blue {
- color:#9CDEFF;
-}
-.team-icon.Tropic.Blue {
-  background-color:#63C5DE;
-}
-.team-color.Tropic.Blue {
-  color: #63C5DE;
-}
-
-.team-icon.Orange {
-  background-color:#f39c12;
-}
-.team-color.Orange {
-  color:#f39c12;
-}
-
-.team-icon.Purple {
-  background-color:#9b59b6;
-}
-.team-color.Purple {
-    color:#9b59b6;
-}
-
-.team-icon.Black {
-  background-color:black;
-}
-.team-color.Black {
-    color:black;
-}
-
-.team-icon.Yellow {
-  background-color: #FFF200;
-}
-.team-color.Yellow {
-  color: #FFF200;
-}
-
-.team-icon.Tan {
-  background-color:#DDB480
-}
-.team-color.Tan {
-  color: #DDB480;
+.team-color {
+     &.White {
+        color: $team-color-white;
+    }
+    &.Gray {
+        color:$team-color-gray;
+    }
+    &.Red {
+        color:$team-color-red;
+    }
+    &.Cardinal { 
+        color:$team-color-cardinal;
+    }
+    &.Pink {
+        color:$team-color-pink;
+    }
+    &.Green {
+        color:$team-color-green;
+    }
+    &.Kelly.Green {
+        color: $team-color-kelly-green;
+    }
+    &.Turf.Green {
+        color:$team-color-turf-green;
+    }
+    &.Lime.Green {
+        color:$team-color-lime-green;
+    }
+    &.Forest.Green { 
+        color:$team-color-forest-green;
+    }
+    &.Blue {
+        color:$team-color-blue;
+    }
+    &.Wake.Blue {
+        color:$team-color-wake-blue;
+    }
+    &.Cobalt.Blue {
+        color:$team-color-cobalt-blue;
+    }
+    &.Columbia.Blue {
+        color:$team-color-columbia-blue;
+    }
+    &.Tropic.Blue {
+        color: $team-color-tropic-blue;
+    }
+    &.Orange {
+        color:$team-color-orange;
+    }
+    &.Purple {
+        color:$team-color-purple;
+    }
+    &.Black{ 
+        color:$team-color-black;
+    }
+    &.Yellow {
+        color:$team-color-yellow;
+    }
+    &.Tan {
+        color:$team-color-tan;
+    }
 }

@@ -7,7 +7,7 @@ import { GetRequest } from '../shared';
 
 @Injectable()
 export class ApiService {
-    private apiUrl:string = 'http://api.bgeo.io/rvau/api';
+    private apiUrl: string = 'http://api.bgeo.io/rvau/api';
 
     constructor(private http: Http, private authHttp: AuthHttp) { }
 
@@ -72,13 +72,10 @@ export class ApiService {
         return params;
     }
     private handleAuthenticationError(error: Response) {
-        console.log(error)
         return Observable.throw(error || 'Server error');
     }
 
     private handleError(error: Response) {
-        console.log(error);
-        console.error(error);
         return Observable.throw(error.json().errors || 'Server error');
     }
 }

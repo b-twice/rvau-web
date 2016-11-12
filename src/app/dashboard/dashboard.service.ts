@@ -10,6 +10,7 @@ export class DashboardService {
 
     // send route change
     sendRoute(league, team): void {
-        this.routeSource.next({league:league, team:team});
+        this.routeSource.next({league: league, team: team});
     }
 }
+

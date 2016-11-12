@@ -11,3 +11,4 @@ export class MapPipe implements PipeTransform {
         return collectionKeys.map((key) => ({ 'key': key, 'value': map[key] }));
     }
 }
+

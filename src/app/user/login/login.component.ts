@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
         this.questions = this.metadata.getMetadata();
         this.authService.authenticated$.subscribe(resp => {
             this.authenticating = false;
-            console.log(resp)
             this.authenticationError = resp['error'];
         });
     }
@@ -31,3 +30,4 @@ export class LoginComponent implements OnInit {
         this.authService.login(form['email'], form['password']);
     }
 }
+

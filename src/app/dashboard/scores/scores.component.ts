@@ -26,8 +26,7 @@ export class ScoresComponent {
         Object.keys(this.games).forEach(g => {
             this.games[Moment(g).format('dddd, MMMM DD')] = this.games[g];
             delete this.games[g];
-        })
-        console.log(this.games)
+        });
         this.dayList = Object.keys(this.games).sort();
         this.activeDay = this.dayList[this.dayList.length - 1];
         this.getGames(this.activeDay);
