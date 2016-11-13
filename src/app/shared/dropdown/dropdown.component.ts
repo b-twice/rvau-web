@@ -18,7 +18,7 @@ export class DropdownComponent implements OnInit, OnChanges {
         this.filterItems();
     };
 
-    filterItems(){
+    filterItems() {
         this.selectList = this.items.filter(i => i !== this.selected);
 
     };

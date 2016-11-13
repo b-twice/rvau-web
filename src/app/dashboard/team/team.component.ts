@@ -3,6 +3,7 @@ import { DashboardService } from '../dashboard.service';
 import { ApiService } from '../../services';
 import { Subscription } from 'rxjs/Subscription';
 import { TeamSummaryComponent } from '../team-summary';
+import { TeamPlayersComponent } from '../team-players';
 
 @Component({
     selector: 'dashboard-team',
@@ -25,11 +26,18 @@ export class TeamComponent implements OnInit, OnDestroy {
     private champion: boolean = false;
     private finalist: boolean = false;
 
+    // Team Players data
+    private teamData: {}[];
+    private teamKeys: string[];
+
     // Route sub
     private routeSub: Subscription;
 
     @ViewChild(TeamSummaryComponent)
     private teamSummaryComponent: TeamSummaryComponent;
+
+    @ViewChild(TeamPlayersComponent)
+    private teamPlayersComponent: TeamPlayersComponent;
 
     constructor(
         private ds: DashboardService,
@@ -38,20 +46,28 @@ export class TeamComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.routeSub = this.ds.routeSource$.subscribe(route => {
-            this.team = route['team'];
-            this.setLeague(route['league'])
+            this.setComponent(route['league'], route['team']);
         });
     };
 
     ngOnDestroy() {
         this.routeSub.unsubscribe();
     }
-    setLeague(league): void {
+    setComponent(league, team): void {
+        this.apiService.getData('leagueplayers', {
+            league: league, team_name:team, exclude: ['id', 'league_year', 'league_type']
+        }).subscribe(response => {
+                this.teamData = response.data;
+                this.teamKeys = response.keys;
+                this.teamPlayersComponent.set(response.data, response.keys);
+        });
+        this.team = team;
         // only set league on league change
         if (!league || league != this.league) {
             this.apiService.getData('games', {
                 league: league, exclude: ['id', 'league_year', 'league_type'], ASC: ['game_date']
             }).subscribe(response => {
+                console.log('setting league data')
                 this.setData(response.data, response.keys);
             });
         }

@@ -16,6 +16,7 @@ import { LeagueSummaryComponent } from './league-summary';
 // Team Page
 import { TeamComponent} from './team';
 import { TeamSummaryComponent } from './team-summary';
+import { TeamPlayersComponent } from './team-players';
 
 import { dashboardRouting } from './dashboard.routes';
 import { DashboardService } from './dashboard.service';
@@ -36,6 +37,7 @@ import { MapPipe } from './dashboard.pipes';
     LeagueSummaryComponent,
     TeamComponent,
     TeamSummaryComponent,
+    TeamPlayersComponent,
     MapPipe
   ],
   providers: [

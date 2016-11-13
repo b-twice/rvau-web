@@ -17,7 +17,7 @@ export class LeagueSummaryComponent {
 
     readonly keysAlias = {
         'team_name': 'Team Name',
-	'champion': 'Champion'
+        'champion': 'Champion',
         'win_count': 'Wins',
         'loss_count': 'Losses',
         'tie_count': 'Ties',
@@ -30,8 +30,8 @@ export class LeagueSummaryComponent {
         // i.e. team_name : pink, blue, white, orange
         this.centeredColumns = {};
         this.primaryColumn = [];
-	this.champion = '';
-        this.centeredKeys = keys.filter(k => k !== this.primaryKey);
+        this.champion = '';
+        this.centeredKeys = keys.filter(k => k !== this.primaryKey && k !== 'champion');
         data.map(d =>  
             keys.map(k => {
                 var cellValue = d[k];
