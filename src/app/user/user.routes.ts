@@ -9,8 +9,8 @@ export const userRoutes: Routes = [
     path: 'user',
     component: UserComponent,
     children: [
-      { path: '', redirectTo: 'login' },
       { path: 'login', component: LoginComponent },
+      { path: '', redirectTo: 'login' },
     ]
   }
 ];

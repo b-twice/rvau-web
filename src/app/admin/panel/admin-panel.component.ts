@@ -7,7 +7,7 @@ import { DynamicTableService } from '../../shared/dynamic-table';
 import { FormRequest, GetRequest } from '../../shared';
 import { Subscription }   from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
-const _ = require('lodash');
+import * as _ from 'lodash';
 
 @Component({
     selector: 'admin-panel',

@@ -47,7 +47,6 @@ export class AuthService {
     }
 
     get isAuthorized(): boolean {
-        console.log('Checking Authentication');
         this.authenticated = tokenNotExpired('jwt');
         console.log(this.authenticated);
         return this.authenticated;

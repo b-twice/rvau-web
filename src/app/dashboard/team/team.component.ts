@@ -67,7 +67,6 @@ export class TeamComponent implements OnInit, OnDestroy {
             this.apiService.getData('games', {
                 league: league, exclude: ['id', 'league_year', 'league_type'], ASC: ['game_date']
             }).subscribe(response => {
-                console.log('setting league data')
                 this.setData(response.data, response.keys);
             });
         }

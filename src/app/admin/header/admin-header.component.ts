@@ -7,7 +7,7 @@ import { AuthService } from '../../services';
   styles: [require('./admin-header.component.scss')]
 })
 export class AdminHeaderComponent {
-
+  private title: string = "Richmond Ultimate Scores";
   constructor(private authService: AuthService) { }
 
   logout(): void {

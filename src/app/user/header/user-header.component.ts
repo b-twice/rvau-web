@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styles: [require('./user-header.component.scss')],
 })
 export class UserHeaderComponent {
+  private title: string = "Richmond Ultimate Scores";
   constructor() {}
 }

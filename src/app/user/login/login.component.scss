@@ -13,3 +13,23 @@
     margin:1em auto;
     width:40rem;
 }
+
+
+button {
+    color: white;
+    background: #15CD72;
+}
+button:focus {
+    background-color: #0CB863;
+    transition: background 0.1s;
+}
+
+button:hover {
+    background-color: #0CB863;
+    transition: background 0.1s;
+}
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
+}

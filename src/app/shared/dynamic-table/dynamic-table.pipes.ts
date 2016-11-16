@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { TableRow } from './dynamic-table.models';
+import * as _ from 'lodash';
 
-const _ = require('lodash');
 @Pipe({
     name: 'mapPipe'
 })

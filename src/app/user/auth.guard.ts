@@ -5,10 +5,13 @@ import { CanActivate,
 
 @Injectable()
 export class AuthGuard {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+      private authService: AuthService, 
+      private router: Router) {}
+  
   canActivate() {
     if (this.authService.isAuthorized) { return true; }
-    this.router.navigate(['/user/login']);
+    this.router.navigateByUrl('/user/login');
     return false;
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-const _ = require('lodash');
+import * as _ from 'lodash';
 const Moment = require('moment');
 
 
@@ -11,7 +11,7 @@ const Moment = require('moment');
 export class ScoresComponent {
 
     loaded: boolean = false;
-    private games: {}[]; // all games by season type and date, e.g. games['season']['04/2015/16']
+    private games: {}; // all games by season type and date, e.g. games['season']['04/2015/16']
 
     // dropdown
     private dayList: string[] = []; // array of game days e.g. Preason Game 1
