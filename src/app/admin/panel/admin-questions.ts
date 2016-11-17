@@ -196,7 +196,7 @@ export const AdminQuestions = {
             type: 'Text',
             placeholder: 'Away team',
             options: [],
-            source: 'teams',
+            source: '',
             required: true,
             order: 6
         }),

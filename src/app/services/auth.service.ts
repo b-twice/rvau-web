@@ -30,6 +30,7 @@ export class AuthService {
                 console.log('Authentication Error');
                 this.authenticationResponse({error: 'User could not be authenticated' });
             };
+            console.log(profile)
             console.log('Authentication Success');
             localStorage.setItem('jwt', profile['idToken']);
             this.authenticated = true;
@@ -52,6 +53,9 @@ export class AuthService {
         return this.authenticated;
     }
 
+    getToken(): any{
+        return localStorage.getItem('jwt');
+    }
     authenticationResponse(response): void {
         this.authenticatedSource.next(response);
     }
