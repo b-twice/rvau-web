@@ -11,7 +11,7 @@ export class AuthService {
     authenticated: boolean = false;
     private auth = new Auth0({
         domain: 'bgeo.auth0.com',
-        clientID: 'TPZrTRxzqYySVXNwNsokXsFL25cTD1ML',
+        clientID: 'TPZrTRxzqYySVXNwNsokXsFL25cTD1ML'
     });
     private authenticatedSource = new Subject<any[]>();
     authenticated$ = this.authenticatedSource = new Subject<any[]>();
@@ -27,17 +27,13 @@ export class AuthService {
             password: password,
         }, (err, profile) => {
             if (err) {
-                console.log('Authentication Error');
                 this.authenticationResponse({error: 'User could not be authenticated' });
-            };
-            console.log(profile)
-            console.log('Authentication Success');
+            }
             localStorage.setItem('jwt', profile['idToken']);
             this.authenticated = true;
             this.router.navigate(['/admin']);
             return;
         });
-
     }
 
     logout(): void {
@@ -56,6 +52,7 @@ export class AuthService {
     getToken(): any{
         return localStorage.getItem('jwt');
     }
+
     authenticationResponse(response): void {
         this.authenticatedSource.next(response);
     }

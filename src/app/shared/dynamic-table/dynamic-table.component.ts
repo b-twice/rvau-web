@@ -61,7 +61,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
       this.tableService.changeRow(new TableRow({ state: 'put', value: response.value }));
     }
     else if (response.action === 'post') {
-      this.addedRows.push(new TableRow({ state: 'post', value: response.value }));
+      this.addedRows.push(new TableRow({ state: 'post', value: response.value[0] }));
     }
     else if (response.action === 'delete') {
       this.tableService.changeRow(new TableRow({ state: 'delete', value: response.value }));

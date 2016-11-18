@@ -91,7 +91,14 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
         let value = event.value;
         if (this.editSession.state === 'put') {
             value['id'] = this.editSession.id;
-            if (this.formRow = value) {
+            let doesMatch = true;
+            Object.keys(value).forEach(k => {
+                if (value[k] !== this.formRow[k]) {
+                    doesMatch = false
+                }
+            })
+            if (doesMatch) {
+
                 this.responseMessage = 'Make a change before saving.';
                 return;
             }
