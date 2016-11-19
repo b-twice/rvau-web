@@ -168,8 +168,33 @@ admin {
   flex:1;
 }
 
+.modal {    
+    overflow:hidden;    
+}
+
+
+/* ==========================================================================
+   BRANDING
+   ========================================================================== */
+
 .site-brand {
     font-size:3.2rem;
     font-weight:700;
     margin-bottom:.5rem;
+}
+
+
+/* ==========================================================================
+   STYLES
+   ========================================================================== */
+
+$error-text: #fff;
+$error-background: #d9534f;
+$error-border: #d43f3a;
+
+.response-error {
+  color:$error-text;
+  background-color:$error-background;
+  border: 1px solid $error-border;
+  padding:1.2em;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DynamicTableService } from '../dynamic-table.service';
-import { Subscription }   from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 import { GetRequest } from '../../request-models';
 
 @Component({
@@ -38,7 +38,7 @@ export class FilterMenuComponent implements OnInit, OnDestroy {
                 let req: GetRequest = new GetRequest(
                     {
                         table: this.routePath,
-                        params: { unique: this.filterKeys.join(',') }, 
+                        params: { unique: this.filterKeys.join(',') },
                         action: 'filter'
                     }
                 );

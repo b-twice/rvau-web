@@ -1,1 +1,1 @@
-export * from './filter-menu.component'
+export * from './filter-menu.component';

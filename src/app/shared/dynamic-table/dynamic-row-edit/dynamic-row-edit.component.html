@@ -1,11 +1,10 @@
-<div *ngIf="editSession.active">
+<div class="form-modal" *ngIf="editSession.active">
     <div class="form-wrapper" (click)="stopEditSession()">
         <div class="form-content" *ngIf="!editSession.transaction">
             <div class="form-body" (click)="stopPropogation($event)">
                 <div class="form-close">
                     <i class="fa fa-times fa-22" (click)="stopEditSession()" aria-hidden="true"></i>
                 </div>
-                <!--<div *ngIf="responseMessage" class="response bg-danger">{{responseMessage}}</div>-->
                 <dynamic-form [questions]="formQuestions" [submitButtonText]="'Save'" (onSubmit)="onSubmit($event)"></dynamic-form>
                 <button class="button-full" *ngIf="deleteEnabled" (click)="deleteRow()" type="submit">Delete</button>
             </div>

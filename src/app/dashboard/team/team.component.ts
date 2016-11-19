@@ -55,15 +55,15 @@ export class TeamComponent implements OnInit, OnDestroy {
     }
     setComponent(league, team): void {
         this.apiService.getData('leagueplayers', {
-            league: league, team_name:team, exclude: ['id', 'league_year', 'league_type']
+            league: league, team_name: team, exclude: ['id', 'league_year', 'league_type']
         }).subscribe(response => {
-                this.teamData = response.data;
-                this.teamKeys = response.keys;
-                this.teamPlayersComponent.set(response.data, response.keys);
+            this.teamData = response.data;
+            this.teamKeys = response.keys;
+            this.teamPlayersComponent.set(response.data, response.keys);
         });
         this.team = team;
         // only set league on league change
-        if (!league || league != this.league) {
+        if (!league || league !== this.league) {
             this.apiService.getData('games', {
                 league: league, exclude: ['id', 'league_year', 'league_type'], ASC: ['game_date']
             }).subscribe(response => {
@@ -84,37 +84,37 @@ export class TeamComponent implements OnInit, OnDestroy {
 
     setGames() {
         this.resetProperties();
-        this.games = this.data.filter(game => game['away_team'] === this.team || game['home_team'] === this.team)
+        this.games = this.data.filter(game => game['away_team'] === this.team || game['home_team'] === this.team);
         let summaryList = [];
         this.games.forEach(game => {
-            let summary = {date: game['game_date'], result:'', opponent: '', teamScore:0, opponentScore:0}
+            let summary = { date: game['game_date'], result: '', opponent: '', teamScore: 0, opponentScore: 0 };
 
-            //final results
+            // final results
             if (game['game_type'] === 'Final') {
                 if (game['away_team'] === this.team && game['away_score'] > game['home_score']) {
-                    this.champion = true
+                    this.champion = true;
                 }
                 else if (game['home_team'] === this.team && game['home_score'] > game['away_score']) {
-                    this.champion = true
+                    this.champion = true;
                 }
                 else {
                     this.finalist = true;
                 }
             }
             if (game['game_type'] !== 'Season') { return; }
-            //season results
+            // season results
             if (game['away_team'] === this.team) {
                 if (game['away_score'] > game['home_score']) {
-                    this.win++
-                    summary.result = "win"
-                } 
+                    this.win++;
+                    summary.result = 'win';
+                }
                 else if (game['away_score'] < game['home_score']) {
-                    this.loss++
-                    summary.result = "loss"
+                    this.loss++;
+                    summary.result = 'loss';
                 }
                 else {
-                    this.tie++
-                    summary.result = "tie"
+                    this.tie++;
+                    summary.result = 'tie';
                 }
                 summary.teamScore = game['away_score'];
                 summary.opponentScore = game['home_score'];
@@ -122,28 +122,28 @@ export class TeamComponent implements OnInit, OnDestroy {
             }
             else {
                 if (game['home_score'] > game['away_score']) {
-                    this.win++
-                    summary.result = "win"
-                } 
+                    this.win++;
+                    summary.result = 'win';
+                }
                 else if (game['home_score'] < game['away_score']) {
-                    this.loss++
-                    summary.result = "loss"
+                    this.loss++;
+                    summary.result = 'loss';
                 }
                 else {
-                    this.tie++
-                    summary.result = "tie"
+                    this.tie++;
+                    summary.result = 'tie';
                 }
                 summary.teamScore = game['home_score'];
                 summary.opponentScore = game['away_score'];
                 summary.opponent = game['away_team'];
             }
             summaryList.push(summary);
-        })
+        });
         this.teamSummaryComponent.setData(summaryList);
     }
 
     resetProperties() {
-        this.games = []
+        this.games = [];
         this.win = 0;
         this.loss = 0;
         this.tie = 0;

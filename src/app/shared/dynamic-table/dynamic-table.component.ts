@@ -48,14 +48,12 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
     this.tableService.startTransaction({});
   }
 
-  exportToCsv(): void {
-
-  }
-
   handleFormResponse(response: FormRequest) {
+    console.log(response)
     this.responseMessage = '';
     if (!response.success) {
-      this.responseMessage = response.message['errors'];
+      let message = response['message'].json ? response['message'].json()['errors'] : response['message'];
+      this.responseMessage = message;
     }
     if (response.success && response.action === 'put') {
       this.tableService.changeRow(new TableRow({ state: 'put', value: response.value }));
