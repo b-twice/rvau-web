@@ -1,25 +1,12 @@
-import { Component } from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { Component, ViewEncapsulation } from '@angular/core';
 
-import { HomeComponent } from './home';
-import { LeagueFormComponent } from './admin/league-form';
-import { HeaderComponent } from './header';
-
-/*
- * App Component
- * Top Level Component
- */
 @Component({
-  selector: 'my-app', // <my-app></my-app>
-  providers: [],
-  directives: [ROUTER_DIRECTIVES, HeaderComponent],
+  selector: 'rvau',
   template: require('./app.component.html'),
   styles: [require('./app.component.scss')],
+  encapsulation: ViewEncapsulation.None,
+
 })
-@RouteConfig([
-  {path: '/', component: HomeComponent, name: 'Home'},
-  {path: '/Admin/Add/Leagues', component: LeagueFormComponent, name: 'AddLeague'}
-])
 export class AppComponent {
   constructor() {
   }

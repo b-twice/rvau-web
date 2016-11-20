@@ -1,0 +1,17 @@
+<div class="table column" *ngIf="loaded">
+    <div class="table-row table-header">Season Results</div>
+    <div class="table-row game-{{game.result}}" *ngFor="let game of games">
+        <i *ngIf="game.result === 'win'" class="fa fa-check icon-{{game.result}}"></i>
+        <i *ngIf="game.result === 'loss'" class="fa fa-close icon-{{game.result}}"></i>
+        <i *ngIf="game.result === 'tie'" class="fa fa-minus icon-{{game.result}}"></i>
+        <div class="game-report">
+            <div class="game-score">{{game.teamScore}}-{{game.opponentScore}}</div>
+            <span> vs </span>
+            <div class="team-icon {{game.opponent}}"></div>
+            <div>{{game.opponent}}</div>
+            <div class="game-date">{{game.date | date:'EEEE, MMMM d'}}</div>
+
+        </div>
+    </div>
+</div>
+<loading-indicator *ngIf="!loaded"></loading-indicator>

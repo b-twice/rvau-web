@@ -1,2 +1,2 @@
-export * from './league.service';
 export * from './api.service';
+export * from './auth.service';

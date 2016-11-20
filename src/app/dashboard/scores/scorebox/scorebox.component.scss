@@ -1,0 +1,37 @@
+@import '../../variables.scss';
+
+:host {
+    display:flex;
+    flex-direction:column;
+    border-bottom: 1px solid rgba(0,0,0, 0.2);
+    flex:1;
+}
+
+:host:last-of-type {
+    border-bottom:none;
+}
+
+.scoreline {
+    display:flex;
+    flex-direction:row;
+    flex:1;
+    align-items:center;
+    padding-right:2rem;
+    padding-top:.5rem;
+    padding-left:2rem;
+    padding-bottom:.5rem;
+}
+
+.team {
+    flex:1;
+}
+.score {
+    flex:1;
+}
+.winner {
+    background-color:$win-background;
+}
+
+.tie {
+    background-color:$tie-background;
+} 

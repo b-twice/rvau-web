@@ -1,0 +1,3 @@
+<div class="navbar">
+    <a *ngFor="let nav of navMap" [routerLink]="[navRoot, nav.link]" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="nav-link">{{nav.name}}</a>
+</div>

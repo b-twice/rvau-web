@@ -1,0 +1,28 @@
+:host {
+    display:flex;
+    min-height:100vh;
+    background:#FAFAFA;
+    width:100%;  
+    padding-left:2rem;
+    padding-right:2rem;
+}
+
+
+.dashboard-inner {
+    display:flex;
+}
+
+main {
+    flex:1;
+}
+aside {
+    margin-left:1.5rem;
+    width:34rem;
+}
+.panel-header {
+
+    i {
+        /* make icon more center with text */ 
+        padding-bottom:5px;
+    }
+}

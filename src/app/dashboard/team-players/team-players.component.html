@@ -1,0 +1,15 @@
+<div class="table" *ngIf="loaded && !error">
+    <div class="table-column primary">
+        <div class="table-row-cell table-header">
+            Team Players
+        </div>
+        <div class="table-row-cell full" *ngFor="let cell of primaryColumn">
+            {{cell.player_name}}
+            <i *ngIf="cell.player_type === 'Captain'" class="fa fa-user-circle captain-icon" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>
+<div class="table center-content not-found" *ngIf="error">
+    <span>Cannot remember who played for this team</span>
+</div>
+<loading-indicator *ngIf="!loaded"></loading-indicator>

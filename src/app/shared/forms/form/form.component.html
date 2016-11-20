@@ -1,0 +1,9 @@
+<form (ngSubmit)="submit()" [formGroup]="form">
+    <legend *ngIf="legend">{{legend}}</legend>
+    <div class="questions-wrapper">
+        <div *ngFor="let question of questions" class="form-row">
+            <df-question [questionLabel]="questionLabel" [question]="question" [form]="form"></df-question>
+        </div>
+    </div>
+    <button class="button-full" type="submit" [disabled]="!form.valid">{{submitButtonText}}</button>
+</form>

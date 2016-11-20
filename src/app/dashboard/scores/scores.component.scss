@@ -1,0 +1,25 @@
+:host {
+    display:flex;
+    flex:1;
+    min-height:20rem;
+    width:100%;
+    background:#FFFFFF;
+};
+
+.results {
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+header {
+    display:flex;
+    justify-content:center;
+    height:5rem;
+    padding-left:12px;
+    flex-direction:column;
+}
+
+.game-day{
+    background:#F8F8F8;  
+    padding-left:2rem; 
+}

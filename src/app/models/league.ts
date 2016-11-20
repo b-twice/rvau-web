@@ -1,8 +1,8 @@
 export class League {
 
     constructor(
-        public leagueType: string,
-        public leagueYear: number
+        public league_type: string,
+        public league_year: number
     ) { }
-    
+
 }

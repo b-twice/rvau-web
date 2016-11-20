@@ -4,13 +4,11 @@ import '@angular/platform-browser-dynamic';
 import '@angular/core';
 import '@angular/common';
 import '@angular/http';
-import '@angular/router-deprecated';
+import '@angular/router';
 
 // RxJS
 import 'rxjs';
+import '@angularclass/hmr';
 
-// Other vendors for example jQuery, Lodash or Bootstrap
-// You can import js, ts, css, sass, ..
-import 'jquery';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+// Auth
+// import 'auth0';

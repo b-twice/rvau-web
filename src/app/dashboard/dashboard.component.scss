@@ -1,0 +1,248 @@
+
+
+$color-win: #edfeed;
+$color-tie: #fdf5eb;
+
+/* ==========================================================================
+   DASHBOARD-PANELS
+   ========================================================================== */
+
+.panel {
+    margin-top:1.5rem;
+    margin-bottom:2.5rem;
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2);
+}
+.panel-small {
+    max-width:100rem;
+    margin:0 auto;
+}
+.panel-header{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    opacity:.85;
+    margin-top:2.5rem;
+
+    i {
+        font-size:2.4rem;
+        margin-right:1rem;
+    }
+    h2 {
+        margin:0;
+    }
+}
+
+
+/* ==========================================================================
+   #TEAMS
+   ========================================================================== */
+.table {
+  display:flex;
+  flex:1;
+  width:100%;
+  flex-direction:row;
+  background:#FFFFFF;
+}
+.table-body {
+  display:flex;
+  flex-direction:column;
+}
+.table-row {
+  display:flex;
+  flex-direction:row;
+  width:100%;
+  margin:0;
+}
+
+.table-header {
+  width:100%;
+  font-weight:700;
+  background:#EBEBEB;
+  color:rgba(0,0,0,0.7);
+  font-weight:700;
+}
+.table-column {
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+.table-row-cell {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  width:100%;
+  padding: 8px 12px;
+  border-bottom: 1px solid #ECEFF1;
+}
+
+.centered {
+    align-items:center;
+    justify-content:center;
+}
+
+.full {
+    flex-wrap:nowrap;   
+}
+
+.primary {
+    flex:2;
+}
+
+
+/* ==========================================================================
+   #SCORES
+   ========================================================================== */
+
+.team-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    margin-right: 1rem;
+    border: 1px solid rgba(0,0,0,.2);
+}
+
+$team-color-white: white;
+$team-color-gray: #D1D2D4;
+$team-color-red: #e74c3c;
+$team-color-cardinal: #c0392b;
+$team-color-pink: #EF5D94;
+$team-color-green: #2ecc71;
+$team-color-kelly-green: #16a085;
+$team-color-turf-green: #AECD48;
+$team-color-lime-green: #07FE00;
+$team-color-forest-green: #27ae60;
+$team-color-blue: #144782;
+$team-color-wake-blue: #78A6D9;
+$team-color-cobalt-blue: #144782;
+$team-color-columbia-blue: #9CDEFF;
+$team-color-tropic-blue: #63C5DE;
+$team-color-orange: #f39c12;
+$team-color-purple: #9b59b6;
+$team-color-black: rgba(0,0,0,0.7);
+$team-color-yellow: #FFF200;
+$team-color-tan: #DDB480;
+
+.team-icon {
+    &.White {
+        background-color: $team-color-white;
+    }
+    &.Gray {
+        background-color:$team-color-gray;
+    }
+    &.Red {
+        background-color:$team-color-red;
+    }
+    &.Cardinal { 
+        background-color:$team-color-cardinal;
+    }
+    &.Pink {
+        background-color:$team-color-pink;
+    }
+    &.Green {
+        background-color:$team-color-green;
+    }
+    &.Kelly.Green {
+        background-color: $team-color-kelly-green;
+    }
+    &.Turf.Green {
+        background-color:$team-color-turf-green;
+    }
+    &.Lime.Green {
+        background-color:$team-color-lime-green;
+    }
+    &.Forest.Green { 
+        background-color:$team-color-forest-green;
+    }
+    &.Blue {
+        background-color:$team-color-blue;
+    }
+    &.Wake.Blue {
+        background-color:$team-color-wake-blue;
+    }
+    &.Cobalt.Blue {
+        background-color:$team-color-cobalt-blue;
+    }
+    &.Columbia.Blue {
+        background-color:$team-color-columbia-blue;
+    }
+    &.Tropic.Blue {
+        background-color: $team-color-tropic-blue;
+    }
+    &.Orange {
+        background-color:$team-color-orange;
+    }
+    &.Purple {
+        background-color:$team-color-purple;
+    }
+    &.Black{ 
+        background-color:$team-color-black;
+    }
+    &.Yellow {
+        background-color:$team-color-yellow;
+    }
+    &.Tan {
+        background-color:$team-color-tan;
+    }
+}
+.team-color {
+     &.White {
+        color: $team-color-white;
+    }
+    &.Gray {
+        color:$team-color-gray;
+    }
+    &.Red {
+        color:$team-color-red;
+    }
+    &.Cardinal { 
+        color:$team-color-cardinal;
+    }
+    &.Pink {
+        color:$team-color-pink;
+    }
+    &.Green {
+        color:$team-color-green;
+    }
+    &.Kelly.Green {
+        color: $team-color-kelly-green;
+    }
+    &.Turf.Green {
+        color:$team-color-turf-green;
+    }
+    &.Lime.Green {
+        color:$team-color-lime-green;
+    }
+    &.Forest.Green { 
+        color:$team-color-forest-green;
+    }
+    &.Blue {
+        color:$team-color-blue;
+    }
+    &.Wake.Blue {
+        color:$team-color-wake-blue;
+    }
+    &.Cobalt.Blue {
+        color:$team-color-cobalt-blue;
+    }
+    &.Columbia.Blue {
+        color:$team-color-columbia-blue;
+    }
+    &.Tropic.Blue {
+        color: $team-color-tropic-blue;
+    }
+    &.Orange {
+        color:$team-color-orange;
+    }
+    &.Purple {
+        color:$team-color-purple;
+    }
+    &.Black{ 
+        color:$team-color-black;
+    }
+    &.Yellow {
+        color:$team-color-yellow;
+    }
+    &.Tan {
+        color:$team-color-tan;
+    }
+}
