@@ -10,3 +10,10 @@
     margin-left:1rem;
 };
 
+.not-found {
+    background-color:#EBEBEB;
+    color: rgba(0,0,0,0.6);
+    &:first-child {
+        font-size:3rem;
+    }
+}

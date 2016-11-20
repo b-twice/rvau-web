@@ -6,8 +6,8 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class ApiService {
-   // private apiUrl: string = 'http://api.bgeo.io/rvau/api';
-    private apiUrl: string = 'http://localhost:5000/rvau/api';
+   private apiUrl: string = 'http://api.bgeo.io/rvau/api';
+    // private apiUrl: string = 'http://localhost:5000/rvau/api';
     constructor(
         private http: Http, 
         private authService: AuthService) { }

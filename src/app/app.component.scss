@@ -63,6 +63,7 @@ h5,
 h6 {
   line-height: 1.15em;
   letter-spacing:-0.02em;
+  font-weight:900;
 }
 
 h1 {
@@ -179,8 +180,11 @@ admin {
 
 .site-brand {
     font-size:3.2rem;
-    font-weight:700;
+    font-weight:900;
     margin-bottom:.5rem;
+}
+.site-brand a {
+    color: rgba(0,0,0,0.75) !important;
 }
 
 

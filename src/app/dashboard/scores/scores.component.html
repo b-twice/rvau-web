@@ -4,6 +4,4 @@
     </header>
     <scorebox *ngFor="let game of games[activeDay]" [game]="game"></scorebox>
 </div>
-<div class="loading center-content" *ngIf="!loaded">
-    <loading-indicator></loading-indicator>
-</div>
+<loading-indicator *ngIf="!loaded"></loading-indicator>

@@ -9,8 +9,6 @@
                 <button class="button-full" *ngIf="deleteEnabled" (click)="deleteRow()" type="submit">Delete</button>
             </div>
         </div>
-        <div *ngIf="editSession.transaction">
-            <loading-indicator></loading-indicator>
-        </div>
+        <loading-indicator *ngIf="editSession.transaction"></loading-indicator>
     </div>
 </div>

@@ -60,7 +60,9 @@ export class TeamComponent implements OnInit, OnDestroy {
             this.teamData = response.data;
             this.teamKeys = response.keys;
             this.teamPlayersComponent.set(response.data, response.keys);
-        });
+        },
+        error => this.teamPlayersComponent.setError()
+        );
         this.team = team;
         // only set league on league change
         if (!league || league !== this.league) {

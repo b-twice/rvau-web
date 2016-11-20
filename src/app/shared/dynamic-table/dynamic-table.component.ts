@@ -49,7 +49,6 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
   }
 
   handleFormResponse(response: FormRequest) {
-    console.log(response)
     this.responseMessage = '';
     if (!response.success) {
       let message = response['message'].json ? response['message'].json()['errors'] : response['message'];
