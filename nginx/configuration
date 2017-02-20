@@ -1,15 +1,24 @@
-# BUILD DISt
+# sudo ln -s /etc/nginx/sites-available/rvau.bgeo.io /etc/nginx/sites-enabled/rvau.bgeo.io
 
-
-# NGINX
 server {
-    listen 0.0.0.0:80;
+        listen 80;
+        listen [::]:80;
 
-    server_name rvau.bgeo.io;
+        server_name rvau.bgeo.io;
+        if ($http_x_forwarded_proto = "http") {
+            return 301 https://$server_name$request_uri;
+        }
 
-    location / {
-        root   /var/www/rvau;
-        index  index.html index.htm;
-        try_files $uri$args $uri$args/ $uri $uri/ /index.html =404;
+        root /var/www/rvau;
+
+        index index.html index.htm index.nginx-debian.html;
+
+        location / {
+            try_files $uri$args $uri$args/ $uri $uri/ /index.html =404;
+        }
+
+        # letsencrypt well known
+        location ~ /.well-known {
+            allow all;
         }
 }
