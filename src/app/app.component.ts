@@ -2,9 +2,12 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'rvau',
-  template: require('./app.component.html'),
-  styles: [require('./app.component.scss')],
-  encapsulation: ViewEncapsulation.None,
+  template: `
+    <main class='site'>
+      <router-outlet></router-outlet>
+    </main>
+  `
+
 
 })
 export class AppComponent {

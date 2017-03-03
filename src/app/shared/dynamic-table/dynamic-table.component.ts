@@ -6,8 +6,8 @@ import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
   selector: 'dynamic-table',
-  template: require('./dynamic-table.component.html'),
-  styles: [require('./dynamic-table.component.scss')],
+  templateUrl: './dynamic-table.component.html',
+  styleUrls: ['./dynamic-table.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class DynamicTableComponent implements OnInit, OnDestroy {
@@ -51,7 +51,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
   handleFormResponse(response: FormRequest) {
     this.responseMessage = '';
     if (!response.success) {
-      let message = response['message'].json ? response['message'].json()['errors'] : response['message'];
+      let message = response['message']['json'] ? response['message']['json']['errors'] : response['message'];
       this.responseMessage = message;
     }
     if (response.success && response.action === 'put') {

@@ -3,8 +3,8 @@ import { AuthService } from '../../services';
 
 @Component({
   selector: 'admin-header',
-  template: require('./admin-header.component.html'),
-  styles: [require('./admin-header.component.scss')]
+  templateUrl: './admin-header.component.html',
+  styleUrls: ['./admin-header.component.scss']
 })
 export class AdminHeaderComponent {
   private title: string = "Richmond Ultimate Scores";

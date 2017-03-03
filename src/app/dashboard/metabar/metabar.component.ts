@@ -6,8 +6,8 @@ import { ApiService } from '../../services';
 
 @Component({
     selector: 'dashboard-metabar',
-    template: require('./metabar.component.html'),
-    styles: [require('./metabar.component.scss')],
+    templateUrl: './metabar.component.html',
+    styleUrls: ['./metabar.component.scss'],
 })
 export class MetabarComponent implements OnInit {
 

@@ -1,8 +1,7 @@
 import { TextboxQuestion, DropdownQuestion,
     characterValidator,  dateValidator }     from '../../shared';
 
-const Moment = require('moment');
-
+import * as Moment from 'moment';
 
 let getScores = function (score: number): number[] {
     let scores = [];

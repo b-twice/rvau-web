@@ -4,8 +4,8 @@ import { QuestionBase } from '../';
 
 @Component({
     selector: 'df-question',
-    template: require('./form-question.component.html'),
-    styles: [require('./form-question.component.scss')],
+    templateUrl: './form-question.component.html',
+    styleUrls: ['./form-question.component.scss'],
 })
 export class FormQuestionComponent {
     @Input() questionLabel: boolean = true;

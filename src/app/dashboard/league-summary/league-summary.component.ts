@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'dashboard-summary',
-    template: require('./league-summary.component.html'),
-    styles: [require('./league-summary.component.scss')],
+    templateUrl: './league-summary.component.html',
+    styleUrls: ['./league-summary.component.scss'],
 })
 export class LeagueSummaryComponent {
 

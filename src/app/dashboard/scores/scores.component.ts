@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import * as _ from 'lodash';
-const Moment = require('moment');
+import * as Moment from 'moment';
 
 
 @Component({
     selector: 'dashboard-scores',
-    template: require('./scores.component.html'),
-    styles: [require('./scores.component.scss')],
+    templateUrl: './scores.component.html',
+    styleUrls: ['./scores.component.scss'],
 })
 export class ScoresComponent {
 

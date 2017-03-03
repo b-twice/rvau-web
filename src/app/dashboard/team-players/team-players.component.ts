@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'dashboard-team-players',
-    template: require('./team-players.component.html'),
-    styles: [require('./team-players.component.scss')],
+    templateUrl: './team-players.component.html',
+    styleUrls: ['./team-players.component.scss'],
 })
 export class TeamPlayersComponent {
 

@@ -18,7 +18,7 @@ import { TeamComponent} from './team';
 import { TeamSummaryComponent } from './team-summary';
 import { TeamPlayersComponent } from './team-players';
 
-import { dashboardRouting } from './dashboard.routes';
+import { DashboardRoutingModule} from './dashboard.routes';
 import { DashboardService } from './dashboard.service';
 
 import { MapPipe } from './dashboard.pipes';
@@ -26,7 +26,7 @@ import { MapPipe } from './dashboard.pipes';
 @NgModule({
   imports: [
     SharedModule,
-    dashboardRouting
+    DashboardRoutingModule
   ],
   declarations: [
     DashboardComponent,

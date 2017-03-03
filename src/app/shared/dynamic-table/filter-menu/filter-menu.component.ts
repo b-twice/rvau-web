@@ -6,8 +6,8 @@ import { GetRequest } from '../../request-models';
 
 @Component({
     selector: 'filter-menu',
-    template: require('./filter-menu.component.html'),
-    styles: [require('./filter-menu.component.scss')]
+    templateUrl: './filter-menu.component.html',
+    styleUrls: ['./filter-menu.component.scss']
 })
 
 export class FilterMenuComponent implements OnInit, OnDestroy {

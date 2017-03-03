@@ -1,5 +1,5 @@
 import { Injectable }       from '@angular/core';
-import { AdminQuestions } from './admin-questions.ts';
+import { AdminQuestions } from './admin-questions';
 
 @Injectable()
 export class AdminEditMetadata {

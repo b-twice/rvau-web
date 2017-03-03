@@ -1,26 +1,31 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Inject } from '@angular/core';
 import { EditSession } from '../dynamic-table.models';
 import { FormRequest } from '../../request-models';
 import { DynamicTableService } from '../dynamic-table.service';
 import { Subscription } from 'rxjs/Subscription';
+import { DOCUMENT } from '@angular/platform-browser';
+
 
 @Component({
     selector: 'dynamic-row-edit',
-    template: require('./dynamic-row-edit.component.html'),
-    styles: [require('./dynamic-row-edit.component.scss')],
+    templateUrl: './dynamic-row-edit.component.html',
+    styleUrls: ['./dynamic-row-edit.component.scss'],
 })
 export class DynamicRowEditComponent implements OnInit, OnDestroy {
 
     @Input() formQuestions: any[];
     private formRow: {};
-    public body = document.getElementsByTagName('body')[0];
+    public body: any;
 
     private deleteEnabled: boolean = true; // change state if post
     private editSession = new EditSession();
     closeTransactionSub: Subscription;
     startTransactionSub: Subscription;
 
-    constructor(private tableService: DynamicTableService) { }
+    constructor(private tableService: DynamicTableService, @Inject(DOCUMENT) private document:any) {
+        this.body = document.getElementsByTagName('body')[0];
+     }
+
 
     ngOnInit() {
         this.closeTransactionSub = this.tableService.closeTransaction$.subscribe(
@@ -54,7 +59,7 @@ export class DynamicRowEditComponent implements OnInit, OnDestroy {
     }
 
     startEditSession(row: {} = {}) {
-        let body = document.getElementsByTagName('body')[0];
+        let body = this.document.getElementsByTagName('body')[0];
         body.classList.add('modal');
         let rowEmpty = Object.keys(row).length === 0 ? true : false;
         if (rowEmpty) {

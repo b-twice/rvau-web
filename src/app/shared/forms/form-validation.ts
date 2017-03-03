@@ -1,4 +1,4 @@
-let Moment = require('moment');
+import * as Moment from 'moment';
 
 export function dateValidator(c): { [s: string]: boolean } {
     let validDate = Moment(c.value, 'DD/MM/YYYY').isValid();

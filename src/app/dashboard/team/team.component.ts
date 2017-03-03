@@ -7,8 +7,8 @@ import { TeamPlayersComponent } from '../team-players';
 
 @Component({
     selector: 'dashboard-team',
-    template: require('./team.component.html'),
-    styles: [require('./team.component.scss')],
+    templateUrl: './team.component.html',
+    styleUrls: ['./team.component.scss'],
 
 })
 export class TeamComponent implements OnInit, OnDestroy {

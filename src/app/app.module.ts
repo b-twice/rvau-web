@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routes';
 import { HttpModule } from '@angular/http';
 
+// Settings
+import { APP_SETTINGS, AppSettings } from './app.settings';
 
 // Modules
 import { SharedModule } from './shared.module';
@@ -25,6 +27,7 @@ import { UserModule } from './user/user.module';
         AppComponent
     ],
     providers: [
+        {provide: APP_SETTINGS, useValue: AppSettings}
     ],
     bootstrap: [AppComponent]
 })

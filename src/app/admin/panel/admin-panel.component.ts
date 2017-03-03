@@ -7,13 +7,14 @@ import { DynamicTableService } from '../../shared/dynamic-table';
 import { FormRequest, GetRequest } from '../../shared';
 import { Subscription }   from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 import * as _ from 'lodash';
 
 @Component({
     selector: 'admin-panel',
-    template: require('./admin-panel.component.html'),
+    templateUrl: './admin-panel.component.html',
     providers: [AdminEditMetadata],
-    styles: [require('./admin-panel.component.scss')]
+    styleUrls: ['./admin-panel.component.scss']
 })
 export class AdminPanelComponent implements OnInit, OnDestroy {
 

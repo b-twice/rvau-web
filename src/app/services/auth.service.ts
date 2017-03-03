@@ -4,14 +4,18 @@ import { Http } from '@angular/http';
 import { Subject }    from 'rxjs/Subject';
 import { tokenNotExpired } from 'angular2-jwt';
 
+import * as auth0 from 'auth0-js';
+// declare var auth0: any;
+// Avoid name not found warnings
 
-declare var Auth0: any;
+
 @Injectable()
 export class AuthService {
     authenticated: boolean = false;
-    private auth = new Auth0({
+    private auth = new auth0.WebAuth({
         domain: 'bgeo.auth0.com',
-        clientID: 'TPZrTRxzqYySVXNwNsokXsFL25cTD1ML'
+        clientID: 'TPZrTRxzqYySVXNwNsokXsFL25cTD1ML',
+        responseType: 'token id_token'
     });
     private authenticatedSource = new Subject<any[]>();
     authenticated$ = this.authenticatedSource = new Subject<any[]>();
@@ -21,18 +25,18 @@ export class AuthService {
     }
     login(email: string, password: string) {
         return this.auth.login({
-            connection: 'RVAU',
-            responseType: 'token',
+            realm: 'RVAU',
             email: email,
             password: password,
-        }, (err, profile) => {
+        }, (err, authResult) => {
             if (err) {
                 this.authenticationResponse({error: 'User could not be authenticated' });
             }
-            localStorage.setItem('jwt', profile['idToken']);
-            this.authenticated = true;
-            this.router.navigate(['/admin']);
-            return;
+            if (authResult && authResult.idToken && authResult.accessToken) {
+                this.setUser(authResult);
+                this.authenticated = true;
+                this.router.navigate(['/admin']);
+            }
         });
     }
 
@@ -41,6 +45,11 @@ export class AuthService {
         this.authenticated = false;
         this.router.navigate(['/']);
         return;
+    }
+
+    private setUser(authResult): void {
+        localStorage.setItem('access_token', authResult.accessToken);
+        localStorage.setItem('id_token', authResult.idToken);
     }
 
     get isAuthorized(): boolean {

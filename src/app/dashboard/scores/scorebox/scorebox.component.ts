@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'scorebox',
-    template: require('./scorebox.component.html'),
-    styles: [require('./scorebox.component.scss')],
+    templateUrl: './scorebox.component.html',
+    styleUrls: ['./scorebox.component.scss'],
 })
 export class ScoreboxComponent implements OnInit {
 

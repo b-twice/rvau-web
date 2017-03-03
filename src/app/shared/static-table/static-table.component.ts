@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'static-table',
-    template: require('./static-table.component.html'),
-    styles: [require('./static-table.component.scss')],
+    templateUrl: './static-table.component.html',
+    styleUrls: ['./static-table.component.scss'],
 
 })
 export class StaticTableComponent {

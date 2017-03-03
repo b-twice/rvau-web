@@ -6,8 +6,8 @@ import { QuestionControlService  } from '../question-control.service';
 
 @Component({
   selector: 'dynamic-form',
-  template: require('./form.component.html'),
-  styles: [require('./form.component.scss')]
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
   @Input() questionLabel: boolean = true; 

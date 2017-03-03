@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
     <dashboard-metabar  [title]='title' [currentTeam]='currentTeam' [currentLeague]='currentLeague'></dashboard-metabar>
     <router-outlet (activate)='onActivate($event)' (deactivate)='onDeactivate($event)'></router-outlet>
     `,
-    styles: [require('./dashboard.component.scss')],
+    styleUrls: ['./dashboard.component.scss'],
     encapsulation: ViewEncapsulation.None,
 
 })

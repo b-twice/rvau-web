@@ -11,8 +11,8 @@ const adminRoutes: Routes = [
         children: [
             {
                 path: '',
-                component: AdminPanelComponent,
                 redirectTo: 'leagues',
+                pathMatch: 'full'
             },
             {
                 path: 'leagues',

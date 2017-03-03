@@ -4,7 +4,8 @@ const routes = [
 ];
 
 export const appRoutingProviders: any[] = [
-    authProviders,
+    authProviders
 ];
 
 export const routing = RouterModule.forRoot(routes);
+

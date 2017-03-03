@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'admin',
-  template: require('./admin.component.html'),
-  styles: []
+  templateUrl: './admin.component.html',
+  styleUrls: []
 })
 export class AdminComponent {
 }

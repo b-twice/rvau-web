@@ -5,8 +5,8 @@ import { TableRow } from '../dynamic-table.models';
 
 @Component({
     selector: 'dynamic-row',
-    template: require('./dynamic-row.component.html'),
-    styles: [require('./dynamic-row.component.scss')],
+    templateUrl: './dynamic-row.component.html',
+    styleUrls: ['./dynamic-row.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicRowComponent implements OnInit, OnDestroy {

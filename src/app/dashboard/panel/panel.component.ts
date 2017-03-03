@@ -7,8 +7,8 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'dashboard-panel',
-    template: require('./panel.component.html'),
-    styles: [require('./panel.component.scss')],
+    templateUrl: './panel.component.html',
+    styleUrls: ['./panel.component.scss'],
 })
 export class PanelComponent implements OnInit{
 
