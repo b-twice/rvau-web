@@ -9,10 +9,10 @@ const dashboardRoutes: Routes = [
         path: 'league', component: DashboardComponent, children: [
             { path: ':league/team/:team', component: TeamComponent },
             { path: ':league', component: PanelComponent },
-            { path: '', redirectTo: '2016 Summer', pathMatch: 'full'},
+            { path: '', redirectTo: '2017 Spring', pathMatch: 'full'},
         ]
     },
-    { path: '', redirectTo: `league/2016 Summer`, pathMatch: 'full' }
+    { path: '', redirectTo: `league/2017 Spring`, pathMatch: 'full' }
 ];
 @NgModule({
     imports: [
