@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { LoadingComponent } from './shared/loading';
 import { DropdownModule } from './shared/dropdown';
 
-import { ApiService, AuthService } from './services';
+import { ApiService} from './services';
 import { appRoutingProviders } from './app.routes';
 
 @NgModule({
@@ -27,7 +27,6 @@ export class SharedModule {
             ngModule: SharedModule,
             providers: [
                 appRoutingProviders,
-                AuthService,
                 ApiService,
             ]
         };

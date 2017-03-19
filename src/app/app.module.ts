@@ -10,8 +10,6 @@ import { APP_SETTINGS, AppSettings } from './app.settings';
 // Modules
 import { SharedModule } from './shared.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { AdminModule } from './admin/admin.module';
-import { UserModule } from './user/user.module';
 
 @NgModule({
     imports: [
@@ -19,8 +17,6 @@ import { UserModule } from './user/user.module';
         SharedModule.forRoot(),
         DashboardModule,
         routing,
-        AdminModule,
-        UserModule,
         HttpModule
     ],
     declarations: [

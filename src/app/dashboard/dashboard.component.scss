@@ -103,6 +103,7 @@ $color-tie: #fdf5eb;
 
 $team-color-white: white;
 $team-color-gray: #D1D2D4;
+$team-color-charcoal:#7f8c8d;
 $team-color-red: #e74c3c;
 $team-color-cardinal: #c0392b;
 $team-color-pink: #EF5D94;
@@ -125,6 +126,9 @@ $team-color-tan: #DDB480;
 .team-icon {
     &.White {
         background-color: $team-color-white;
+    }
+    &.Charcoal {
+        background-color: $team-color-charcoal;
     }
     &.Gray {
         background-color:$team-color-gray;
@@ -187,6 +191,9 @@ $team-color-tan: #DDB480;
 .team-color {
      &.White {
         color: $team-color-white;
+    }
+    &.Charcoal {
+        background-color: $team-color-charcoal;
     }
     &.Gray {
         color:$team-color-gray;
