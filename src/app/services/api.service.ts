@@ -18,7 +18,6 @@ export class ApiService {
         for (let key of Object.keys(query)) {
             params.set(key, query[key]);
         }
-        console.log(this.settings.apiEndpoint)
         let requestUrl = `${this.settings.apiEndpoint}/${fragment}`;
         return this.http.get(requestUrl, { search: params })
             .map(this.extractData)
@@ -28,7 +27,6 @@ export class ApiService {
     getRequest(request: GetRequest): Observable<any> {
         let params = this.setParams(request.params);
         let requestUrl = `${this.settings.apiEndpoint}/${request.table}`;
-        console.log(this.settings.apiEndpoint) 
         return this.http.get(requestUrl, { search: params })
             .map(this.extractData)
             .catch(this.handleError);
