@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class TeamSummaryComponent {
 
-    private games: {}[];
+    public games: {}[];
     loaded: boolean = false;
 
     setData(games) {

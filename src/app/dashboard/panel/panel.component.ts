@@ -15,14 +15,14 @@ export class PanelComponent implements OnInit{
     routeSub: Subscription;
 
     @ViewChild(ScoresComponent)
-    private scoresComponent: ScoresComponent;
+    public scoresComponent: ScoresComponent;
 
     @ViewChild(LeagueSummaryComponent)
-    private leagueSummaryComponent: LeagueSummaryComponent;
+    public leagueSummaryComponent: LeagueSummaryComponent;
 
     constructor(
-        private ds: DashboardService,
-        private apiService: ApiService
+        public ds: DashboardService,
+        public apiService: ApiService
     ) { }
 
     ngOnInit() {

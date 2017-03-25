@@ -7,12 +7,12 @@ import { Component } from '@angular/core';
 })
 export class LeagueSummaryComponent {
 
-    private header:string = "Standings";
-    private primaryKey: string = 'team_name';
-    private primaryColumn: any[];
-    private centeredColumns: {};
-    private centeredKeys: string[] = [];
-    private champion: string;
+    public header:string = "Standings";
+    public primaryKey: string = 'team_name';
+    public primaryColumn: any[];
+    public centeredColumns: {};
+    public centeredKeys: string[] = [];
+    public champion: string;
     loaded: boolean = false;
 
     readonly keysAlias = {

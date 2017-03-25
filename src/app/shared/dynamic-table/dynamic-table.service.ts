@@ -17,15 +17,15 @@ export class RowInstance {
 export class DynamicTableService {
 
     // Hook binding an observable to each row
-    private rowInstances: { [id: string]: RowInstance } = {};
+    public rowInstances: { [id: string]: RowInstance } = {};
 
-    private rowsAddedSource = new Subject<any[]>(); // Rows passed to table
-    private formPostSource = new Subject<FormRequest>(); // send submitted form
-    private postResponseSource = new Subject<FormRequest>(); // get form results
-    private closeTransactionSource = new Subject<number>(); // stop form editing
-    private startTransactionSource = new Subject<{}>(); // start form editing
-    private getRequestSource = new Subject<GetRequest>();
-    private getResponseSource = { 'filter': new Subject<GetRequest>() };
+    public rowsAddedSource = new Subject<any[]>(); // Rows passed to table
+    public formPostSource = new Subject<FormRequest>(); // send submitted form
+    public postResponseSource = new Subject<FormRequest>(); // get form results
+    public closeTransactionSource = new Subject<number>(); // stop form editing
+    public startTransactionSource = new Subject<{}>(); // start form editing
+    public getRequestSource = new Subject<GetRequest>();
+    public getResponseSource = { 'filter': new Subject<GetRequest>() };
 
 
     formPost$ = this.formPostSource.asObservable();

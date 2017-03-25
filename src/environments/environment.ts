@@ -5,8 +5,8 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: "https://api.bgeo.io/rvau/api"
+  // apiEndpoint: "https://api.bgeo.io/rvau/api"
 
-  // apiEndpoint: "http://localhost:5000/rvau/api"
+  apiEndpoint: "http://localhost:5000/rvau/api"
 };
 

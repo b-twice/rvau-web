@@ -14,34 +14,34 @@ import { TeamPlayersComponent } from '../team-players';
 export class TeamComponent implements OnInit, OnDestroy {
 
     // Routing 
-    private league: string;
-    private team: string;
-    private data: {}[];
+    public league: string;
+    public team: string;
+    public data: {}[];
 
     // Template rendering
-    private games: {}[];
-    private win: number = 0;
-    private loss: number = 0;
-    private tie: number = 0;
-    private champion: boolean = false;
-    private finalist: boolean = false;
+    public games: {}[];
+    public win: number = 0;
+    public loss: number = 0;
+    public tie: number = 0;
+    public champion: boolean = false;
+    public finalist: boolean = false;
 
     // Team Players data
-    private teamData: {}[];
-    private teamKeys: string[];
+    public teamData: {}[];
+    public teamKeys: string[];
 
     // Route sub
-    private routeSub: Subscription;
+    public routeSub: Subscription;
 
     @ViewChild(TeamSummaryComponent)
-    private teamSummaryComponent: TeamSummaryComponent;
+    public teamSummaryComponent: TeamSummaryComponent;
 
     @ViewChild(TeamPlayersComponent)
-    private teamPlayersComponent: TeamPlayersComponent;
+    public teamPlayersComponent: TeamPlayersComponent;
 
     constructor(
-        private ds: DashboardService,
-        private apiService: ApiService
+        public ds: DashboardService,
+        public apiService: ApiService
     ) { }
 
     ngOnInit() {

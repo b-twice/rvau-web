@@ -4,7 +4,7 @@ import { Subject }    from 'rxjs/Subject';
 @Injectable()
 export class DashboardService {
 
-    private routeSource = new Subject<{}>();
+    public routeSource = new Subject<{}>();
 
     routeSource$ = this.routeSource.asObservable();
 

@@ -14,15 +14,15 @@ import { DOCUMENT } from '@angular/platform-browser';
 export class DynamicRowEditComponent implements OnInit, OnDestroy {
 
     @Input() formQuestions: any[];
-    private formRow: {};
+    public formRow: {};
     public body: any;
 
-    private deleteEnabled: boolean = true; // change state if post
-    private editSession = new EditSession();
+    public deleteEnabled: boolean = true; // change state if post
+    public editSession = new EditSession();
     closeTransactionSub: Subscription;
     startTransactionSub: Subscription;
 
-    constructor(private tableService: DynamicTableService, @Inject(DOCUMENT) private document:any) {
+    constructor(public tableService: DynamicTableService, @Inject(DOCUMENT) public document:any) {
         this.body = document.getElementsByTagName('body')[0];
      }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { Game } from '../../../models/game' 
 @Component({
     selector: 'scorebox',
     templateUrl: './scorebox.component.html',
@@ -8,12 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ScoreboxComponent implements OnInit {
 
 
-    @Input() game: {};
-
-    private winner: string;
+    @Input() game: Game;
+    public winner: string;
     constructor() { }
 
     ngOnInit() {
+
         if (this.game['home_score'] === this.game['away_score']) {
             this.winner = '';
         }

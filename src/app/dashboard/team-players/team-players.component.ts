@@ -7,10 +7,10 @@ import { Component } from '@angular/core';
 })
 export class TeamPlayersComponent {
 
-    private header:string = "Players";
-    private primaryKey: string = 'player_name';
-    private primaryColumn: any[];
-    private error: boolean = false;
+    public header:string = "Players";
+    public primaryKey: string = 'player_name';
+    public primaryColumn: any[];
+    public error: boolean = false;
     loaded: boolean = false;
 
     readonly keysAlias = {

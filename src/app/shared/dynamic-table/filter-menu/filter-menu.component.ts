@@ -13,13 +13,13 @@ import { GetRequest } from '../../request-models';
 export class FilterMenuComponent implements OnInit, OnDestroy {
 
     @Input() filterKeys: string[];
-    private rows: any[];
-    private filterActivated: boolean = false;
-    private routePath: string;
-    private routeSub: Subscription;
+    public rows: any[];
+    public filterActivated: boolean = false;
+    public routePath: string;
+    public routeSub: Subscription;
     constructor(
-        private route: ActivatedRoute,
-        private tableService: DynamicTableService
+        public route: ActivatedRoute,
+        public tableService: DynamicTableService
     ) { }
 
 

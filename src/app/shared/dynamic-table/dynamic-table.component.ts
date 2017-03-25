@@ -16,15 +16,15 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
   @Input() formQuestions: any[];
   @Input() rows: {}[];
 
-  private columnNames: string[] = []; // for display
-  private filterKeys: string[] = []; // list of keys to filter by
-  private keys:string[] = [];
-  private addedRows: TableRow[] = []; // rows added while editing
-  private responseMessage: string;
+  public columnNames: string[] = []; // for display
+  public filterKeys: string[] = []; // list of keys to filter by
+  public keys:string[] = [];
+  public addedRows: TableRow[] = []; // rows added while editing
+  public responseMessage: string;
 
   formSub: Subscription;
 
-  constructor(private tableService: DynamicTableService) { }
+  constructor(public tableService: DynamicTableService) { }
 
   ngOnInit() {
     // Not ideal but form questions has column order

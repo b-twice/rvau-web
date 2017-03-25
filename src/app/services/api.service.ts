@@ -10,8 +10,8 @@ import { APP_SETTINGS, IAppSettings } from '../app.settings';
 @Injectable()
 export class ApiService {
     constructor(
-        private http: Http, 
-        @Inject(APP_SETTINGS) private settings: IAppSettings) { }
+        public http: Http, 
+        @Inject(APP_SETTINGS) public settings: IAppSettings) { }
 
     getData(fragment: string, query): Observable<any> {
         let params: URLSearchParams = new URLSearchParams();
@@ -32,24 +32,24 @@ export class ApiService {
             .catch(this.handleError);
 
     }
-    private extractData(res: Response) {
+    public extractData(res: Response) {
         let body = res.json();
         return body || {};
     }
 
-    private setParams(query: {}): URLSearchParams {
+    public setParams(query: {}): URLSearchParams {
         let params: URLSearchParams = new URLSearchParams();
         for (let key of Object.keys(query)) {
             params.set(key, query[key]);
         }
         return params;
     }
-    private handleAuthenticationError(error: Response) {
+    public handleAuthenticationError(error: Response) {
         return Observable.throw(error || 'Server error');
     }
 
 
-    private handleError(error: Response) {
+    public handleError(error: Response) {
         return Observable.throw(error || 'Server error');
 
     //     return Observable.throw(error.json().errors || 'Server error');

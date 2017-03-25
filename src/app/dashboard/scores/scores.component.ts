@@ -11,11 +11,11 @@ import * as Moment from 'moment';
 export class ScoresComponent {
 
     loaded: boolean = false;
-    private games: {}; // all games by season type and date, e.g. games['season']['04/2015/16']
+    public games: {}; // all games by season type and date, e.g. games['season']['04/2015/16']
 
     // dropdown
-    private dayList: string[] = []; // array of game days e.g. Preason Game 1
-    private activeDay: string;
+    public dayList: string[] = []; // array of game days e.g. Preason Game 1
+    public activeDay: string;
     constructor() {
     }
 

@@ -16,14 +16,14 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class DashboardComponent {
 
-    private title: string = 'Richmond Ultimate Scores';
-    private currentLeague: string;
-    private currentTeam: string;
+    public title: string = 'Richmond Ultimate Scores';
+    public currentLeague: string;
+    public currentTeam: string;
     routeSub: Subscription;
 
     constructor(
-        private ds: DashboardService,
-        private route: ActivatedRoute
+        public ds: DashboardService,
+        public route: ActivatedRoute
         ) {
     }
 

@@ -12,13 +12,13 @@ import { TableRow } from '../dynamic-table.models';
 export class DynamicRowComponent implements OnInit, OnDestroy {
     @Input() keys: {};
     @Input() row: TableRow;
-    private componentId: number;
-    private state: string;
+    public componentId: number;
+    public state: string;
 
     subscription: Subscription;
     constructor(
-        private tableService: DynamicTableService,
-        private cd: ChangeDetectorRef) {
+        public tableService: DynamicTableService,
+        public cd: ChangeDetectorRef) {
     }
 
     ngOnInit() {

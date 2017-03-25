@@ -14,12 +14,12 @@ export class MetabarComponent implements OnInit {
     @Input() title: string;
     @Input() currentLeague: string;
     @Input() currentTeam: string;
-    private leagues: string[];
-    private teams: string[];
+    public leagues: string[];
+    public teams: string[];
 
     constructor(
-        private apiService: ApiService,
-        private router: Router
+        public apiService: ApiService,
+        public router: Router
         ) {
     }
 
