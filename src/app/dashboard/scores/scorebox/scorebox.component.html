@@ -1,5 +1,5 @@
 <div class="scoreline" [class.winner]="game['home_team'] === winner" [class.tie]="winner === ''">
-    <div class="team-icon" [class]="game['home_team']"></div>
+    <div class="team-icon {{game['home_team']}}"></div>
     <div class="team">{{game['home_team']}}</div>
     <div class="score">{{game['home_score']}}</div>
 </div>

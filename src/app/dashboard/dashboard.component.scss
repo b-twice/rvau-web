@@ -118,14 +118,20 @@ $team-color-cobalt-blue: #144782;
 $team-color-columbia-blue: #9CDEFF;
 $team-color-tropic-blue: #63C5DE;
 $team-color-orange: #f39c12;
+$team-color-texas-orange: #d35400;
 $team-color-purple: #9b59b6;
+$team-color-iron-gray:#2c3e50;
 $team-color-black: rgba(0,0,0,0.7);
 $team-color-yellow: #FFF200;
 $team-color-tan: #DDB480;
+$team-color-silver:#bdc3c7;
 
 .team-icon {
     &.White {
         background-color: $team-color-white;
+    }
+    &.Silver{
+        background-color: $team-color-silver;
     }
     &.Charcoal {
         background-color: $team-color-charcoal;
@@ -147,6 +153,12 @@ $team-color-tan: #DDB480;
     }
     &.Kelly.Green {
         background-color: $team-color-kelly-green;
+    }
+    &.Texas.Orange {
+        background-color: $team-color-texas-orange;
+    }
+    &.Iron.Gray{
+        background-color: $team-color-iron-gray;
     }
     &.Turf.Green {
         background-color:$team-color-turf-green;
@@ -192,8 +204,11 @@ $team-color-tan: #DDB480;
      &.White {
         color: $team-color-white;
     }
+    &.Silver{
+        color: $team-color-silver;
+    }
     &.Charcoal {
-        background-color: $team-color-charcoal;
+        color: $team-color-charcoal;
     }
     &.Gray {
         color:$team-color-gray;
@@ -230,6 +245,12 @@ $team-color-tan: #DDB480;
     }
     &.Cobalt.Blue {
         color:$team-color-cobalt-blue;
+    }
+    &.Texas.Orange {
+        color: $team-color-texas-orange;
+    }
+    &.Iron.Gray{
+        color: $team-color-iron-gray;
     }
     &.Columbia.Blue {
         color:$team-color-columbia-blue;
