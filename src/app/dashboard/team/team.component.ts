@@ -4,6 +4,7 @@ import { ApiService } from '../../services';
 import { Subscription } from 'rxjs/Subscription';
 import { TeamSummaryComponent } from '../team-summary';
 import { TeamPlayersComponent } from '../team-players';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'dashboard-team',
@@ -41,13 +42,15 @@ export class TeamComponent implements OnInit, OnDestroy {
 
     constructor(
         public ds: DashboardService,
-        public apiService: ApiService
+        public apiService: ApiService,
+        public route: ActivatedRoute
     ) { }
 
     ngOnInit() {
-        this.routeSub = this.ds.routeSource$.subscribe(route => {
-            this.setComponent(route['league'], route['team']);
+        this.routeSub = this.route.params.subscribe(params => {
+            this.setComponent(params['league'], params['team']);
         });
+
     };
 
     ngOnDestroy() {

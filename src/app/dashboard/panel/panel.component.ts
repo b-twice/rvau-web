@@ -4,6 +4,7 @@ import { ApiService } from '../../services';
 import { ScoresComponent } from '../scores';
 import { LeagueSummaryComponent } from '../league-summary';
 import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'dashboard-panel',
@@ -22,11 +23,14 @@ export class PanelComponent implements OnInit{
 
     constructor(
         public ds: DashboardService,
+        public route: ActivatedRoute,
         public apiService: ApiService
     ) { }
 
     ngOnInit() {
-        this.routeSub = this.ds.routeSource$.subscribe(route => this.setData(route['league']));
+        this.routeSub = this.route.params.subscribe(params => {
+            this.setData(params['league'])
+        });
     }
 
     ngOnDestroy() {

@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiEndpoint: 'https://api.bgeo.io/rvau/api'
+  apiEndpoint: 'https://api.brianbrown.dev/rvau/api'
 };
 
