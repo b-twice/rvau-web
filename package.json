@@ -15,7 +15,9 @@
     "pretest": "npm run lint",
     "docs": "typedoc --options typedoc.json src/app/app.component.ts",
     "start": "npm run server",
-    "start:hmr": "npm run server -- --hot"
+    "start:hmr": "npm run server -- --hot",
+    "docker-test-build": "docker build -t rvau-test .",
+    "docker-test-start": "docker run --name rvau-test -d -p 4201:80 rvau-test"
   },
   "dependencies": {
     "@angular/common": "2.2.0",
